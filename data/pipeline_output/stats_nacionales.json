@@ -1,0 +1,67 @@
+{
+  "votos_por_lema": {
+    "Frente Amplio": 931625,
+    "Partido Nacional": 642419,
+    "Partido Colorado": 129958,
+    "Asamblea Popular": 8027,
+    "Cabildo Abierto": 31296,
+    "Partido Verde Animalista": 5517,
+    "Partido Independiente": 352191,
+    "PERI": 1397
+  },
+  "porcentajes_nacionales": {
+    "Frente Amplio": 44.31,
+    "Partido Nacional": 30.56,
+    "Partido Colorado": 6.18,
+    "Asamblea Popular": 0.38,
+    "Cabildo Abierto": 1.49,
+    "Partido Verde Animalista": 0.26,
+    "Partido Independiente": 16.75,
+    "PERI": 0.07
+  },
+  "departamentos_por_lema": {
+    "Partido Nacional": 15,
+    "Frente Amplio": 3,
+    "Partido Colorado": 1
+  },
+  "municipios_por_lema": {
+    "Partido Nacional": 87,
+    "Frente Amplio": 32,
+    "Partido Independiente": 3,
+    "Partido Colorado": 3
+  },
+  "ediles_por_lema": {
+    "Frente Amplio": 194,
+    "Partido Nacional": 318,
+    "Partido Colorado": 56,
+    "Asamblea Popular": 0,
+    "Cabildo Abierto": 8,
+    "Partido Verde Animalista": 0,
+    "Partido Independiente": 13,
+    "PERI": 0
+  },
+  "total_votos": 2102430,
+  "lema_mas_votado": "Frente Amplio",
+  "votos_totales": 2102430,
+  "porcentajes": {
+    "Frente Amplio": 44.31,
+    "Partido Nacional": 30.56,
+    "Partido Colorado": 6.18,
+    "Asamblea Popular": 0.38,
+    "Cabildo Abierto": 1.49,
+    "Partido Verde Animalista": 0.26,
+    "Partido Independiente": 16.75,
+    "PERI": 0.07
+  },
+  "departamentos_ganados": {
+    "Partido Nacional": 15,
+    "Frente Amplio": 3,
+    "Partido Colorado": 1
+  },
+  "municipios_ganados": {
+    "Partido Nacional": 87,
+    "Frente Amplio": 32,
+    "Partido Independiente": 3,
+    "Partido Colorado": 3
+  }
+}

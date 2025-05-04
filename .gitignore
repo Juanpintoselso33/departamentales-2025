@@ -1,0 +1,77 @@
+# Entorno virtual
+venv/
+env/
+.env/
+.venv/
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Archivos de shapefiles (pueden ser grandes)
+*.shp
+*.shx
+*.dbf
+*.prj
+*.sbn
+*.sbx
+*.cpg
+*.xml
+
+# Otros archivos de datos que pueden ser grandes
+*.csv
+*.xls
+*.xlsx
+*.feather
+*.parquet
+*.pkl
+
+# Archivos y carpetas del sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Archivos de Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Archivos de configuración del IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos de caché de Streamlit
+.streamlit/
+
+# Archivos de logs
+*.log 
+
+.cursor/
+
+.geojson
+data/shapefiles/uruguay_deptal/
+data/shapefiles/uruguay_municipios/

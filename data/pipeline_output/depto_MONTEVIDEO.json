@@ -1,0 +1,3695 @@
+{
+  "DI": "MONTEVIDEO",
+  "DN": "MONTEVIDEO",
+  "CE": 2626,
+  "CT": 2626,
+  "CP": "100.00",
+  "TA": 22961,
+  "TO": 7285,
+  "TNO": 877205,
+  "TE": 877327,
+  "TH": 1041475,
+  "CFCO": true,
+  "TEB": 19904,
+  "TEBP": 19144,
+  "TOR": 122,
+  "CCO": 0,
+  "Municipales": [
+    {
+      "MI": 78,
+      "MD": "MUNICIPIO A",
+      "CE": 401,
+      "CT": 401,
+      "CP": "100.00",
+      "TA": 3741,
+      "TO": 1067,
+      "TNO": 134972,
+      "TE": 134990,
+      "TH": 158450,
+      "CFCO": true,
+      "TEB": 3029,
+      "TEBP": 82863,
+      "TOR": 18,
+      "CCO": 0,
+      "Eleccion": [
+        {
+          "LI": 2,
+          "LN": "Frente Amplio",
+          "LIcon": "Images/banderas/partido_fa.bmp",
+          "TH": 30531,
+          "TAL": 0,
+          "Tot": 30531,
+          "Hojas": [
+            {
+              "HI": 376,
+              "Tot": 30531,
+              "HN": "26371A"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 431,
+                "Nombre": "SUBLEMA HOJA 26371A",
+                "VH": 30531,
+                "VAS": 0,
+                "Tot": 30531,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1724,
+                    "Dsc": "MERONI FERREIRA, Jorge Alvaro - VILLASANTE DELGADO, Mirtha Mabel - BAUTISTA PIRIZ, Jesus Joselito",
+                    "VH": 30531,
+                    "VAL": 0,
+                    "Tot": 30531
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 30531
+          }
+        },
+        {
+          "LI": 8,
+          "LN": "Partido Independiente",
+          "LIcon": "Images/banderas/partido_independiente.bmp",
+          "TH": 13815,
+          "TAL": 104,
+          "Tot": 13919,
+          "Hojas": [
+            {
+              "HI": 3018,
+              "Tot": 6255,
+              "HN": "11A"
+            },
+            {
+              "HI": 1241,
+              "Tot": 260,
+              "HN": "15A"
+            },
+            {
+              "HI": 1485,
+              "Tot": 2355,
+              "HN": "600A"
+            },
+            {
+              "HI": 154,
+              "Tot": 1711,
+              "HN": "820A"
+            },
+            {
+              "HI": 1516,
+              "Tot": 755,
+              "HN": "1040A"
+            },
+            {
+              "HI": 1593,
+              "Tot": 1141,
+              "HN": "2000A"
+            },
+            {
+              "HI": 2827,
+              "Tot": 1338,
+              "HN": "7880A"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 665,
+                "Nombre": "AHORA MONTEVIDEO",
+                "VH": 8348,
+                "VAS": 12,
+                "Tot": 8360,
+                "Listas": [],
+                "VASLDL": 12,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2497,
+                    "Dsc": "GOMEZ FEIJOO, Julio Cesar - PANGUSSI PEREIRA, Elsa Haydee - SAUDA RIERA, Sergio Atilio",
+                    "VH": 755,
+                    "VAL": 0,
+                    "Tot": 755
+                  },
+                  {
+                    "LId": 3062,
+                    "Dsc": "CALDARELLI GRECO, Pablo Antonio - FARIAS ROSA, Roque Estrugildo - JARA , Yenny Alejandra",
+                    "VH": 1338,
+                    "VAL": 0,
+                    "Tot": 1338
+                  },
+                  {
+                    "LId": 3141,
+                    "Dsc": "RODRIGUEZ                                          - OLIVERA SIERRA, Domingo Rafael - BONE RAMIREZ, Maria Cristina",
+                    "VH": 6255,
+                    "VAL": 0,
+                    "Tot": 6255
+                  }
+                ]
+              },
+              {
+                "Id": 686,
+                "Nombre": "CABILDO ARTIGUISTA",
+                "VH": 1711,
+                "VAS": 0,
+                "Tot": 1711,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1907,
+                    "Dsc": "MURAD ROMANO, Anthony  Michel - GUTIERREZ GARAY, Cesar Guillermo - MIERES MACIEL, Carmen ",
+                    "VH": 1711,
+                    "VAL": 0,
+                    "Tot": 1711
+                  }
+                ]
+              },
+              {
+                "Id": 723,
+                "Nombre": "DEFENSA DE MONTEVIDEO",
+                "VH": 3756,
+                "VAS": 6,
+                "Tot": 3762,
+                "Listas": [],
+                "VASLDL": 6,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2362,
+                    "Dsc": "ALMEIDA GODOY, Daniel Jesús - SOLIMANDO MARTINEZ, Jesus Nazareno - DELGADO GONZÁLEZ, Leticia Paola",
+                    "VH": 260,
+                    "VAL": 0,
+                    "Tot": 260
+                  },
+                  {
+                    "LId": 2481,
+                    "Dsc": "GORRIARÁN RODRÍGUEZ, Luis Eduardo - DA SILVA VERTÓPULOS, Jorge Braulio - ARIAS LEAL, Adriana Beatriz",
+                    "VH": 2355,
+                    "VAL": 0,
+                    "Tot": 2355
+                  },
+                  {
+                    "LId": 2530,
+                    "Dsc": "TRZEINSKY BENTOS PEREIRA, Vivian  - COLLAZO MORENO, Carolina Elizabeth - DUARTE PARACAMPO, Franco Manuel",
+                    "VH": 1141,
+                    "VAL": 0,
+                    "Tot": 1141
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 86,
+            "Tot": 13833
+          }
+        },
+        {
+          "LI": 10,
+          "LN": "Asamblea Popular",
+          "LIcon": "Images/banderas/partido_asamblea_popular.bmp",
+          "TH": 386,
+          "TAL": 0,
+          "Tot": 386,
+          "Hojas": [
+            {
+              "HI": 468,
+              "Tot": 386,
+              "HN": "326A"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 740,
+                "Nombre": "EN LUCHA POR LA SOBERANIA",
+                "VH": 386,
+                "VAS": 0,
+                "Tot": 386,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1998,
+                    "Dsc": "VAZQUEZ CASTRO, Jose Luis - SANCHEZ SUAREZ, Maximo Santos - STELLA ZOPPI, Clara ",
+                    "VH": 386,
+                    "VAL": 0,
+                    "Tot": 386
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 386
+          }
+        },
+        {
+          "LI": 18,
+          "LN": "Partido Verde Animalista",
+          "LIcon": "Images/Banderas/Partido_Verde_Animalista.bmp",
+          "TH": 503,
+          "TAL": 0,
+          "Tot": 503,
+          "Hojas": [
+            {
+              "HI": 1216,
+              "Tot": 503,
+              "HN": "409A"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 726,
+                "Nombre": "DESAFIO POR LA VIDA",
+                "VH": 503,
+                "VAS": 0,
+                "Tot": 503,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2352,
+                    "Dsc": "CABRERA GONZALEZ, Ana Laura - MODENA ROMERO, Laura Elizabeth - HEUS ESPALA, Alvaro Marcel",
+                    "VH": 503,
+                    "VAL": 0,
+                    "Tot": 503
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 503
+          }
+        }
+      ]
+    },
+    {
+      "MI": 79,
+      "MD": "MUNICIPIO B",
+      "CE": 336,
+      "CT": 336,
+      "CP": "100.00",
+      "TA": 2602,
+      "TO": 954,
+      "TNO": 106434,
+      "TE": 106459,
+      "TH": 131419,
+      "CFCO": true,
+      "TEB": 2413,
+      "TEBP": 54619,
+      "TOR": 25,
+      "CCO": 0,
+      "Eleccion": [
+        {
+          "LI": 2,
+          "LN": "Frente Amplio",
+          "LIcon": "Images/banderas/partido_fa.bmp",
+          "TH": 24350,
+          "TAL": 214,
+          "Tot": 24564,
+          "Hojas": [
+            {
+              "HI": 2247,
+              "Tot": 13505,
+              "HN": "53B"
+            },
+            {
+              "HI": 2217,
+              "Tot": 5077,
+              "HN": "79B"
+            },
+            {
+              "HI": 2211,
+              "Tot": 5768,
+              "HN": "96B"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 512,
+                "Nombre": "SUBLEMA HOJA 79B",
+                "VH": 5077,
+                "VAS": 0,
+                "Tot": 5077,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1572,
+                    "Dsc": "PIO GUARNIERI, Juan Pablo - RODRIGUEZ MORENCIO, Monica Alejandra - SALSAMENDI FERREIRA, Alejandro Javier",
+                    "VH": 5077,
+                    "VAL": 0,
+                    "Tot": 5077
+                  }
+                ]
+              },
+              {
+                "Id": 533,
+                "Nombre": "SUBLEMA HOJA 96B",
+                "VH": 5768,
+                "VAS": 0,
+                "Tot": 5768,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1577,
+                    "Dsc": "GUARINONI RODRIGUEZ, Mauricio Daniel - CANAVE CUELLO, Patricia  - SALSAMENDI FERREIRA, Alejandro Javier",
+                    "VH": 5768,
+                    "VAL": 0,
+                    "Tot": 5768
+                  }
+                ]
+              },
+              {
+                "Id": 995,
+                "Nombre": "SUBLEMA HOJA 53B",
+                "VH": 13505,
+                "VAS": 0,
+                "Tot": 13505,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 3276,
+                    "Dsc": "PISSANO BRIATURI, Silvana Maria - COSSANI IRIGOYEN, Jorge Enrique - RAMOS PRESA, Betty Elizabeth",
+                    "VH": 13505,
+                    "VAL": 0,
+                    "Tot": 13505
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 214,
+            "Tot": 24350
+          }
+        },
+        {
+          "LI": 8,
+          "LN": "Partido Independiente",
+          "LIcon": "Images/banderas/partido_independiente.bmp",
+          "TH": 21773,
+          "TAL": 134,
+          "Tot": 21907,
+          "Hojas": [
+            {
+              "HI": 3019,
+              "Tot": 5769,
+              "HN": "11B"
+            },
+            {
+              "HI": 2869,
+              "Tot": 2028,
+              "HN": "12B"
+            },
+            {
+              "HI": 1521,
+              "Tot": 1346,
+              "HN": "15B"
+            },
+            {
+              "HI": 18,
+              "Tot": 2534,
+              "HN": "600B"
+            },
+            {
+              "HI": 320,
+              "Tot": 1536,
+              "HN": "820B"
+            },
+            {
+              "HI": 1405,
+              "Tot": 798,
+              "HN": "1040B"
+            },
+            {
+              "HI": 1997,
+              "Tot": 5637,
+              "HN": "25040B"
+            },
+            {
+              "HI": 475,
+              "Tot": 433,
+              "HN": "60600B"
+            },
+            {
+              "HI": 1882,
+              "Tot": 160,
+              "HN": "1441007B"
+            },
+            {
+              "HI": 1475,
+              "Tot": 1532,
+              "HN": "20001515B"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 665,
+                "Nombre": "AHORA MONTEVIDEO",
+                "VH": 12204,
+                "VAS": 13,
+                "Tot": 12217,
+                "Listas": [],
+                "VASLDL": 13,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2441,
+                    "Dsc": "DIAZ PEREZ, Maria                                  - HIDALGO OLIVERA, Maria Esperanza - MENDEZ CANTERO, Pablo ",
+                    "VH": 798,
+                    "VAL": 0,
+                    "Tot": 798
+                  },
+                  {
+                    "LId": 2698,
+                    "Dsc": "MANZUR BARRETO, Ismael Carlos - MENDIZABAL UBALDE, Humberto Yebeis - BOUCHATON LACASA, Fatima Leonor",
+                    "VH": 5637,
+                    "VAL": 0,
+                    "Tot": 5637
+                  },
+                  {
+                    "LId": 3142,
+                    "Dsc": "ULLOA SICA, Juan Eduardo - VILA PERNA, Santiago  - CREVOISIER MARTINEZ, Maria del Carmen ",
+                    "VH": 5769,
+                    "VAL": 0,
+                    "Tot": 5769
+                  }
+                ]
+              },
+              {
+                "Id": 686,
+                "Nombre": "CABILDO ARTIGUISTA",
+                "VH": 1536,
+                "VAS": 0,
+                "Tot": 1536,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1957,
+                    "Dsc": "SEQUEIRA RODA, Julio Jacinto - AGUERRE PELLEGRINO, Carla Grazziella - BARCA RIBADULLA, Fernando ",
+                    "VH": 1536,
+                    "VAL": 0,
+                    "Tot": 1536
+                  }
+                ]
+              },
+              {
+                "Id": 723,
+                "Nombre": "DEFENSA DE MONTEVIDEO",
+                "VH": 7873,
+                "VAS": 34,
+                "Tot": 7907,
+                "Listas": [],
+                "VASLDL": 34,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1874,
+                    "Dsc": "SAN ROMAN ABI RACHED, Rosauro Ruben - PINTOS PENZA, Maite  - CAMEJO MAESO, Stella Maris",
+                    "VH": 2534,
+                    "VAL": 0,
+                    "Tot": 2534
+                  },
+                  {
+                    "LId": 2003,
+                    "Dsc": "da ROSA CARDOZO, Humberto Ruben - GONÇALVES MÉNDEZ, Maria Carolina - PEREZ ARRUA, Enrique Daniel",
+                    "VH": 433,
+                    "VAL": 0,
+                    "Tot": 433
+                  },
+                  {
+                    "LId": 2478,
+                    "Dsc": "SANGUINETTI BRITOS, Eduardo Nicolas - NOVELL RODRIGUEZ, Alda Eunice - BENITEZ DE BASABE, Carlos Enrique",
+                    "VH": 1532,
+                    "VAL": 0,
+                    "Tot": 1532
+                  },
+                  {
+                    "LId": 2501,
+                    "Dsc": "DURAN MUÑOZ, Sara Helena - PAEZ CENTURION, Walter Alberto - ROBLEDO CORDERO, Noelia ",
+                    "VH": 1346,
+                    "VAL": 0,
+                    "Tot": 1346
+                  },
+                  {
+                    "LId": 3078,
+                    "Dsc": "HIERRO FREIGEDO, Luis Rodrigo - SUAREZ SILVA, Javier  - ISLAS GLOODTDOFSKY, Lara Paola",
+                    "VH": 2028,
+                    "VAL": 0,
+                    "Tot": 2028
+                  }
+                ]
+              },
+              {
+                "Id": 996,
+                "Nombre": "SUBLEMA HOJA 1441007B",
+                "VH": 160,
+                "VAS": 0,
+                "Tot": 160,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 3264,
+                    "Dsc": "BARREIRO BERNAT, Alejandro  - GILLESPIE SANGUINETTI, Maria Ofelia - RAMOS BOTTARO, Martha Maria",
+                    "VH": 160,
+                    "VAL": 0,
+                    "Tot": 160
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 87,
+            "Tot": 21820
+          }
+        },
+        {
+          "LI": 10,
+          "LN": "Asamblea Popular",
+          "LIcon": "Images/banderas/partido_asamblea_popular.bmp",
+          "TH": 329,
+          "TAL": 0,
+          "Tot": 329,
+          "Hojas": [
+            {
+              "HI": 526,
+              "Tot": 329,
+              "HN": "326B"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 740,
+                "Nombre": "EN LUCHA POR LA SOBERANIA",
+                "VH": 329,
+                "VAS": 0,
+                "Tot": 329,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2019,
+                    "Dsc": "ARGUELLO CUELLO, Miguel Angel - BERMUDEZ COSTA, Lucia Ines - VIGNOLES MENENDEZ, Cecilia Helena",
+                    "VH": 329,
+                    "VAL": 0,
+                    "Tot": 329
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 329
+          }
+        }
+      ]
+    },
+    {
+      "MI": 80,
+      "MD": "MUNICIPIO C",
+      "CE": 336,
+      "CT": 336,
+      "CP": "100.00",
+      "TA": 3022,
+      "TO": 884,
+      "TNO": 112318,
+      "TE": 112330,
+      "TH": 133189,
+      "CFCO": true,
+      "TEB": 2484,
+      "TEBP": 63836,
+      "TOR": 12,
+      "CCO": 0,
+      "Eleccion": [
+        {
+          "LI": 2,
+          "LN": "Frente Amplio",
+          "LIcon": "Images/banderas/partido_fa.bmp",
+          "TH": 22805,
+          "TAL": 0,
+          "Tot": 22805,
+          "Hojas": [
+            {
+              "HI": 392,
+              "Tot": 22805,
+              "HN": "26371C"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 433,
+                "Nombre": "SUBLEMA HOJA 26371C",
+                "VH": 22805,
+                "VAS": 0,
+                "Tot": 22805,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1722,
+                    "Dsc": "CABRERA FONTES, Jorge Luis - PIÑEIRO RODRIGUEZ, Veronica  - RODRIGUEZ BARRETO, Elba Mabel",
+                    "VH": 22805,
+                    "VAL": 0,
+                    "Tot": 22805
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 22805
+          }
+        },
+        {
+          "LI": 8,
+          "LN": "Partido Independiente",
+          "LIcon": "Images/banderas/partido_independiente.bmp",
+          "TH": 19777,
+          "TAL": 118,
+          "Tot": 19895,
+          "Hojas": [
+            {
+              "HI": 3122,
+              "Tot": 3141,
+              "HN": "11C"
+            },
+            {
+              "HI": 1295,
+              "Tot": 767,
+              "HN": "15C"
+            },
+            {
+              "HI": 3127,
+              "Tot": 1713,
+              "HN": "17C"
+            },
+            {
+              "HI": 1861,
+              "Tot": 402,
+              "HN": "103C"
+            },
+            {
+              "HI": 2001,
+              "Tot": 4836,
+              "HN": "140C"
+            },
+            {
+              "HI": 148,
+              "Tot": 5070,
+              "HN": "600C"
+            },
+            {
+              "HI": 153,
+              "Tot": 1921,
+              "HN": "820C"
+            },
+            {
+              "HI": 2063,
+              "Tot": 1594,
+              "HN": "2000C"
+            },
+            {
+              "HI": 3061,
+              "Tot": 333,
+              "HN": "7009C"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 665,
+                "Nombre": "AHORA MONTEVIDEO",
+                "VH": 9690,
+                "VAS": 17,
+                "Tot": 9707,
+                "Listas": [],
+                "VASLDL": 17,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2701,
+                    "Dsc": "FERNANDEZ RUGGIERO, Luis Eduardo - COSTA PUERTOLLANO, Silvana Leticia - FRUGONI CRUZ, Rossana Adriana",
+                    "VH": 4836,
+                    "VAL": 0,
+                    "Tot": 4836
+                  },
+                  {
+                    "LId": 3193,
+                    "Dsc": "DI RUOCCO ALANIZ, Juan Miguel - AZNÁREZ BIANCHI, Gervasio  - BARROS PEREIRA, Fabricia Raquel",
+                    "VH": 3141,
+                    "VAL": 0,
+                    "Tot": 3141
+                  },
+                  {
+                    "LId": 3194,
+                    "Dsc": "JAUREGUI ALVAREZ, Zully  - PINTOS , Carlos Alberto - HERRERA                                           ",
+                    "VH": 1713,
+                    "VAL": 0,
+                    "Tot": 1713
+                  }
+                ]
+              },
+              {
+                "Id": 686,
+                "Nombre": "CABILDO ARTIGUISTA",
+                "VH": 1921,
+                "VAS": 0,
+                "Tot": 1921,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1906,
+                    "Dsc": "EMMENEGGER CALISTRO, Julio Cesar - ESCOPE CASTRO, Ivan Alam - TRAMAGLIA FRANCO, Vilma Maria",
+                    "VH": 1921,
+                    "VAL": 0,
+                    "Tot": 1921
+                  }
+                ]
+              },
+              {
+                "Id": 723,
+                "Nombre": "DEFENSA DE MONTEVIDEO",
+                "VH": 7764,
+                "VAS": 14,
+                "Tot": 7778,
+                "Listas": [],
+                "VASLDL": 14,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1903,
+                    "Dsc": "FABRICIO LLUGDAR, Rodrígo Sebastián - GUINOVART MARTÍNEZ, Claudio Maximiliano - CAMPOS PEDROZO, Maria Noel",
+                    "VH": 5070,
+                    "VAL": 0,
+                    "Tot": 5070
+                  },
+                  {
+                    "LId": 2388,
+                    "Dsc": "MONTAÑA SUÁREZ, Elisa  - SAXLUND BARDIER, Franco Nicolás - CATARDO BERCOWICZ, Mathias ",
+                    "VH": 767,
+                    "VAL": 0,
+                    "Tot": 767
+                  },
+                  {
+                    "LId": 2729,
+                    "Dsc": "BERGER CARATTE, Jorge Luis - RODRIGUEZ REY, Juan Carlos - ALCIATURI MAZZELLA, Teresa ",
+                    "VH": 1594,
+                    "VAL": 0,
+                    "Tot": 1594
+                  },
+                  {
+                    "LId": 3165,
+                    "Dsc": "MUIÑO SOSA, Jose Brandon - PEREYRA VICTUREIRA, Abel Washington - PINTOS REINA, Mayra Edith",
+                    "VH": 333,
+                    "VAL": 0,
+                    "Tot": 333
+                  }
+                ]
+              },
+              {
+                "Id": 863,
+                "Nombre": "UNION VECINAL",
+                "VH": 402,
+                "VAS": 0,
+                "Tot": 402,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2635,
+                    "Dsc": "GONZALEZ SANZ, Marcos Alexis - TERRA BARATE, María Paula - de los SANTOS SUGO, Lautaro Nathanael",
+                    "VH": 402,
+                    "VAL": 0,
+                    "Tot": 402
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 87,
+            "Tot": 19808
+          }
+        },
+        {
+          "LI": 10,
+          "LN": "Asamblea Popular",
+          "LIcon": "Images/banderas/partido_asamblea_popular.bmp",
+          "TH": 276,
+          "TAL": 0,
+          "Tot": 276,
+          "Hojas": [
+            {
+              "HI": 1902,
+              "Tot": 276,
+              "HN": "960C"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 734,
+                "Nombre": "EL PUEBLO EN LUCHA",
+                "VH": 276,
+                "VAS": 0,
+                "Tot": 276,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2664,
+                    "Dsc": "DICMARCH ALMARAZ, Michael  - BURGUEÑO FERREIRA, Margarita  - DABBADIE VILLALBA, Paula Nataly",
+                    "VH": 276,
+                    "VAL": 0,
+                    "Tot": 276
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 276
+          }
+        }
+      ]
+    },
+    {
+      "MI": 81,
+      "MD": "MUNICIPIO CH",
+      "CE": 330,
+      "CT": 330,
+      "CP": "100.00",
+      "TA": 2283,
+      "TO": 877,
+      "TNO": 109874,
+      "TE": 109885,
+      "TH": 131516,
+      "CFCO": true,
+      "TEB": 2285,
+      "TEBP": 40406,
+      "TOR": 11,
+      "CCO": 0,
+      "Eleccion": [
+        {
+          "LI": 2,
+          "LN": "Frente Amplio",
+          "LIcon": "Images/banderas/partido_fa.bmp",
+          "TH": 22957,
+          "TAL": 0,
+          "Tot": 22957,
+          "Hojas": [
+            {
+              "HI": 649,
+              "Tot": 22957,
+              "HN": "26371CH"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 435,
+                "Nombre": "SUBLEMA HOJA 26371CH",
+                "VH": 22957,
+                "VAS": 0,
+                "Tot": 22957,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1726,
+                    "Dsc": "PASSADA LEONCINI, Ivonne Graziella - PIQUINELA SALADANNA, Brenda Cristina - LARA NIEVES, Nelson Junior",
+                    "VH": 22957,
+                    "VAL": 0,
+                    "Tot": 22957
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 22957
+          }
+        },
+        {
+          "LI": 8,
+          "LN": "Partido Independiente",
+          "LIcon": "Images/banderas/partido_independiente.bmp",
+          "TH": 41419,
+          "TAL": 239,
+          "Tot": 41658,
+          "Hojas": [
+            {
+              "HI": 1298,
+              "Tot": 499,
+              "HN": "15CH"
+            },
+            {
+              "HI": 1116,
+              "Tot": 9112,
+              "HN": "140CH"
+            },
+            {
+              "HI": 312,
+              "Tot": 1620,
+              "HN": "630CH"
+            },
+            {
+              "HI": 155,
+              "Tot": 1274,
+              "HN": "820CH"
+            },
+            {
+              "HI": 405,
+              "Tot": 747,
+              "HN": "919CH"
+            },
+            {
+              "HI": 1806,
+              "Tot": 1462,
+              "HN": "2000CH"
+            },
+            {
+              "HI": 3066,
+              "Tot": 248,
+              "HN": "7009CH"
+            },
+            {
+              "HI": 3047,
+              "Tot": 4955,
+              "HN": "11404CH"
+            },
+            {
+              "HI": 514,
+              "Tot": 2340,
+              "HN": "85600CH"
+            },
+            {
+              "HI": 3077,
+              "Tot": 19162,
+              "HN": "712004CH"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 665,
+                "Nombre": "AHORA MONTEVIDEO",
+                "VH": 33229,
+                "VAS": 75,
+                "Tot": 33304,
+                "Listas": [],
+                "VASLDL": 75,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2289,
+                    "Dsc": "BURCATOVSKY TROSTCHANSKY, Andrés  - SANTOS PIÑEYRUA, Ana Maria Luisa - FONTENLA BERENCE, Adriana Loreley",
+                    "VH": 9112,
+                    "VAL": 0,
+                    "Tot": 9112
+                  },
+                  {
+                    "LId": 3157,
+                    "Dsc": "SERE DULCINI, Jorge Fernando - MARIN ARNOLETTI, Bruno Pedro - FRESSOLA MONFORT, Florencia ",
+                    "VH": 4955,
+                    "VAL": 0,
+                    "Tot": 4955
+                  },
+                  {
+                    "LId": 3175,
+                    "Dsc": "ABT MURGUIONDO, Andrés  - MAYNARD BURMESTER, Alvaro Maria - ANTIA ADAMI, Matilde ",
+                    "VH": 19162,
+                    "VAL": 0,
+                    "Tot": 19162
+                  }
+                ]
+              },
+              {
+                "Id": 686,
+                "Nombre": "CABILDO ARTIGUISTA",
+                "VH": 1274,
+                "VAS": 0,
+                "Tot": 1274,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1908,
+                    "Dsc": "DE LA FUENTE ORTIZ, Reynaldo Jesus - LARROSA SANCHEZ, Alejandro Washington - LUCAS MUNIZ, Erika Lucía",
+                    "VH": 1274,
+                    "VAL": 0,
+                    "Tot": 1274
+                  }
+                ]
+              },
+              {
+                "Id": 723,
+                "Nombre": "DEFENSA DE MONTEVIDEO",
+                "VH": 6916,
+                "VAS": 36,
+                "Tot": 6952,
+                "Listas": [],
+                "VASLDL": 36,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1955,
+                    "Dsc": "LEGASPI GONZÁLEZ, Gonzalo Martin - FERNANDEZ SANTA MARIA, Adriana  - GONZALEZ ESCALADA, Rafael Andres",
+                    "VH": 1620,
+                    "VAL": 0,
+                    "Tot": 1620
+                  },
+                  {
+                    "LId": 1977,
+                    "Dsc": "HOLLANDER SANCHEZ, Deborah Regina - ALONSO DÍAZ, Pedro Nicolás - AMARILLO ROSAS, Cynthia Maria",
+                    "VH": 747,
+                    "VAL": 0,
+                    "Tot": 747
+                  },
+                  {
+                    "LId": 2013,
+                    "Dsc": "HARGUINDEGUY BADELL, Flavio Andres - LOURENÇO TRÍAS, Emiliano  - GIORDANELLI LAURENT, Carmen Isabel",
+                    "VH": 2340,
+                    "VAL": 0,
+                    "Tot": 2340
+                  },
+                  {
+                    "LId": 2390,
+                    "Dsc": "LAXAGA BARDIER, Rodrigo Andrés - LOSADA STRACE, Daniel Ignacio - MARINI PREGO, Shirley Elizabeth",
+                    "VH": 499,
+                    "VAL": 0,
+                    "Tot": 499
+                  },
+                  {
+                    "LId": 2609,
+                    "Dsc": "BASCOU LOPEZ, Luis Eduardo - PISANI LAMBIASO, Daniel Ildo - CHELLE SANTURION, Myriam Raquel",
+                    "VH": 1462,
+                    "VAL": 0,
+                    "Tot": 1462
+                  },
+                  {
+                    "LId": 3169,
+                    "Dsc": "SIMOFF CABRERA, Beatriz  - GALLO PEREIRA, Fernando  - ALVARES PIGNANESI, Anibal Javier",
+                    "VH": 248,
+                    "VAL": 0,
+                    "Tot": 248
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 128,
+            "Tot": 41530
+          }
+        },
+        {
+          "LI": 10,
+          "LN": "Asamblea Popular",
+          "LIcon": "Images/banderas/partido_asamblea_popular.bmp",
+          "TH": 285,
+          "TAL": 0,
+          "Tot": 285,
+          "Hojas": [
+            {
+              "HI": 529,
+              "Tot": 285,
+              "HN": "326CH"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 740,
+                "Nombre": "EN LUCHA POR LA SOBERANIA",
+                "VH": 285,
+                "VAS": 0,
+                "Tot": 285,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2022,
+                    "Dsc": "JORYSZ COHN, Alejandro  - GARAT HEGEDUS, Daniella Susana - FRECHERO MOREIRA, Adriana Maria",
+                    "VH": 285,
+                    "VAL": 0,
+                    "Tot": 285
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 285
+          }
+        }
+      ]
+    },
+    {
+      "MI": 82,
+      "MD": "MUNICIPIO D",
+      "CE": 335,
+      "CT": 335,
+      "CP": "100.00",
+      "TA": 3225,
+      "TO": 933,
+      "TNO": 113002,
+      "TE": 113029,
+      "TH": 133716,
+      "CFCO": true,
+      "TEB": 2834,
+      "TEBP": 73197,
+      "TOR": 27,
+      "CCO": 0,
+      "Eleccion": [
+        {
+          "LI": 2,
+          "LN": "Frente Amplio",
+          "LIcon": "Images/banderas/partido_fa.bmp",
+          "TH": 17165,
+          "TAL": 0,
+          "Tot": 17165,
+          "Hojas": [
+            {
+              "HI": 374,
+              "Tot": 17165,
+              "HN": "26371D"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 430,
+                "Nombre": "SUBLEMA HOJA 26371D",
+                "VH": 17165,
+                "VAS": 0,
+                "Tot": 17165,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1723,
+                    "Dsc": "VELAZCO LAUREANO, Gabriel Eduardo - FLEITAS CANIELLA, Ana Luisa - BONINO MERELES, Silvia Nair",
+                    "VH": 17165,
+                    "VAL": 0,
+                    "Tot": 17165
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 17165
+          }
+        },
+        {
+          "LI": 8,
+          "LN": "Partido Independiente",
+          "LIcon": "Images/banderas/partido_independiente.bmp",
+          "TH": 16178,
+          "TAL": 169,
+          "Tot": 16347,
+          "Hojas": [
+            {
+              "HI": 3098,
+              "Tot": 5521,
+              "HN": "11D"
+            },
+            {
+              "HI": 2876,
+              "Tot": 1141,
+              "HN": "12D"
+            },
+            {
+              "HI": 1394,
+              "Tot": 883,
+              "HN": "15D"
+            },
+            {
+              "HI": 1350,
+              "Tot": 2640,
+              "HN": "140D"
+            },
+            {
+              "HI": 323,
+              "Tot": 2103,
+              "HN": "820D"
+            },
+            {
+              "HI": 1917,
+              "Tot": 571,
+              "HN": "909D"
+            },
+            {
+              "HI": 2044,
+              "Tot": 2235,
+              "HN": "1836D"
+            },
+            {
+              "HI": 3065,
+              "Tot": 421,
+              "HN": "7009D"
+            },
+            {
+              "HI": 474,
+              "Tot": 663,
+              "HN": "60600D"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 665,
+                "Nombre": "AHORA MONTEVIDEO",
+                "VH": 8161,
+                "VAS": 5,
+                "Tot": 8166,
+                "Listas": [],
+                "VASLDL": 5,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2418,
+                    "Dsc": "BADARACCO CARDOZO, Carlos Enrique - SUAREZ OLIVERA, Brenda Jannet - RODRIGUEZ GARCIA, Jorge Martin",
+                    "VH": 2640,
+                    "VAL": 0,
+                    "Tot": 2640
+                  },
+                  {
+                    "LId": 3186,
+                    "Dsc": "ARAUJO BLANCO, Bryan Andres - CONDE , Arides  - GARCIA MORENO, Adriana ",
+                    "VH": 5521,
+                    "VAL": 0,
+                    "Tot": 5521
+                  }
+                ]
+              },
+              {
+                "Id": 686,
+                "Nombre": "CABILDO ARTIGUISTA",
+                "VH": 4338,
+                "VAS": 3,
+                "Tot": 4341,
+                "Listas": [],
+                "VASLDL": 3,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1958,
+                    "Dsc": "CAMERA PERETTI, Darwin Jorge - SCASSO LOPEZ, Cesar Adrian - FERNANDEZ , Mayra Johanna",
+                    "VH": 2103,
+                    "VAL": 0,
+                    "Tot": 2103
+                  },
+                  {
+                    "LId": 2719,
+                    "Dsc": "VIDAL ALZUGARAY, Héctor  - OLIVERA CASTRO, Maria Jose - FERREIRA GARCIA, Maria Isabel",
+                    "VH": 2235,
+                    "VAL": 0,
+                    "Tot": 2235
+                  }
+                ]
+              },
+              {
+                "Id": 723,
+                "Nombre": "DEFENSA DE MONTEVIDEO",
+                "VH": 1084,
+                "VAS": 0,
+                "Tot": 1084,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2002,
+                    "Dsc": "NAVILIAT GIMENEZ, Jhonatan Fernando - MARTINEZ ARREGUI, Jose Antonio - ALONSO BURGUEÑOS, Catherine Noemi",
+                    "VH": 663,
+                    "VAL": 0,
+                    "Tot": 663
+                  },
+                  {
+                    "LId": 3168,
+                    "Dsc": "VIETA DE LEON, Darwin Gabriel - CORA DIAZ, Hugo  - PERILLO DI LEVA, Ana ",
+                    "VH": 421,
+                    "VAL": 0,
+                    "Tot": 421
+                  }
+                ]
+              },
+              {
+                "Id": 822,
+                "Nombre": "SI PODEMOS",
+                "VH": 2595,
+                "VAS": 12,
+                "Tot": 2607,
+                "Listas": [],
+                "VASLDL": 12,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2434,
+                    "Dsc": "GUZMAN ALVAREZ, Walter Andres - CAVIGLIA CUELLO, Jorge  - GUZMAN ALVAREZ, Lourdes Irene",
+                    "VH": 883,
+                    "VAL": 0,
+                    "Tot": 883
+                  },
+                  {
+                    "LId": 2673,
+                    "Dsc": "RODRIGUEZ RAYMOND, Carlos Pedro - RODRIGUEZ SILVEIRA, Maria Fernanda - ESPINOSA SILVERA, Rodolfo Eduardo",
+                    "VH": 571,
+                    "VAL": 0,
+                    "Tot": 571
+                  },
+                  {
+                    "LId": 3080,
+                    "Dsc": "CACERES LARRAINZAR, Marcelo Liber - CASANOVA BUENA, Luis Hector - RODRIGUEZ VARELA, Maria de los Angeles ",
+                    "VH": 1141,
+                    "VAL": 0,
+                    "Tot": 1141
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 149,
+            "Tot": 16198
+          }
+        },
+        {
+          "LI": 10,
+          "LN": "Asamblea Popular",
+          "LIcon": "Images/banderas/partido_asamblea_popular.bmp",
+          "TH": 234,
+          "TAL": 0,
+          "Tot": 234,
+          "Hojas": [
+            {
+              "HI": 562,
+              "Tot": 234,
+              "HN": "326D"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 740,
+                "Nombre": "EN LUCHA POR LA SOBERANIA",
+                "VH": 234,
+                "VAS": 0,
+                "Tot": 234,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2037,
+                    "Dsc": "GOMEZ PERALTA, Vivianne Janet - MELLADO BRONCINI, Sergio Alejandro - HERNANDEZ PEREYRA, Sergio Willian",
+                    "VH": 234,
+                    "VAL": 0,
+                    "Tot": 234
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 234
+          }
+        }
+      ]
+    },
+    {
+      "MI": 83,
+      "MD": "MUNICIPIO E",
+      "CE": 306,
+      "CT": 306,
+      "CP": "100.00",
+      "TA": 2389,
+      "TO": 810,
+      "TNO": 103876,
+      "TE": 103882,
+      "TH": 121536,
+      "CFCO": true,
+      "TEB": 2106,
+      "TEBP": 46006,
+      "TOR": 6,
+      "CCO": 0,
+      "Eleccion": [
+        {
+          "LI": 2,
+          "LN": "Frente Amplio",
+          "LIcon": "Images/banderas/partido_fa.bmp",
+          "TH": 22159,
+          "TAL": 0,
+          "Tot": 22159,
+          "Hojas": [
+            {
+              "HI": 384,
+              "Tot": 22159,
+              "HN": "26371E"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 432,
+                "Nombre": "SUBLEMA HOJA 26371E",
+                "VH": 22159,
+                "VAS": 0,
+                "Tot": 22159,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1721,
+                    "Dsc": "SPATAKIS OLIVER, Diana Selva - CORREA CAFFA, Eduardo Jorge - NIEVES BORDAGORRY, Teresa ",
+                    "VH": 22159,
+                    "VAL": 0,
+                    "Tot": 22159
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 22159
+          }
+        },
+        {
+          "LI": 8,
+          "LN": "Partido Independiente",
+          "LIcon": "Images/banderas/partido_independiente.bmp",
+          "TH": 30794,
+          "TAL": 199,
+          "Tot": 30993,
+          "Hojas": [
+            {
+              "HI": 3112,
+              "Tot": 4799,
+              "HN": "11E"
+            },
+            {
+              "HI": 1231,
+              "Tot": 696,
+              "HN": "15E"
+            },
+            {
+              "HI": 1866,
+              "Tot": 397,
+              "HN": "103E"
+            },
+            {
+              "HI": 1119,
+              "Tot": 9447,
+              "HN": "140E"
+            },
+            {
+              "HI": 22,
+              "Tot": 2996,
+              "HN": "600E"
+            },
+            {
+              "HI": 158,
+              "Tot": 1350,
+              "HN": "820E"
+            },
+            {
+              "HI": 3048,
+              "Tot": 7107,
+              "HN": "11404E"
+            },
+            {
+              "HI": 194,
+              "Tot": 393,
+              "HN": "60600E"
+            },
+            {
+              "HI": 2323,
+              "Tot": 191,
+              "HN": "1441007E"
+            },
+            {
+              "HI": 1817,
+              "Tot": 3418,
+              "HN": "20009007E"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 665,
+                "Nombre": "AHORA MONTEVIDEO",
+                "VH": 21353,
+                "VAS": 66,
+                "Tot": 21419,
+                "Listas": [],
+                "VASLDL": 66,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2291,
+                    "Dsc": "RUIZ BARBOT, Maria Mercedes - FERRARO FERNANDEZ, Marcelo  - BACIGALUPO ALEGRE, Carlo Fabrizio",
+                    "VH": 9447,
+                    "VAL": 0,
+                    "Tot": 9447
+                  },
+                  {
+                    "LId": 3158,
+                    "Dsc": "UBILLA GAMBETTA, Ignacio  - RUETE SANGUINETTI, Santiago Raul - PICCINI DELGADO, Stella Maris",
+                    "VH": 7107,
+                    "VAL": 0,
+                    "Tot": 7107
+                  },
+                  {
+                    "LId": 3190,
+                    "Dsc": "RAIMONDO CASABALLE, Cesar Gabriel - LEWI SANCHEZ, Geraldine  - MANRIQUE VIRÉ, Rodrigo ",
+                    "VH": 4799,
+                    "VAL": 0,
+                    "Tot": 4799
+                  }
+                ]
+              },
+              {
+                "Id": 686,
+                "Nombre": "CABILDO ARTIGUISTA",
+                "VH": 1350,
+                "VAS": 0,
+                "Tot": 1350,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1910,
+                    "Dsc": "BARTHABURU DE LOS SANTOS, Patricia Laura - ALONSO MARTIN VALDEZ, Sebastian Emilio - CALLERO BLANCO, Oscar Eduardo",
+                    "VH": 1350,
+                    "VAL": 0,
+                    "Tot": 1350
+                  }
+                ]
+              },
+              {
+                "Id": 723,
+                "Nombre": "DEFENSA DE MONTEVIDEO",
+                "VH": 7503,
+                "VAS": 18,
+                "Tot": 7521,
+                "Listas": [],
+                "VASLDL": 18,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1875,
+                    "Dsc": "ARMAND UGON COELLI, Hector Pablo - MAYES SABAJ, Jack Morris - GUIDO PESCE, Mabel Maria",
+                    "VH": 2996,
+                    "VAL": 0,
+                    "Tot": 2996
+                  },
+                  {
+                    "LId": 1925,
+                    "Dsc": "MATEOS TRUCCELLI, Marcelo Daniel - FERRARI CICCONE, Maria Alejandra - GARGAGLIONE OLAZABAL, Mirtha Lilian",
+                    "VH": 393,
+                    "VAL": 0,
+                    "Tot": 393
+                  },
+                  {
+                    "LId": 2358,
+                    "Dsc": "TRINDADE RACEDO, Liber Jesus - TOLEDO IVALDO, Alfredo  - TRÍNDADE TUDURÍ, Cinthya ",
+                    "VH": 696,
+                    "VAL": 0,
+                    "Tot": 696
+                  },
+                  {
+                    "LId": 2614,
+                    "Dsc": "BERCHESI PISANO, Francisco  - LENA LOPEZ, Maria Victoria - BARRETO GONZÁLEZ, Matias Gustavo",
+                    "VH": 3418,
+                    "VAL": 0,
+                    "Tot": 3418
+                  }
+                ]
+              },
+              {
+                "Id": 863,
+                "Nombre": "UNION VECINAL",
+                "VH": 397,
+                "VAS": 0,
+                "Tot": 397,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2639,
+                    "Dsc": "FRANCO PAGANO, Estefania Claudia - FERNANDEZ GENTA, Laudelino Daniel - MIGLIERINA DOMINGUEZ, Federico ",
+                    "VH": 397,
+                    "VAL": 0,
+                    "Tot": 397
+                  }
+                ]
+              },
+              {
+                "Id": 997,
+                "Nombre": "SUBLEMA HOJA 1441007E",
+                "VH": 191,
+                "VAS": 0,
+                "Tot": 191,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 3278,
+                    "Dsc": "FERNANDEZ VALDEZ, Fernando Raúl - PRETTO, Eduardo - DA SILVA PIRIZ, Ana Maria",
+                    "VH": 191,
+                    "VAL": 0,
+                    "Tot": 191
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 115,
+            "Tot": 30878
+          }
+        },
+        {
+          "LI": 10,
+          "LN": "Asamblea Popular",
+          "LIcon": "Images/banderas/partido_asamblea_popular.bmp",
+          "TH": 223,
+          "TAL": 0,
+          "Tot": 223,
+          "Hojas": [
+            {
+              "HI": 533,
+              "Tot": 223,
+              "HN": "326E"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 740,
+                "Nombre": "EN LUCHA POR LA SOBERANIA",
+                "VH": 223,
+                "VAS": 0,
+                "Tot": 223,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2024,
+                    "Dsc": "COITIÑO , Silvia Violeta - SABATE GIMENEZ, Sergio Alejandro - COHEN PAPO, Ricardo Israel",
+                    "VH": 223,
+                    "VAL": 0,
+                    "Tot": 223
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 223
+          }
+        }
+      ]
+    },
+    {
+      "MI": 84,
+      "MD": "MUNICIPIO F",
+      "CE": 305,
+      "CT": 305,
+      "CP": "100.00",
+      "TA": 3130,
+      "TO": 936,
+      "TNO": 102436,
+      "TE": 102452,
+      "TH": 121641,
+      "CFCO": true,
+      "TEB": 2572,
+      "TEBP": 61675,
+      "TOR": 16,
+      "CCO": 0,
+      "Eleccion": [
+        {
+          "LI": 2,
+          "LN": "Frente Amplio",
+          "LIcon": "Images/banderas/partido_fa.bmp",
+          "TH": 16259,
+          "TAL": 0,
+          "Tot": 16259,
+          "Hojas": [
+            {
+              "HI": 499,
+              "Tot": 16259,
+              "HN": "26371F"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 434,
+                "Nombre": "SUBLEMA HOJA 26371F",
+                "VH": 16259,
+                "VAS": 0,
+                "Tot": 16259,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1725,
+                    "Dsc": "ACUÑA REYES, Hector Nicolas - VIDAL MAIDANA, Maria Gimena - GIMER AYALA, Nair Lilian",
+                    "VH": 16259,
+                    "VAL": 0,
+                    "Tot": 16259
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 16259
+          }
+        },
+        {
+          "LI": 8,
+          "LN": "Partido Independiente",
+          "LIcon": "Images/banderas/partido_independiente.bmp",
+          "TH": 18363,
+          "TAL": 224,
+          "Tot": 18587,
+          "Hojas": [
+            {
+              "HI": 3116,
+              "Tot": 5415,
+              "HN": "11F"
+            },
+            {
+              "HI": 1243,
+              "Tot": 285,
+              "HN": "15F"
+            },
+            {
+              "HI": 1868,
+              "Tot": 86,
+              "HN": "103F"
+            },
+            {
+              "HI": 1744,
+              "Tot": 2883,
+              "HN": "540F"
+            },
+            {
+              "HI": 532,
+              "Tot": 931,
+              "HN": "600F"
+            },
+            {
+              "HI": 157,
+              "Tot": 1441,
+              "HN": "820F"
+            },
+            {
+              "HI": 1816,
+              "Tot": 1576,
+              "HN": "940F"
+            },
+            {
+              "HI": 1361,
+              "Tot": 1189,
+              "HN": "1040F"
+            },
+            {
+              "HI": 1605,
+              "Tot": 1381,
+              "HN": "2000F"
+            },
+            {
+              "HI": 1989,
+              "Tot": 1020,
+              "HN": "2007F"
+            },
+            {
+              "HI": 3049,
+              "Tot": 1634,
+              "HN": "11404F"
+            },
+            {
+              "HI": 472,
+              "Tot": 357,
+              "HN": "60600F"
+            },
+            {
+              "HI": 2453,
+              "Tot": 165,
+              "HN": "161616F"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 665,
+                "Nombre": "AHORA MONTEVIDEO",
+                "VH": 13717,
+                "VAS": 69,
+                "Tot": 13786,
+                "Listas": [],
+                "VASLDL": 69,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2425,
+                    "Dsc": "SILVEIRA                                           - GALLO OLIVERA, Cesar  - PIRELLI RODRIGUEZ, Viviana Alexandra",
+                    "VH": 1189,
+                    "VAL": 0,
+                    "Tot": 1189
+                  },
+                  {
+                    "LId": 2583,
+                    "Dsc": "NASSO VIGO, Jorge Luis - RIBEIRO GUERRA, Nicolás Sebastián - CONTRERA ARZUAGA, María de Lourdes ",
+                    "VH": 2883,
+                    "VAL": 0,
+                    "Tot": 2883
+                  },
+                  {
+                    "LId": 2613,
+                    "Dsc": "PAZOS ROSADO, Diego Fernando - OLIVERA SILVA, Ismael Rolando - FERNÁNDEZ LORDA, Celené ",
+                    "VH": 1576,
+                    "VAL": 0,
+                    "Tot": 1576
+                  },
+                  {
+                    "LId": 2696,
+                    "Dsc": "LOZANO PLANELLES, Fernando  - BUERO , Mariela  - JACQUES SOBERAL, Antonio Carlos",
+                    "VH": 1020,
+                    "VAL": 0,
+                    "Tot": 1020
+                  },
+                  {
+                    "LId": 3159,
+                    "Dsc": "SUAREZ MENDEZ, Lucas Gustabo - PEÑA RODRIGUEZ, Johnny Teddy - DÍAZ CRUZ, Lourdes Susana",
+                    "VH": 1634,
+                    "VAL": 0,
+                    "Tot": 1634
+                  },
+                  {
+                    "LId": 3192,
+                    "Dsc": "LOPEZ ROMAN, Juan Pedro - GOMEZ RAMOS, Katrin Elizabeth - ANDRADA , Matias Fabricio",
+                    "VH": 5415,
+                    "VAL": 0,
+                    "Tot": 5415
+                  }
+                ]
+              },
+              {
+                "Id": 686,
+                "Nombre": "CABILDO ARTIGUISTA",
+                "VH": 1441,
+                "VAS": 0,
+                "Tot": 1441,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1909,
+                    "Dsc": "ROMERO TORNACO, Maria del Rosario  - ALVAREZ RODRIGUEZ, Richard Fabian - LIMA SILVA, Edulio Jacinto",
+                    "VH": 1441,
+                    "VAL": 0,
+                    "Tot": 1441
+                  }
+                ]
+              },
+              {
+                "Id": 723,
+                "Nombre": "DEFENSA DE MONTEVIDEO",
+                "VH": 2954,
+                "VAS": 10,
+                "Tot": 2964,
+                "Listas": [],
+                "VASLDL": 10,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2000,
+                    "Dsc": "GONZALEZ NOTARIANNI, Gilberto Marcelo - GONZALEZ NOTARIANNI, Beatriz Lourdes - RUIZ GONZALEZ, Carlos Eduardo",
+                    "VH": 357,
+                    "VAL": 0,
+                    "Tot": 357
+                  },
+                  {
+                    "LId": 2023,
+                    "Dsc": "URDIOZOLA CIGARAN, Jose Maria - AGUIRRE SERRÓN, Gastón Alejandro - MARTINEZ SANTOS, Mary Stella",
+                    "VH": 931,
+                    "VAL": 0,
+                    "Tot": 931
+                  },
+                  {
+                    "LId": 2363,
+                    "Dsc": "ULFE ILLESCAS, Fernando Manuel - MUÑOZ CARDOZO, Jorge Daniel - SORIA MASTROPIERRO, Andrea Veronica",
+                    "VH": 285,
+                    "VAL": 0,
+                    "Tot": 285
+                  },
+                  {
+                    "LId": 2537,
+                    "Dsc": "LUJAMBIO NUÑEZ, Osbel  - TETI LLORENS, Miguel Angel - GORGOROSO , Lourdes María",
+                    "VH": 1381,
+                    "VAL": 0,
+                    "Tot": 1381
+                  }
+                ]
+              },
+              {
+                "Id": 756,
+                "Nombre": "INDEPENDIENTES A PIE",
+                "VH": 165,
+                "VAS": 0,
+                "Tot": 165,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2900,
+                    "Dsc": "MAUTONE BENITEZ, Maria Teresa - PEREZ SEIJAS, Martha Beatriz - CASTRO PEREIRA, Washington Rosevel",
+                    "VH": 165,
+                    "VAL": 0,
+                    "Tot": 165
+                  }
+                ]
+              },
+              {
+                "Id": 863,
+                "Nombre": "UNION VECINAL",
+                "VH": 86,
+                "VAS": 0,
+                "Tot": 86,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2641,
+                    "Dsc": "AVELINO ZEBALLOS, Alexis Martin - ULFE ILLESCAS, Fernando Manuel - SERPA PASTORINI, Alejandra Noelia",
+                    "VH": 86,
+                    "VAL": 0,
+                    "Tot": 86
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 145,
+            "Tot": 18442
+          }
+        },
+        {
+          "LI": 10,
+          "LN": "Asamblea Popular",
+          "LIcon": "Images/banderas/partido_asamblea_popular.bmp",
+          "TH": 213,
+          "TAL": 0,
+          "Tot": 213,
+          "Hojas": [
+            {
+              "HI": 535,
+              "Tot": 213,
+              "HN": "326F"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 740,
+                "Nombre": "EN LUCHA POR LA SOBERANIA",
+                "VH": 213,
+                "VAS": 0,
+                "Tot": 213,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2025,
+                    "Dsc": "CERPA BALSAMO, Julio Cesar - DA COSTA CARDOZO, Beatriz Giovanna - ADROHER SENA, Madeleine ",
+                    "VH": 213,
+                    "VAL": 0,
+                    "Tot": 213
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 213
+          }
+        }
+      ]
+    },
+    {
+      "MI": 85,
+      "MD": "MUNICIPIO G",
+      "CE": 277,
+      "CT": 277,
+      "CP": "100.00",
+      "TA": 2569,
+      "TO": 824,
+      "TNO": 94293,
+      "TE": 94302,
+      "TH": 110008,
+      "CFCO": true,
+      "TEB": 2181,
+      "TEBP": 53338,
+      "TOR": 9,
+      "CCO": 0,
+      "Eleccion": [
+        {
+          "LI": 2,
+          "LN": "Frente Amplio",
+          "LIcon": "Images/banderas/partido_fa.bmp",
+          "TH": 20431,
+          "TAL": 419,
+          "Tot": 20850,
+          "Hojas": [
+            {
+              "HI": 2363,
+              "Tot": 11510,
+              "HN": "53G"
+            },
+            {
+              "HI": 2359,
+              "Tot": 8921,
+              "HN": "96G"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 475,
+                "Nombre": "SUBLEMA HOJA 53G",
+                "VH": 11510,
+                "VAS": 0,
+                "Tot": 11510,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1564,
+                    "Dsc": "de TORRES ALVAREZ, Leticia  - SILVA                                              - SOTO                                              ",
+                    "VH": 11510,
+                    "VAL": 0,
+                    "Tot": 11510
+                  }
+                ]
+              },
+              {
+                "Id": 534,
+                "Nombre": "SUBLEMA HOJA 96G",
+                "VH": 8921,
+                "VAS": 0,
+                "Tot": 8921,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 1578,
+                    "Dsc": "GIL AGUIAR, Daniel  - ROMERO RODRIGUEZ, Maria Mercedes - GROBA ARRIONDO, Oscar Abdon",
+                    "VH": 8921,
+                    "VAL": 0,
+                    "Tot": 8921
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 419,
+            "Tot": 20431
+          }
+        },
+        {
+          "LI": 8,
+          "LN": "Partido Independiente",
+          "LIcon": "Images/banderas/partido_independiente.bmp",
+          "TH": 14897,
+          "TAL": 168,
+          "Tot": 15065,
+          "Hojas": [
+            {
+              "HI": 1642,
+              "Tot": 693,
+              "HN": "4G"
+            },
+            {
+              "HI": 2975,
+              "Tot": 2654,
+              "HN": "11G"
+            },
+            {
+              "HI": 1306,
+              "Tot": 728,
+              "HN": "15G"
+            },
+            {
+              "HI": 2040,
+              "Tot": 4528,
+              "HN": "140G"
+            },
+            {
+              "HI": 517,
+              "Tot": 1451,
+              "HN": "600G"
+            },
+            {
+              "HI": 159,
+              "Tot": 1819,
+              "HN": "820G"
+            },
+            {
+              "HI": 1600,
+              "Tot": 1305,
+              "HN": "2000G"
+            },
+            {
+              "HI": 3050,
+              "Tot": 1590,
+              "HN": "11404G"
+            },
+            {
+              "HI": 1887,
+              "Tot": 129,
+              "HN": "1441007G"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 665,
+                "Nombre": "AHORA MONTEVIDEO",
+                "VH": 8772,
+                "VAS": 19,
+                "Tot": 8791,
+                "Listas": [],
+                "VASLDL": 19,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2717,
+                    "Dsc": "BERRUETTA POUQUET, Carmen Manon - ARRECHEA PEREYRA, Jorge Sebastian - SILVA FRESERO, Andrea Virginia",
+                    "VH": 4528,
+                    "VAL": 0,
+                    "Tot": 4528
+                  },
+                  {
+                    "LId": 3122,
+                    "Dsc": "GUTIERREZ GONZALEZ, Mario Adrian - SEIJAS CEDRÉS, Carlos Alberto - NIZ MEDINA, Gladys Mabel",
+                    "VH": 2654,
+                    "VAL": 0,
+                    "Tot": 2654
+                  },
+                  {
+                    "LId": 3160,
+                    "Dsc": "ALFARO , Stella Maris - MARTINEZ CUERDO, Maria Josefa - VILCHE CARDOZO, Jose Pedro",
+                    "VH": 1590,
+                    "VAL": 0,
+                    "Tot": 1590
+                  }
+                ]
+              },
+              {
+                "Id": 686,
+                "Nombre": "CABILDO ARTIGUISTA",
+                "VH": 1819,
+                "VAS": 0,
+                "Tot": 1819,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 3212,
+                    "Dsc": "CABO PEREIRA, Javier Hernan - RODRIGUEZ GODOY, Elena Elizabeth - LEYES CANABARRO, Roberto ",
+                    "VH": 1819,
+                    "VAL": 0,
+                    "Tot": 1819
+                  }
+                ]
+              },
+              {
+                "Id": 723,
+                "Nombre": "DEFENSA DE MONTEVIDEO",
+                "VH": 3484,
+                "VAS": 14,
+                "Tot": 3498,
+                "Listas": [],
+                "VASLDL": 14,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2015,
+                    "Dsc": "FLECHERO LAGUNA, Ernesto  - OLIVERA CASTRO, Maria Jose - BORNIO GOMEZ, Maria Raquel",
+                    "VH": 1451,
+                    "VAL": 0,
+                    "Tot": 1451
+                  },
+                  {
+                    "LId": 2393,
+                    "Dsc": "SUAREZ BALADON, Beatriz Elizabeth - DI CANDIA GHIRARDI, Leandro  - OVIEDO XIMENEZ, Virginia Fabiana",
+                    "VH": 728,
+                    "VAL": 0,
+                    "Tot": 728
+                  },
+                  {
+                    "LId": 2535,
+                    "Dsc": "CRUZ VARELA, Carlos Alberto - MIERES ROLDÁN, Gabriel  - RODRIGUEZ SILVEIRA, Rosa Maria",
+                    "VH": 1305,
+                    "VAL": 0,
+                    "Tot": 1305
+                  }
+                ]
+              },
+              {
+                "Id": 863,
+                "Nombre": "UNION VECINAL",
+                "VH": 693,
+                "VAS": 0,
+                "Tot": 693,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 3205,
+                    "Dsc": "VILLA                                             ",
+                    "VH": 693,
+                    "VAL": 0,
+                    "Tot": 693
+                  }
+                ]
+              },
+              {
+                "Id": 998,
+                "Nombre": "SUBLEMA HOJA 1441007G",
+                "VH": 129,
+                "VAS": 0,
+                "Tot": 129,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 3265,
+                    "Dsc": "SORIA VIERA, Virginia Beatriz - PUSTERLA GARCIA, Andres Roman - GÓMEZ PEDRIDO, Maximiliano Nicolás",
+                    "VH": 129,
+                    "VAL": 0,
+                    "Tot": 129
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 135,
+            "Tot": 14930
+          }
+        },
+        {
+          "LI": 10,
+          "LN": "Asamblea Popular",
+          "LIcon": "Images/banderas/partido_asamblea_popular.bmp",
+          "TH": 290,
+          "TAL": 0,
+          "Tot": 290,
+          "Hojas": [
+            {
+              "HI": 542,
+              "Tot": 290,
+              "HN": "326G"
+            }
+          ],
+          "Municipio": {
+            "Sublemas": [
+              {
+                "Id": 740,
+                "Nombre": "EN LUCHA POR LA SOBERANIA",
+                "VH": 290,
+                "VAS": 0,
+                "Tot": 290,
+                "Listas": [],
+                "VASLDL": 0,
+                "ListasMunicipio": [
+                  {
+                    "LId": 2031,
+                    "Dsc": "PICARDI GUZMAN, Paolo Anibal - MARICHAL LOPEZ, Eguer Fabian - DE LEON ALVEZ, Maria Alejandra",
+                    "VH": 290,
+                    "VAL": 0,
+                    "Tot": 290
+                  }
+                ]
+              }
+            ],
+            "TALDSL": 0,
+            "Tot": 290
+          }
+        }
+      ]
+    }
+  ],
+  "Departamentales": [
+    {
+      "LI": 1,
+      "LN": "Frente Amplio",
+      "LIcon": "Images/banderas/partido_fa.bmp",
+      "TH": 444535,
+      "TAL": 12160,
+      "Tot": 456695,
+      "Hojas": [
+        {
+          "HI": 95,
+          "Tot": 11066,
+          "HN": "46"
+        },
+        {
+          "HI": 147,
+          "Tot": 2297,
+          "HN": "52"
+        },
+        {
+          "HI": 1984,
+          "Tot": 11683,
+          "HN": "77"
+        },
+        {
+          "HI": 1849,
+          "Tot": 40546,
+          "HN": "90"
+        },
+        {
+          "HI": 12,
+          "Tot": 33131,
+          "HN": "106"
+        },
+        {
+          "HI": 168,
+          "Tot": 5086,
+          "HN": "182"
+        },
+        {
+          "HI": 1033,
+          "Tot": 4647,
+          "HN": "242"
+        },
+        {
+          "HI": 2908,
+          "Tot": 657,
+          "HN": "361"
+        },
+        {
+          "HI": 1767,
+          "Tot": 3798,
+          "HN": "545"
+        },
+        {
+          "HI": 242,
+          "Tot": 9903,
+          "HN": "567"
+        },
+        {
+          "HI": 5,
+          "Tot": 70935,
+          "HN": "609"
+        },
+        {
+          "HI": 152,
+          "Tot": 3616,
+          "HN": "611"
+        },
+        {
+          "HI": 241,
+          "Tot": 5391,
+          "HN": "624"
+        },
+        {
+          "HI": 28,
+          "Tot": 7477,
+          "HN": "711"
+        },
+        {
+          "HI": 183,
+          "Tot": 1015,
+          "HN": "740"
+        },
+        {
+          "HI": 1178,
+          "Tot": 3318,
+          "HN": "800"
+        },
+        {
+          "HI": 2055,
+          "Tot": 4782,
+          "HN": "817"
+        },
+        {
+          "HI": 1531,
+          "Tot": 1684,
+          "HN": "824"
+        },
+        {
+          "HI": 767,
+          "Tot": 942,
+          "HN": "871"
+        },
+        {
+          "HI": 1689,
+          "Tot": 5449,
+          "HN": "890"
+        },
+        {
+          "HI": 978,
+          "Tot": 2804,
+          "HN": "933"
+        },
+        {
+          "HI": 1068,
+          "Tot": 2085,
+          "HN": "959"
+        },
+        {
+          "HI": 1204,
+          "Tot": 55834,
+          "HN": "1001"
+        },
+        {
+          "HI": 259,
+          "Tot": 706,
+          "HN": "1360"
+        },
+        {
+          "HI": 1445,
+          "Tot": 1358,
+          "HN": "1618"
+        },
+        {
+          "HI": 2273,
+          "Tot": 2994,
+          "HN": "1813"
+        },
+        {
+          "HI": 1107,
+          "Tot": 2952,
+          "HN": "1949"
+        },
+        {
+          "HI": 3102,
+          "Tot": 3106,
+          "HN": "1955"
+        },
+        {
+          "HI": 2032,
+          "Tot": 636,
+          "HN": "1959"
+        },
+        {
+          "HI": 285,
+          "Tot": 2473,
+          "HN": "1968"
+        },
+        {
+          "HI": 2051,
+          "Tot": 1335,
+          "HN": "2316"
+        },
+        {
+          "HI": 223,
+          "Tot": 5612,
+          "HN": "2603"
+        },
+        {
+          "HI": 1597,
+          "Tot": 8308,
+          "HN": "2949"
+        },
+        {
+          "HI": 2472,
+          "Tot": 69,
+          "HN": "3040"
+        },
+        {
+          "HI": 2042,
+          "Tot": 4736,
+          "HN": "3098"
+        },
+        {
+          "HI": 948,
+          "Tot": 2929,
+          "HN": "3107"
+        },
+        {
+          "HI": 462,
+          "Tot": 9073,
+          "HN": "3311"
+        },
+        {
+          "HI": 1599,
+          "Tot": 2297,
+          "HN": "3949"
+        },
+        {
+          "HI": 1776,
+          "Tot": 1901,
+          "HN": "4162"
+        },
+        {
+          "HI": 1156,
+          "Tot": 1452,
+          "HN": "4190"
+        },
+        {
+          "HI": 1998,
+          "Tot": 2671,
+          "HN": "5005"
+        },
+        {
+          "HI": 2937,
+          "Tot": 771,
+          "HN": "5271"
+        },
+        {
+          "HI": 1065,
+          "Tot": 352,
+          "HN": "5959"
+        },
+        {
+          "HI": 606,
+          "Tot": 19474,
+          "HN": "6009"
+        },
+        {
+          "HI": 188,
+          "Tot": 3990,
+          "HN": "6091"
+        },
+        {
+          "HI": 2205,
+          "Tot": 431,
+          "HN": "7000"
+        },
+        {
+          "HI": 3012,
+          "Tot": 595,
+          "HN": "7152"
+        },
+        {
+          "HI": 2039,
+          "Tot": 4959,
+          "HN": "8000"
+        },
+        {
+          "HI": 1755,
+          "Tot": 2787,
+          "HN": "8008"
+        },
+        {
+          "HI": 991,
+          "Tot": 3777,
+          "HN": "11815"
+        },
+        {
+          "HI": 985,
+          "Tot": 2398,
+          "HN": "13815"
+        },
+        {
+          "HI": 1638,
+          "Tot": 2007,
+          "HN": "16018"
+        },
+        {
+          "HI": 2020,
+          "Tot": 5070,
+          "HN": "18150"
+        },
+        {
+          "HI": 3117,
+          "Tot": 1937,
+          "HN": "20003"
+        },
+        {
+          "HI": 2944,
+          "Tot": 784,
+          "HN": "25271"
+        },
+        {
+          "HI": 1038,
+          "Tot": 9435,
+          "HN": "42020"
+        },
+        {
+          "HI": 2941,
+          "Tot": 434,
+          "HN": "50271"
+        },
+        {
+          "HI": 2977,
+          "Tot": 745,
+          "HN": "191919"
+        },
+        {
+          "HI": 30,
+          "Tot": 1121,
+          "HN": "197119"
+        },
+        {
+          "HI": 1526,
+          "Tot": 3279,
+          "HN": "202020"
+        },
+        {
+          "HI": 2014,
+          "Tot": 19199,
+          "HN": "212199"
+        },
+        {
+          "HI": 3118,
+          "Tot": 673,
+          "HN": "300500"
+        },
+        {
+          "HI": 2907,
+          "Tot": 826,
+          "HN": "360000"
+        },
+        {
+          "HI": 3114,
+          "Tot": 3986,
+          "HN": "801032"
+        },
+        {
+          "HI": 210,
+          "Tot": 9854,
+          "HN": "982808"
+        },
+        {
+          "HI": 842,
+          "Tot": 2897,
+          "HN": "2040205"
+        }
+      ],
+      "Intendente": {
+        "Listas": [
+          {
+            "HI": 0,
+            "Tot": 105050,
+            "HN": "",
+            "LId": 35,
+            "Dsc": "MARTÍNEZ VILLAAMIL, Daniel Carlos",
+            "VH": 102781,
+            "VAL": 2269
+          },
+          {
+            "HI": 0,
+            "Tot": 184364,
+            "HN": "",
+            "LId": 55,
+            "Dsc": "COSSE GARRIDO, Ana Carolina",
+            "VH": 181784,
+            "VAL": 2580
+          },
+          {
+            "HI": 0,
+            "Tot": 162657,
+            "HN": "",
+            "LId": 102,
+            "Dsc": "VILLAR BALLESTERO, Alvaro ",
+            "VH": 159970,
+            "VAL": 2687
+          }
+        ],
+        "TALDI": 4624,
+        "Tot": 452071
+      },
+      "Junta": {
+        "Sublemas": [
+          {
+            "Id": 38,
+            "Nombre": "FRENTE DEMOCRATICO UNIDO",
+            "VH": 6130,
+            "VAS": 6,
+            "Tot": 6136,
+            "Listas": [],
+            "VASLDL": 6,
+            "ListasJunta": [
+              {
+                "LId": 229,
+                "Dsc": "HOAGUY DE OLIVERA, Mary Marlene - DENUCCI SCHAUMANN, Rodrigo Facundo - ANDRADA                                           ",
+                "VH": 3798,
+                "VAL": 0,
+                "Tot": 3798
+              },
+              {
+                "LId": 230,
+                "Dsc": "PAZ TABORDA, Gladys Fanny - CAZENAVE SALVARREY, Jorge Fabian - OLIVEIRA MARTEGANI, Edgardo Fabian",
+                "VH": 1901,
+                "VAL": 0,
+                "Tot": 1901
+              },
+              {
+                "LId": 235,
+                "Dsc": "FERNANDEZ PATIÑO, Gonzalo Sebastian - SANCHEZ de los SANTOS, Melany Ariadna - MUNIZ LEDESMA, Miguel Angel",
+                "VH": 431,
+                "VAL": 0,
+                "Tot": 431
+              }
+            ]
+          },
+          {
+            "Id": 67,
+            "Nombre": "ACTITUD MONTEVIDEO",
+            "VH": 43007,
+            "VAS": 104,
+            "Tot": 43111,
+            "Listas": [],
+            "VASLDL": 104,
+            "ListasJunta": [
+              {
+                "LId": 251,
+                "Dsc": "SORIA PALACIOS, Patricia  - GONZALEZ BLANCO, Miguel Angel - FEROLLA MENDEZ, Maria Cristina",
+                "VH": 33131,
+                "VAL": 0,
+                "Tot": 33131
+              },
+              {
+                "LId": 366,
+                "Dsc": "REBOLEDO LEBRATO, Marcelo Alejandro - BIANCHI PORTEIRO, Agustina  - RUBINO TORRES, Horacio ",
+                "VH": 5612,
+                "VAL": 0,
+                "Tot": 5612
+              },
+              {
+                "LId": 671,
+                "Dsc": "CONTI OLIVERA, Nicolas Anibal - LOMBARDI BAEZ, Ana Gabriela - MUNIZ LEDESMA, Miguel Angel",
+                "VH": 2929,
+                "VAL": 0,
+                "Tot": 2929
+              },
+              {
+                "LId": 1112,
+                "Dsc": "ALVAREZ OLIVERA, José Luis - AGUERRE LABORDA, Maria Fabiana - LASA MARTINEZ, Cesar Eduardo",
+                "VH": 1335,
+                "VAL": 0,
+                "Tot": 1335
+              }
+            ]
+          },
+          {
+            "Id": 143,
+            "Nombre": "EL ACENTO EN LO QUE IMPORTA",
+            "VH": 98463,
+            "VAS": 542,
+            "Tot": 99005,
+            "Listas": [],
+            "VASLDL": 542,
+            "ListasJunta": [
+              {
+                "LId": 189,
+                "Dsc": "NEDOV RODRIGUEZ, Sandra Monica - NESSI SILVANO, Martín Javier - PEREYRA CARDOZO, Estela Agripina",
+                "VH": 70935,
+                "VAL": 0,
+                "Tot": 70935
+              },
+              {
+                "LId": 192,
+                "Dsc": "CAYETANO MENDEZ, Sonia Raquel - MORENO D'ANDREA, Sergio Daniel - RODRIGUEZ , Margarita Victoria",
+                "VH": 7477,
+                "VAL": 0,
+                "Tot": 7477
+              },
+              {
+                "LId": 196,
+                "Dsc": "FONTENLA FARIELLO, Jose Luis - BLANCO ZAS, Richard Adrian Giacomo - da SILVA RODRIGUEZ, Marta Virginia",
+                "VH": 11066,
+                "VAL": 0,
+                "Tot": 11066
+              },
+              {
+                "LId": 205,
+                "Dsc": "SARAVIA CARNIKIAN, Cesar Richard - BUFANTE PÉREZ, Betania  - MORALES RATH, Pablo Martin",
+                "VH": 5391,
+                "VAL": 0,
+                "Tot": 5391
+              },
+              {
+                "LId": 263,
+                "Dsc": "RODRIGUEZ RECOBA, Miguel Angel - BIRRIEL MAÑANI, Gladys Zulma - TORRES FERIA, Mónica Lilián",
+                "VH": 1121,
+                "VAL": 0,
+                "Tot": 1121
+              },
+              {
+                "LId": 401,
+                "Dsc": "TRASANTE VALERIO, Tania Valentine - FERREIRA PORRO, Fernando Jorge - BARBOZA PEÑA, Maria de los Angeles ",
+                "VH": 2473,
+                "VAL": 0,
+                "Tot": 2473
+              }
+            ]
+          },
+          {
+            "Id": 180,
+            "Nombre": "FRENTE LIBER SEREGNI",
+            "VH": 27161,
+            "VAS": 34,
+            "Tot": 27195,
+            "Listas": [],
+            "VASLDL": 34,
+            "ListasJunta": [
+              {
+                "LId": 335,
+                "Dsc": "AREAN ALVES, Maria Elisa - RODRIGUEZ ALVAREZ, Diego Marcelo - VICENTE MARROCHE, Maria Dahiana",
+                "VH": 2297,
+                "VAL": 0,
+                "Tot": 2297
+              },
+              {
+                "LId": 1094,
+                "Dsc": "PAREDES DEMEDICI, Rosana Nilsen - BAIZ FAVILLA DE MELLO, Carlos Alberto - MARQUEZ VILLANO, Horacio Nicolas",
+                "VH": 2671,
+                "VAL": 0,
+                "Tot": 2671
+              },
+              {
+                "LId": 1100,
+                "Dsc": "VISILLAC CAPOTTE, Claudio Adrian - URTA ROUSSE, Maria Gimena - CARRASCO OLIVERA, Marcelo Heber",
+                "VH": 19199,
+                "VAL": 0,
+                "Tot": 19199
+              },
+              {
+                "LId": 1189,
+                "Dsc": "PANETTA SANTELLAN, Viviana Noelia - CABILLON MAGGI, Julio Cesar - CARRIZO LOPEZ, Martha Virginia",
+                "VH": 2994,
+                "VAL": 0,
+                "Tot": 2994
+              }
+            ]
+          },
+          {
+            "Id": 185,
+            "Nombre": "FRENTEAMPLISTAS",
+            "VH": 39830,
+            "VAS": 237,
+            "Tot": 40067,
+            "Listas": [],
+            "VASLDL": 110,
+            "ListasJunta": [
+              {
+                "LId": 362,
+                "Dsc": "SCHELOTTO GARCIA, Marcelo  - CEREROLS CARDOZO, Heidelberg Luz - PANDIANI PEREZ, Maria Ivonne",
+                "VH": 9854,
+                "VAL": 0,
+                "Tot": 9854
+              },
+              {
+                "LId": 916,
+                "Dsc": "TELLECHEA VERGARA, Micaela  - COUTO GARCIA, Martín  - LARROSA GADEA, Dieva Nibya",
+                "VH": 13557,
+                "VAL": 127,
+                "Tot": 13684
+              },
+              {
+                "LId": 1085,
+                "Dsc": "ARANA SANCHEZ, Mariano  - BARROS FLEITAS, Adriana  - LUTZ LLANO, Adrian Adolfo",
+                "VH": 11683,
+                "VAL": 0,
+                "Tot": 11683
+              },
+              {
+                "LId": 1110,
+                "Dsc": "TOURNE VALDEZ, Daysi Lilian - MORODO DIAZ, Walter Domingo Anibal - AGRIEL RUIZ, Silvia Beatriz",
+                "VH": 4736,
+                "VAL": 0,
+                "Tot": 4736
+              }
+            ]
+          },
+          {
+            "Id": 205,
+            "Nombre": "LA MONTEVIDEO QUE QUEREMOS",
+            "VH": 144860,
+            "VAS": 729,
+            "Tot": 145589,
+            "Listas": [],
+            "VASLDL": 729,
+            "ListasJunta": [
+              {
+                "LId": 374,
+                "Dsc": "IRIBARREN BUSSO, Gabriela  - SOBA LAGUNA, Sandro Alberto - PIGNANELLI CAFARO, Sara Maria",
+                "VH": 9903,
+                "VAL": 0,
+                "Tot": 9903
+              },
+              {
+                "LId": 491,
+                "Dsc": "MAZZOTTI DIEZ, Maria Elena - SORIA REQUELME, Fabricio Gastón - BARDANCA DE LOS SANTOS, Jessica Vanesa",
+                "VH": 9073,
+                "VAL": 0,
+                "Tot": 9073
+              },
+              {
+                "LId": 525,
+                "Dsc": "PELEGRIN PEREZ, Susana Mariela - TIRELLE REYES, Walter Ramón - SIMONA MARTINEZ, Jose Luis",
+                "VH": 19474,
+                "VAL": 0,
+                "Tot": 19474
+              },
+              {
+                "LId": 702,
+                "Dsc": "ACOSTA ARNAUD, Lucía  - NADALES GONZALEZ, Mariana  - MIRANDA TORDOYA, Sergio Luis",
+                "VH": 9435,
+                "VAL": 0,
+                "Tot": 9435
+              },
+              {
+                "LId": 768,
+                "Dsc": "ESPILLAR CORBALAN, Sofia Ximena - VELAZQUEZ GARCIA, Miguel Angel - PELEGRIN PEREZ, Susana Mariela",
+                "VH": 55834,
+                "VAL": 0,
+                "Tot": 55834
+              },
+              {
+                "LId": 1034,
+                "Dsc": "LASA BASSORELLI, Nicolas Alejandro - CAYON FLEITAS, Ana Patricia - CAMILO VIÑOLY, Jose Roberto",
+                "VH": 40546,
+                "VAL": 0,
+                "Tot": 40546
+              },
+              {
+                "LId": 1467,
+                "Dsc": "GONZALEZ MARTINEZ, Hernan  - CAPUTI AGUIRRE, Ana Maria - GONZALEZ FACAL, Washington ",
+                "VH": 595,
+                "VAL": 0,
+                "Tot": 595
+              }
+            ]
+          },
+          {
+            "Id": 213,
+            "Nombre": "MONTEVIDEO NOS UNE",
+            "VH": 13748,
+            "VAS": 46,
+            "Tot": 13794,
+            "Listas": [],
+            "VASLDL": 46,
+            "ListasJunta": [
+              {
+                "LId": 342,
+                "Dsc": "MATEAUDA YELICHICHE, Joaquín Edison - BOULAY MARTINEZ, Chantal Marie - SCHELLEMBERG LEITE, Jorge ",
+                "VH": 5086,
+                "VAL": 0,
+                "Tot": 5086
+              },
+              {
+                "LId": 605,
+                "Dsc": "CAMPANELA PESCE, Raul Enrique - CASAS DAMASCO, Madelon  - MOLINELLI CANEPPA, Leonel ",
+                "VH": 942,
+                "VAL": 0,
+                "Tot": 942
+              },
+              {
+                "LId": 699,
+                "Dsc": "DI CANDIA CUÑA, Christian Martin - MEDINA CABALLERO, Shirley Ivette - FELARTIGAS ARIGON, Mariana ",
+                "VH": 4647,
+                "VAL": 0,
+                "Tot": 4647
+              },
+              {
+                "LId": 714,
+                "Dsc": "MALDONADO , Walter Dasmair - MOREIRA                                            - MAZZOLENI CORRALES, Yaneth Anahir",
+                "VH": 352,
+                "VAL": 0,
+                "Tot": 352
+              },
+              {
+                "LId": 717,
+                "Dsc": "VERA MARTINEZ, Jeaninne Ana - PIANA BARBOZA, Rina Daniela - BENTANCOURT GONZALEZ, Diego Maximiliano",
+                "VH": 2085,
+                "VAL": 0,
+                "Tot": 2085
+              },
+              {
+                "LId": 1107,
+                "Dsc": "SANCHEZ PEREYRA, Carlos Julio - ROCHA FERNANDEZ, Veronica Gisel - DE LEON ANCHETA, Jose Luis",
+                "VH": 636,
+                "VAL": 0,
+                "Tot": 636
+              }
+            ]
+          },
+          {
+            "Id": 278,
+            "Nombre": "SUMEMOS",
+            "VH": 71336,
+            "VAS": 1296,
+            "Tot": 72632,
+            "Listas": [],
+            "VASLDL": 1257,
+            "ListasJunta": [
+              {
+                "LId": 353,
+                "Dsc": "OLIVERA SILVA, Diego Adolfo - RONCA KOZUCH, Fernando Raul - KALANDJIAN KALLAIR, Mariela ",
+                "VH": 8621,
+                "VAL": 10,
+                "Tot": 8631
+              },
+              {
+                "LId": 630,
+                "Dsc": "ALVAREZ LOPEZ, Camilo Javier - DE POLSI SAGARIA, Daniela María - GUTIÉRREZ PEREIRA DAS NEVES, José Manuel",
+                "VH": 2897,
+                "VAL": 0,
+                "Tot": 2897
+              },
+              {
+                "LId": 685,
+                "Dsc": "PUMAR MONTES, María Dolores - PARACAMPO SANTOS, Mara Nelly - ZARDO BICCO, Matias Francisco",
+                "VH": 8979,
+                "VAL": 5,
+                "Tot": 8984
+              },
+              {
+                "LId": 763,
+                "Dsc": "CASTRO FONTANA, María del Carmen  - RISSOTTO BRUM, Pedro Alberto - GARCIA LEZCANO, Tabatha Daniela",
+                "VH": 3318,
+                "VAL": 0,
+                "Tot": 3318
+              },
+              {
+                "LId": 894,
+                "Dsc": "ROSAS ARRUDA, Javier Alejandro - NAUAR VARELA, Maria Beatriz - ROSAS CEDRES, Damián Alejandro",
+                "VH": 6415,
+                "VAL": 3,
+                "Tot": 6418
+              },
+              {
+                "LId": 953,
+                "Dsc": "HERNANDEZ ESCAMENDI, Carlos Daniel - DORREGO WECHSUNG, Patricia Jacqueline - ARNALDO CAMEJO, Aldo ",
+                "VH": 5449,
+                "VAL": 0,
+                "Tot": 5449
+              },
+              {
+                "LId": 1102,
+                "Dsc": "CAMACHO BENTANCUR, Sebastián  - CUBAS GONZALEZ, Jennifer Cristhie - LESCANO BERGARA, Angelica Daniela",
+                "VH": 8435,
+                "VAL": 7,
+                "Tot": 8442
+              },
+              {
+                "LId": 1109,
+                "Dsc": "LISTE AROTCHAREN, Ruben Dario - CRESCI LARRANDA, Ana Maria - PERRONE PEREIRA, Juan Pedro",
+                "VH": 4959,
+                "VAL": 0,
+                "Tot": 4959
+              },
+              {
+                "LId": 1114,
+                "Dsc": "GONZALEZ OLIVERA, Daniel Alejandro - NAUAR VARELA, Maria Beatriz - BARREIRO RODRIGUEZ, Leonardo Maximo",
+                "VH": 4782,
+                "VAL": 0,
+                "Tot": 4782
+              },
+              {
+                "LId": 1271,
+                "Dsc": "RIOS ALVAREZ, Oscar Edinson - NUÑEZ GONZALEZ, Verónica  - OTORMIN DE LOS SANTOS, Oscar Arnaldo",
+                "VH": 69,
+                "VAL": 0,
+                "Tot": 69
+              },
+              {
+                "LId": 1427,
+                "Dsc": "DE SOUZA DELGADO, Juan Ignacio - RAMIREZ ABELLA, Angelica Beatriz - ROQUERO VERDE, Diego Matías",
+                "VH": 2189,
+                "VAL": 5,
+                "Tot": 2194
+              },
+              {
+                "LId": 1440,
+                "Dsc": "ESTADES RODAO, Dario Raul - ESTADES RODAS, Ana Beatriz - BRAICA                                            ",
+                "VH": 1989,
+                "VAL": 0,
+                "Tot": 1989
+              },
+              {
+                "LId": 1453,
+                "Dsc": "RODRIGUEZ RECOBA, Miguel Angel - BIRRIEL MAÑANI, Gladys Zulma - GONZALEZ , Erik Bernardo",
+                "VH": 745,
+                "VAL": 0,
+                "Tot": 745
+              },
+              {
+                "LId": 1500,
+                "Dsc": "RODRIGUEZ RECOBA, Miguel Angel - TORRES FERIA, Mónica Lilián - GONZALEZ , Erik Bernardo",
+                "VH": 3106,
+                "VAL": 0,
+                "Tot": 3106
+              },
+              {
+                "LId": 1507,
+                "Dsc": "RIPOLL GARCIA, Gustavo Daniel - PEREZ RODRIGUEZ, Isabel Beatriz - TORRACA CIARDELLA, Umberto ",
+                "VH": 8710,
+                "VAL": 9,
+                "Tot": 8719
+              },
+              {
+                "LId": 1508,
+                "Dsc": "LOPEZ SANCHEZ, Veronica  - BELLO HYYTIA, Jose David - SANCHEZ CABRERA, Andrea Karina",
+                "VH": 673,
+                "VAL": 0,
+                "Tot": 673
+              }
+            ]
+          }
+        ],
+        "TALDSL": 9166,
+        "Tot": 447529
+      }
+    },
+    {
+      "LI": 7,
+      "LN": "Partido Independiente",
+      "LIcon": "Images/banderas/partido_independiente.bmp",
+      "TH": 344864,
+      "TAL": 6343,
+      "Tot": 351207,
+      "Hojas": [
+        {
+          "HI": 1979,
+          "Tot": 202085,
+          "HN": "1"
+        },
+        {
+          "HI": 1645,
+          "Tot": 8818,
+          "HN": "4"
+        },
+        {
+          "HI": 1379,
+          "Tot": 0,
+          "HN": "10"
+        },
+        {
+          "HI": 837,
+          "Tot": 9401,
+          "HN": "15"
+        },
+        {
+          "HI": 3123,
+          "Tot": 0,
+          "HN": "31"
+        },
+        {
+          "HI": 1848,
+          "Tot": 2835,
+          "HN": "103"
+        },
+        {
+          "HI": 3124,
+          "Tot": 0,
+          "HN": "111"
+        },
+        {
+          "HI": 2243,
+          "Tot": 3568,
+          "HN": "124"
+        },
+        {
+          "HI": 3125,
+          "Tot": 0,
+          "HN": "131"
+        },
+        {
+          "HI": 2988,
+          "Tot": 2566,
+          "HN": "247"
+        },
+        {
+          "HI": 2250,
+          "Tot": 4356,
+          "HN": "303"
+        },
+        {
+          "HI": 2984,
+          "Tot": 2629,
+          "HN": "304"
+        },
+        {
+          "HI": 2983,
+          "Tot": 2627,
+          "HN": "470"
+        },
+        {
+          "HI": 4,
+          "Tot": 34706,
+          "HN": "600"
+        },
+        {
+          "HI": 1115,
+          "Tot": 4012,
+          "HN": "604"
+        },
+        {
+          "HI": 1071,
+          "Tot": 14280,
+          "HN": "820"
+        },
+        {
+          "HI": 908,
+          "Tot": 2341,
+          "HN": "909"
+        },
+        {
+          "HI": 3099,
+          "Tot": 53,
+          "HN": "1511"
+        },
+        {
+          "HI": 1179,
+          "Tot": 21218,
+          "HN": "2000"
+        },
+        {
+          "HI": 3105,
+          "Tot": 0,
+          "HN": "2024"
+        },
+        {
+          "HI": 2645,
+          "Tot": 2896,
+          "HN": "2115"
+        },
+        {
+          "HI": 3126,
+          "Tot": 0,
+          "HN": "3131"
+        },
+        {
+          "HI": 3074,
+          "Tot": 19292,
+          "HN": "7009"
+        },
+        {
+          "HI": 209,
+          "Tot": 5846,
+          "HN": "60600"
+        },
+        {
+          "HI": 2462,
+          "Tot": 483,
+          "HN": "161616"
+        },
+        {
+          "HI": 1826,
+          "Tot": 852,
+          "HN": "1441007"
+        }
+      ],
+      "Intendente": {
+        "Listas": [
+          {
+            "HI": 0,
+            "Tot": 351207,
+            "HN": "",
+            "LId": 131,
+            "Dsc": "RAFFO DEGEROMINI, Maria Laura",
+            "VH": 344864,
+            "VAL": 6343
+          }
+        ],
+        "TALDI": 0,
+        "Tot": 351207
+      },
+      "Junta": {
+        "Sublemas": [
+          {
+            "Id": 1,
+            "Nombre": "SUBLEMA HOJA 10",
+            "VH": 0,
+            "VAS": 0,
+            "Tot": 0,
+            "Listas": [],
+            "VASLDL": 0,
+            "ListasJunta": [
+              {
+                "LId": 177,
+                "Dsc": "EGUILÚZ LAXAGUE, María Cecilia - PEDROSA ACCOSSANO, Rosa Maria - BORDABERRY ORIBE, Matías Santiago",
+                "VH": 0,
+                "VAL": 0,
+                "Tot": 0
+              }
+            ]
+          },
+          {
+            "Id": 70,
+            "Nombre": "AHORA MONTEVIDEO",
+            "VH": 202085,
+            "VAS": 0,
+            "Tot": 202085,
+            "Listas": [],
+            "VASLDL": 0,
+            "ListasJunta": [
+              {
+                "LId": 1082,
+                "Dsc": "RODRIGUEZ                                          - SEIJAS ALONSO, Rafael Eduardo - BARCARCEL NICOLETTI, Adriana ",
+                "VH": 202085,
+                "VAL": 0,
+                "Tot": 202085
+              },
+              {
+                "LId": 1511,
+                "Dsc": "MURPHY LARROSA, Ana Carolina - BORRAZAS URRUTIA, Natalia Marìa - CÁCERES ORCOYEN, Carlos Andrés",
+                "VH": 0,
+                "VAL": 0,
+                "Tot": 0
+              },
+              {
+                "LId": 1512,
+                "Dsc": "BORRAZAS URRUTIA, Natalia Marìa - GONZALEZ NUÑEZ, Lucas Manuel - CÁCERES ORCOYEN, Carlos Andrés",
+                "VH": 0,
+                "VAL": 0,
+                "Tot": 0
+              },
+              {
+                "LId": 1513,
+                "Dsc": "CÁCERES ORCOYEN, Carlos Andrés - MURPHY LARROSA, Ana Carolina - GONZALEZ NUÑEZ, Lucas Manuel",
+                "VH": 0,
+                "VAL": 0,
+                "Tot": 0
+              },
+              {
+                "LId": 1514,
+                "Dsc": "GONZALEZ NUÑEZ, Lucas Manuel - BORRAZAS URRUTIA, Natalia Marìa - MURPHY LARROSA, Ana Carolina",
+                "VH": 0,
+                "VAL": 0,
+                "Tot": 0
+              },
+              {
+                "LId": 3321,
+                "Dsc": "MARTINEZ, Nilda, FERREYRA, Alvaro, BASSI, Virginia",
+                "VH": 0,
+                "VAL": 0,
+                "Tot": 0
+              }
+            ]
+          },
+          {
+            "Id": 93,
+            "Nombre": "CABILDO ARTIGUISTA",
+            "VH": 14280,
+            "VAS": 0,
+            "Tot": 14280,
+            "Listas": [],
+            "VASLDL": 0,
+            "ListasJunta": [
+              {
+                "LId": 719,
+                "Dsc": "ALONSO NOGARA, Jose Luis - ROEL BOTTARI, Gastón  - VOLTERRA GIUDICE, Mirella Laura",
+                "VH": 14280,
+                "VAL": 0,
+                "Tot": 14280
+              }
+            ]
+          },
+          {
+            "Id": 132,
+            "Nombre": "DEFENSA DE MONTEVIDEO",
+            "VH": 93359,
+            "VAS": 661,
+            "Tot": 94020,
+            "Listas": [],
+            "VASLDL": 661,
+            "ListasJunta": [
+              {
+                "LId": 245,
+                "Dsc": "FACCIOLA DEMARIA, Gustavo Javier - TARTAGLIA HERNANDEZ, Cesar Tulio - CAMPOS PEDROZO, Maria Noel",
+                "VH": 34706,
+                "VAL": 0,
+                "Tot": 34706
+              },
+              {
+                "LId": 361,
+                "Dsc": "FERRARI SARZABAL, Aldo Oscar - MATEOS TRUCCELLI, Marcelo Daniel - PERALTA MARIN, Laura Noel",
+                "VH": 5846,
+                "VAL": 0,
+                "Tot": 5846
+              },
+              {
+                "LId": 627,
+                "Dsc": "TRINDADE RACEDO, Liber Jesus - BRITOS SANSBERRO, Diego Sebastian - TUDURÍ GILMET, María de Lourdes ",
+                "VH": 9401,
+                "VAL": 0,
+                "Tot": 9401
+              },
+              {
+                "LId": 764,
+                "Dsc": "BARRETO GONZÁLEZ, Matias Gustavo - TALICE VAZ MARTINS, Marcelo Enrique - GONZALEZ CARDOZO, Fabiana Elizabeth",
+                "VH": 21218,
+                "VAL": 0,
+                "Tot": 21218
+              },
+              {
+                "LId": 1328,
+                "Dsc": "PRANDO                                             - GUENA MEAS, Maria Cecilia - GRILLO PEREIRA, Juan Jose",
+                "VH": 2896,
+                "VAL": 0,
+                "Tot": 2896
+              },
+              {
+                "LId": 1489,
+                "Dsc": "AGUIRRE ASTESIANO, Victor Leonel - PUIG VECINO, Martin Rogelio - HERNANDEZ VAZQUEZ MARTINEZ, Maria Esther",
+                "VH": 19292,
+                "VAL": 0,
+                "Tot": 19292
+              }
+            ]
+          },
+          {
+            "Id": 265,
+            "Nombre": "SI PODEMOS",
+            "VH": 2824,
+            "VAS": 4,
+            "Tot": 2828,
+            "Listas": [],
+            "VASLDL": 4,
+            "ListasJunta": [
+              {
+                "LId": 651,
+                "Dsc": "PANZARDO CABALLERO, Maria Alejandra - ALONSO PANZARDO, Manuela Belén - APECECH BARTABURU, Martin Fernando",
+                "VH": 2341,
+                "VAL": 0,
+                "Tot": 2341
+              },
+              {
+                "LId": 1265,
+                "Dsc": "WANG SAN MARTIN, Luis Fernando - GERMAN DEMARCO, Marcela Lourdes - VIGO JACCOTTET, Carlos Mario",
+                "VH": 483,
+                "VAL": 0,
+                "Tot": 483
+              }
+            ]
+          },
+          {
+            "Id": 320,
+            "Nombre": "UNION VECINAL",
+            "VH": 31464,
+            "VAS": 313,
+            "Tot": 31777,
+            "Listas": [],
+            "VASLDL": 313,
+            "ListasJunta": [
+              {
+                "LId": 934,
+                "Dsc": "PRADO FERNANDEZ, Victor  - ARRILLAGA POMBO, Maria Julia - PASSADORE SAN PEDRO, Maria Jose",
+                "VH": 8818,
+                "VAL": 0,
+                "Tot": 8818
+              },
+              {
+                "LId": 1033,
+                "Dsc": "KRUSE CHIESA, Hermann Guillermo - PERALTA MARIN, Luca Michael - VOLONTERIO AGUIRRE, Carla Maria",
+                "VH": 2835,
+                "VAL": 0,
+                "Tot": 2835
+              },
+              {
+                "LId": 1458,
+                "Dsc": "CALDAS URETA, Juan Diego - DA ROSA ABREU, Ricardo  - RESQUIN ANCHETA, Elida Rosa",
+                "VH": 2629,
+                "VAL": 0,
+                "Tot": 2629
+              },
+              {
+                "LId": 1497,
+                "Dsc": "MARTORELL FIGUERAS, Andy Davyd - CIARAN MARTINEZ, Gonzalo Ariel - ESPUELAS POSE, Veronica ",
+                "VH": 53,
+                "VAL": 0,
+                "Tot": 53
+              },
+              {
+                "LId": 3316,
+                "Dsc": "CALDAS, Juan Diego, DA ROSA, Ricardo, DI LORENZO, Agustina",
+                "VH": 2566,
+                "VAL": 0,
+                "Tot": 2566
+              },
+              {
+                "LId": 3317,
+                "Dsc": "CALDAS, Juan Diego, DA ROSA, Ricardo, LÓPEZ, David",
+                "VH": 3568,
+                "VAL": 0,
+                "Tot": 3568
+              },
+              {
+                "LId": 3318,
+                "Dsc": "CALDAS, Juan Diego, DA ROSA, Ricardo, BARRIOS, Carolina",
+                "VH": 4012,
+                "VAL": 0,
+                "Tot": 4012
+              },
+              {
+                "LId": 3319,
+                "Dsc": "CALDAS, Juan Diego, DA ROSA, Ricardo, TELLECHEA, Ignacio",
+                "VH": 4356,
+                "VAL": 0,
+                "Tot": 4356
+              },
+              {
+                "LId": 3320,
+                "Dsc": "CALDAS, Juan Diego, DA ROSA, Ricardo, LÓPEZ, Rodrigo",
+                "VH": 2627,
+                "VAL": 0,
+                "Tot": 2627
+              }
+            ]
+          },
+          {
+            "Id": 876,
+            "Nombre": "SUBLEMA HOJA 1441007",
+            "VH": 852,
+            "VAS": 0,
+            "Tot": 852,
+            "Listas": [],
+            "VASLDL": 0,
+            "ListasJunta": [
+              {
+                "LId": 1537,
+                "Dsc": "GILLESPIE SANGUINETTI, Maria Ofelia - PIEGAS CAVALHEIRO, Juan Eduardo - FREIRÍA GUIMARANS, Melisa Valeria",
+                "VH": 852,
+                "VAL": 0,
+                "Tot": 852
+              }
+            ]
+          }
+        ],
+        "TALDSL": 5365,
+        "Tot": 345842
+      }
+    },
+    {
+      "LI": 9,
+      "LN": "Asamblea Popular",
+      "LIcon": "Images/banderas/partido_asamblea_popular.bmp",
+      "TH": 3665,
+      "TAL": 100,
+      "Tot": 3765,
+      "Hojas": [
+        {
+          "HI": 3139,
+          "Tot": 3118,
+          "HN": "326"
+        },
+        {
+          "HI": 459,
+          "Tot": 547,
+          "HN": "960"
+        }
+      ],
+      "Intendente": {
+        "Listas": [
+          {
+            "HI": 0,
+            "Tot": 3765,
+            "HN": "",
+            "LId": 16,
+            "Dsc": "RUBIO VICO, Eduardo Jose",
+            "VH": 3665,
+            "VAL": 100
+          }
+        ],
+        "TALDI": 0,
+        "Tot": 3765
+      },
+      "Junta": {
+        "Sublemas": [
+          {
+            "Id": 150,
+            "Nombre": "EL PUEBLO EN LUCHA",
+            "VH": 547,
+            "VAS": 0,
+            "Tot": 547,
+            "Listas": [],
+            "VASLDL": 0,
+            "ListasJunta": [
+              {
+                "LId": 489,
+                "Dsc": "COHEN PAPO, Ricardo Israel - SOSA RIVERO, Carlos Eduardo - DABBADIE VILLALBA, Paula Nataly",
+                "VH": 547,
+                "VAL": 0,
+                "Tot": 547
+              }
+            ]
+          },
+          {
+            "Id": 158,
+            "Nombre": "EN LUCHA POR LA SOBERANIA",
+            "VH": 3118,
+            "VAS": 0,
+            "Tot": 3118,
+            "Listas": [],
+            "VASLDL": 0,
+            "ListasJunta": [
+              {
+                "LId": 298,
+                "Dsc": "SILVA , Romy Saron - MARTÍNEZ MARUCA, Walter Gonzalo - VAZQUEZ BENTANCUR, Patricia Marina",
+                "VH": 3118,
+                "VAL": 0,
+                "Tot": 3118
+              }
+            ]
+          }
+        ],
+        "TALDSL": 100,
+        "Tot": 3665
+      }
+    },
+    {
+      "LI": 17,
+      "LN": "Partido Verde Animalista",
+      "LIcon": "Images/Banderas/Partido_Verde_Animalista.bmp",
+      "TH": 3529,
+      "TAL": 0,
+      "Tot": 3529,
+      "Hojas": [
+        {
+          "HI": 1172,
+          "Tot": 3529,
+          "HN": "409"
+        }
+      ],
+      "Intendente": {
+        "Listas": [
+          {
+            "HI": 0,
+            "Tot": 3529,
+            "HN": "",
+            "LId": 76,
+            "Dsc": "GARCIA LAVIANO, Leonel ",
+            "VH": 3529,
+            "VAL": 0
+          }
+        ],
+        "TALDI": 0,
+        "Tot": 3529
+      },
+      "Junta": {
+        "Sublemas": [
+          {
+            "Id": 137,
+            "Nombre": "DESAFIO POR LA VIDA",
+            "VH": 3529,
+            "VAS": 0,
+            "Tot": 3529,
+            "Listas": [],
+            "VASLDL": 0,
+            "ListasJunta": [
+              {
+                "LId": 761,
+                "Dsc": "IKATCH SUAREZ, Walter Diego - ALVAREZ SANGIAO, Richard Hugo - LIBBY                                             ",
+                "VH": 3529,
+                "VAL": 0,
+                "Tot": 3529
+              }
+            ]
+          }
+        ],
+        "TALDSL": 0,
+        "Tot": 3529
+      }
+    }
+  ],
+  "ganador": "Frente Amplio",
+  "ediles": {
+    "Frente Amplio": 18,
+    "Partido Independiente": 13,
+    "Asamblea Popular": 0,
+    "Partido Verde Animalista": 0
+  }
+}

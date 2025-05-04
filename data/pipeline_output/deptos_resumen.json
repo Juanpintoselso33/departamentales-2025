@@ -1,0 +1,284 @@
+[
+  {
+    "nombre": "ARTIGAS",
+    "codigo": "ARTIGAS",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 7,
+      "Partido Nacional": 22,
+      "Partido Colorado": 2,
+      "Asamblea Popular": 0
+    },
+    "municipios": 3,
+    "total_votos": 63036
+  },
+  {
+    "nombre": "CANELONES",
+    "codigo": "CANELONES",
+    "ganador": "Frente Amplio",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 20,
+      "Partido Nacional": 10,
+      "Partido Colorado": 1,
+      "Cabildo Abierto": 0,
+      "Asamblea Popular": 0,
+      "Partido Verde Animalista": 0
+    },
+    "municipios": 30,
+    "total_votos": 408562
+  },
+  {
+    "nombre": "CERRO LARGO",
+    "codigo": "CERROLARGO",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 4,
+      "Partido Nacional": 27,
+      "Partido Colorado": 0
+    },
+    "municipios": 15,
+    "total_votos": 73227
+  },
+  {
+    "nombre": "COLONIA",
+    "codigo": "COLONIA",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 12,
+      "Partido Nacional": 17,
+      "Partido Colorado": 2,
+      "Asamblea Popular": 0
+    },
+    "municipios": 11,
+    "total_votos": 106328
+  },
+  {
+    "nombre": "DURAZNO",
+    "codigo": "DURAZNO",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 7,
+      "Partido Nacional": 18,
+      "Partido Colorado": 4,
+      "Cabildo Abierto": 2,
+      "Partido Independiente": 0,
+      "Asamblea Popular": 0
+    },
+    "municipios": 2,
+    "total_votos": 50364
+  },
+  {
+    "nombre": "FLORES",
+    "codigo": "FLORES",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 7,
+      "Partido Nacional": 17,
+      "Partido Colorado": 6,
+      "Cabildo Abierto": 1,
+      "Asamblea Popular": 0
+    },
+    "municipios": 1,
+    "total_votos": 22538
+  },
+  {
+    "nombre": "FLORIDA",
+    "codigo": "FLORIDA",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 11,
+      "Partido Nacional": 17,
+      "Partido Colorado": 3,
+      "Cabildo Abierto": 0
+    },
+    "municipios": 3,
+    "total_votos": 57871
+  },
+  {
+    "nombre": "LAVALLEJA",
+    "codigo": "LAVALLEJA",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 7,
+      "Partido Nacional": 20,
+      "Partido Colorado": 3,
+      "Cabildo Abierto": 1,
+      "Partido Independiente": 0,
+      "Asamblea Popular": 0
+    },
+    "municipios": 4,
+    "total_votos": 51538
+  },
+  {
+    "nombre": "MALDONADO",
+    "codigo": "MALDONADO",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 9,
+      "Partido Nacional": 21,
+      "Partido Colorado": 1,
+      "Cabildo Abierto": 0,
+      "Asamblea Popular": 0,
+      "Partido Verde Animalista": 0
+    },
+    "municipios": 8,
+    "total_votos": 141149
+  },
+  {
+    "nombre": "MONTEVIDEO",
+    "codigo": "MONTEVIDEO",
+    "ganador": "Frente Amplio",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 18,
+      "Partido Independiente": 13,
+      "Asamblea Popular": 0,
+      "Partido Verde Animalista": 0
+    },
+    "municipios": 8,
+    "total_votos": 1041475
+  },
+  {
+    "nombre": "PAYSANDU",
+    "codigo": "PAYSANDU",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 14,
+      "Partido Nacional": 16,
+      "Partido Colorado": 1,
+      "PERI": 0,
+      "Asamblea Popular": 0
+    },
+    "municipios": 7,
+    "total_votos": 95385
+  },
+  {
+    "nombre": "RIO NEGRO",
+    "codigo": "RIONEGRO",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 13,
+      "Partido Nacional": 16,
+      "Partido Colorado": 2,
+      "Cabildo Abierto": 0
+    },
+    "municipios": 3,
+    "total_votos": 46550
+  },
+  {
+    "nombre": "RIVERA",
+    "codigo": "RIVERA",
+    "ganador": "Partido Colorado",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 3,
+      "Partido Nacional": 8,
+      "Partido Colorado": 19,
+      "Cabildo Abierto": 1,
+      "Asamblea Popular": 0
+    },
+    "municipios": 3,
+    "total_votos": 89025
+  },
+  {
+    "nombre": "ROCHA",
+    "codigo": "ROCHA",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 14,
+      "Partido Nacional": 16,
+      "Partido Colorado": 1,
+      "Asamblea Popular": 0,
+      "Partido Verde Animalista": 0
+    },
+    "municipios": 4,
+    "total_votos": 62857
+  },
+  {
+    "nombre": "SALTO",
+    "codigo": "SALTO",
+    "ganador": "Frente Amplio",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 16,
+      "Partido Nacional": 10,
+      "Partido Colorado": 5,
+      "Asamblea Popular": 0
+    },
+    "municipios": 6,
+    "total_votos": 103839
+  },
+  {
+    "nombre": "SAN JOSE",
+    "codigo": "SANJOSE",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 12,
+      "Partido Nacional": 18,
+      "Partido Colorado": 1,
+      "Cabildo Abierto": 0,
+      "Partido Independiente": 0,
+      "Asamblea Popular": 0
+    },
+    "municipios": 4,
+    "total_votos": 84550
+  },
+  {
+    "nombre": "SORIANO",
+    "codigo": "SORIANO",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 8,
+      "Partido Nacional": 20,
+      "Partido Colorado": 3,
+      "Cabildo Abierto": 0,
+      "PERI": 0,
+      "Asamblea Popular": 0
+    },
+    "municipios": 4,
+    "total_votos": 74231
+  },
+  {
+    "nombre": "TACUAREMBO",
+    "codigo": "TACUAREMBO",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 6,
+      "Partido Nacional": 20,
+      "Partido Colorado": 2,
+      "Cabildo Abierto": 3,
+      "Asamblea Popular": 0
+    },
+    "municipios": 3,
+    "total_votos": 78974
+  },
+  {
+    "nombre": "TREINTA Y TRES",
+    "codigo": "TREINTAYTRES",
+    "ganador": "Partido Nacional",
+    "total_ediles": 31,
+    "ediles_por_partido": {
+      "Frente Amplio": 6,
+      "Partido Nacional": 25,
+      "Partido Colorado": 0,
+      "Asamblea Popular": 0
+    },
+    "municipios": 6,
+    "total_votos": 42871
+  }
+]
