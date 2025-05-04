@@ -29,6 +29,7 @@ class MunicipioEnriquecido(Municipio):
     """Modelo extendido de Municipio con información de ganador y ediles."""
     ganador: str = ""
     ediles: Dict[str, int] = {}
+    mayor: str = ""
 
 
 class ElectionSummaryEnriquecido(ElectionSummary):
@@ -61,30 +62,56 @@ def sumar_votos_por_lema(partidos: List[PartidoDepartamento | PartidoMunicipio])
 
 def enriquecer_municipio(municipio: Municipio) -> MunicipioEnriquecido:
     """
-    Enriquece un municipio con información de ganador y distribución de ediles.
+    Enriquece un objeto Municipio con ganador, ediles y alcalde.
     
     Args:
         municipio: Objeto Municipio a enriquecer
         
     Returns:
-        MunicipioEnriquecido con campos ganador y ediles
+        MunicipioEnriquecido con campos ganador, ediles y alcalde
     """
-    # Sumar votos por lema en el municipio
-    votos_por_lema = sumar_votos_por_lema(municipio.Eleccion)
+    votos_por_lema = {p.LN: p.Tot for p in municipio.Eleccion if p.Tot > 0}
     
     # Determinar el ganador (lema con más votos)
-    # El alcalde corresponde al partido más votado, según la regla electoral
     ganador = max(votos_por_lema.items(), key=lambda x: x[1])[0] if votos_por_lema else ""
     
     # Calcular distribución de ediles (5 concejales: 3 para ganador + 2 por D'Hondt)
     ediles = ediles_por_lema(votos_por_lema, total_ediles=5, mayoria_auto=3)
     
-    # Crear una copia modificada con los nuevos campos
-    muni_enriquecido = MunicipioEnriquecido(**municipio.model_dump())
-    muni_enriquecido.ganador = ganador
-    muni_enriquecido.ediles = ediles
-    
-    return muni_enriquecido
+    # --- CÁLCULO ALCALDE (CORREGIDO) ---
+    alcalde_nombre = "No determinado" # Valor por defecto
+    lista_ganadora_votos = -1
+
+    if ganador:
+        # Encontrar el objeto PartidoMunicipio del partido ganador
+        partido_ganador_data = next((p for p in municipio.Eleccion if p.LN == ganador), None)
+        
+        if partido_ganador_data and hasattr(partido_ganador_data, 'Municipio') and \
+           hasattr(partido_ganador_data.Municipio, 'Sublemas'):
+            
+            # Iterar sobre sublemas y listas del partido ganador para encontrar la más votada
+            for sublema in partido_ganador_data.Municipio.Sublemas:
+                if hasattr(sublema, 'ListasMunicipio'):
+                    for lista in sublema.ListasMunicipio:
+                        votos_lista = lista.Tot if hasattr(lista, 'Tot') else 0
+                        if votos_lista > lista_ganadora_votos:
+                            lista_ganadora_votos = votos_lista
+                            # La descripción (Dsc) suele contener el nombre del candidato
+                            alcalde_nombre = lista.Dsc if hasattr(lista, 'Dsc') else "No determinado" 
+                            
+    # Si no se pudo determinar o no hubo votos, mantener "No determinado"
+    if lista_ganadora_votos <= 0:
+        alcalde_nombre = "No determinado"
+    # --- FIN CÁLCULO ALCALDE ---
+
+    # Crear el objeto enriquecido
+    municipio_enriquecido = MunicipioEnriquecido(
+        **municipio.model_dump(), 
+        ganador=ganador, 
+        ediles=ediles,
+        mayor=alcalde_nombre # Usar el nombre calculado
+    )
+    return municipio_enriquecido
 
 
 def enriquecer_departamento(departamento: Departamento) -> DepartamentoEnriquecido:

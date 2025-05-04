@@ -120,6 +120,16 @@ def main():
         # Obtener resumen nacional para la vista principal
         summary = get_national_summary(election_data)
         
+        # --- INICIO DEBUG ---
+        with st.expander("🔍 DEBUG: Inspeccionar Datos Finales", expanded=False):
+            st.write("Resumen Nacional (`summary`):")
+            st.json(summary, expanded=False)
+            st.divider()
+            st.write("Datos Electorales Detallados (`election_data`):")
+            st.json(election_data, expanded=False)
+        st.divider() # Separador visual después del debug
+        # --- FIN DEBUG ---
+        
         # Configurar auto-refresh (activado solo en modo elecciones)
         if st.sidebar.checkbox("Habilitar refresco automático", value=False, key="enable_autorefresh"):
             refresh_interval = st.sidebar.slider(

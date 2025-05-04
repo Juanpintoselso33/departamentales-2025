@@ -5,6 +5,7 @@ Proporciona funciones para generar resúmenes a nivel nacional y departamental.
 from typing import Dict, List, Optional, Any
 import streamlit as st
 import pandas as pd
+from collections import Counter
 
 # Importar desde los módulos apropiados
 from domain.enrichers.ediles_272 import ediles_por_lema
@@ -136,75 +137,47 @@ def get_national_summary(election_data: Dict[str, Any]) -> Dict[str, Any]:
     try:
         # Usar los council_seats que ya están en los datos
         for dept_name, dept_data in election_data.items():
+            # Verificar que council_seats existe y es un diccionario
             if "council_seats" in dept_data and isinstance(dept_data["council_seats"], dict):
                 # Sumar los ediles ya calculados por departamento
                 for partido, ediles in dept_data["council_seats"].items():
-                    if partido not in ediles_per_party:
-                        ediles_per_party[partido] = 0
-                    ediles_per_party[partido] += ediles
+                    # Asegurarse de que el valor de ediles sea numérico
+                    if isinstance(ediles, (int, float)):
+                        if partido not in ediles_per_party:
+                            ediles_per_party[partido] = 0
+                        ediles_per_party[partido] += ediles
+                    else:
+                        # Log o advertencia si el formato no es el esperado
+                        st.warning(f"Valor no numérico para ediles en {dept_name}, partido {partido}: {ediles}")
+            else:
+                # Log o advertencia si faltan los datos precalculados
+                st.warning(f"Datos de 'council_seats' faltantes o inválidos en {dept_name}")
+                # No se usa fallback, se asume que el pipeline debe proveerlos
         
-        # Si no hay datos precalculados, calcular los ediles (fallback)
-        if not ediles_per_party and party_total_votes:
-            # Calcular ediles sumando los de cada departamento
-            ediles_departamento = {}
-            for dept_name, dept_data in election_data.items():
-                if "votes" in dept_data and dept_data["votes"]:
-                    # Obtener votos por partido para este departamento
-                    votos_por_partido = dept_data["votes"]
-                    
-                    # Usar ediles_por_lema del módulo enrichers
-                    ediles_dept = ediles_por_lema(
-                        votos_por_partido,
-                        total_ediles=31,
-                        mayoria_auto=16
-                    )
-                    
-                    # Sumar a los ediles totales
-                    for partido, ediles in ediles_dept.items():
-                        if partido not in ediles_departamento:
-                            ediles_departamento[partido] = 0
-                        ediles_departamento[partido] += ediles
-            
-            if ediles_departamento:
-                ediles_per_party = ediles_departamento
+        # SI NO HAY DATOS PRECALCULADOS, NO SE HACE NADA MÁS.
+        # SE ELIMINA LA LÓGICA DE FALLBACK QUE RECALCULABA EDILES CON ediles_por_lema
+        # O LOS ESTIMABA BASADOS EN MUNICIPIOS.
+        # La responsabilidad de calcular ediles es del pipeline de enriquecimiento.
         
-        # Si no hay datos de ediles pero hay datos de municipios, usar proporciones de municipios como último recurso
-        if not ediles_per_party and party_municipalities:
-            # Establecer que el partido con más alcaldes tiene mayoría automática
-            most_municipalities = max(party_municipalities.items(), key=lambda x: x[1])[0]
-            total_ediles = total_departments * 31
-            mayoria_ediles = total_departments * 16
-            
-            # Distribuir el resto proporcionalmente
-            ediles_per_party = {most_municipalities: mayoria_ediles}
-            
-            remaining_ediles = total_ediles - mayoria_ediles
-            total_other_municipalities = sum(v for k, v in party_municipalities.items() if k != most_municipalities)
-            
-            if total_other_municipalities > 0:
-                for party, muni_count in party_municipalities.items():
-                    if party != most_municipalities and party != "No disponible":
-                        proportion = muni_count / total_other_municipalities
-                        ediles_per_party[party] = round(remaining_ediles * proportion)
     except Exception as e:
-        st.error(f"Error al calcular ediles por partido: {str(e)}")
+        st.error(f"Error al sumar ediles precalculados por partido: {str(e)}")
         import traceback
         st.code(traceback.format_exc(), language="python")
+        # En caso de error, el diccionario ediles_per_party podría quedar vacío o incompleto
     
-    # Calcular alcaldes por partido usando la nueva función
-    alcaldes_per_party = {}
-    try:
-        # Intentar calcular con la función dedicada
-        alcaldes_calculados = asignar_alcaldes_por_partido(election_data)
-        
-        # Usar los datos calculados o los directos
-        if alcaldes_calculados:
-            alcaldes_per_party = alcaldes_calculados
-        else:
-            alcaldes_per_party = party_municipalities.copy()
-    except Exception as e:
-        st.error(f"Error al calcular alcaldes por partido: {str(e)}")
-        alcaldes_per_party = party_municipalities.copy()
+    # Calcular alcaldes por partido usando los datos ya procesados
+    # La lógica de conteo ya está en el bucle principal que itera sobre dept_data["municipalities"]
+    # Simplemente usamos el contador `alcaldes_per_party` ya poblado.
+    # ELIMINAR LLAMADA A FUNCIÓN INEXISTENTE
+    # try:
+    #     alcaldes_calculados = asignar_alcaldes_por_partido(election_data)
+    #     if alcaldes_calculados:
+    #         alcaldes_per_party = alcaldes_calculados
+    #     else:
+    #         alcaldes_per_party = municipality_winners.copy()
+    # except Exception as e:
+    #     st.error(f"Error al calcular alcaldes por partido: {str(e)}")
+    #     alcaldes_per_party = municipality_winners.copy()
     
     # Construir resumen nacional con datos reales
     national_summary = {
@@ -227,7 +200,7 @@ def get_national_summary(election_data: Dict[str, Any]) -> Dict[str, Any]:
         # Añadir datos de ediles y alcaldes calculados con el nuevo método
         "ediles_totales": ediles_per_party,  # Para mantener compatibilidad, pero son los mismos datos
         "ediles_per_party": ediles_per_party,
-        "alcaldes_per_party": alcaldes_per_party
+        "alcaldes_per_party": party_municipalities
     }
     
     # Generar datos para las tarjetas de métricas
@@ -275,13 +248,13 @@ def get_national_summary(election_data: Dict[str, Any]) -> Dict[str, Any]:
                 key=lambda x: x['percentage'],
                 reverse=True
             )
-    elif alcaldes_per_party:
+    elif party_municipalities:
         # Si no hay votos ni ediles pero hay datos de alcaldes, usar eso
-        total_alcaldes = sum(alcaldes_per_party.values())
+        total_alcaldes = sum(party_municipalities.values())
         if total_alcaldes > 0:
             parties_for_viz = sorted(
                 [{'party_name': p, 'percentage': (a / total_alcaldes) * 100, 'seats': 0} 
-                 for p, a in alcaldes_per_party.items() if p != "No disponible"],
+                 for p, a in party_municipalities.items() if p != "No disponible"],
                 key=lambda x: x['percentage'],
                 reverse=True
             )
@@ -344,9 +317,9 @@ def get_department_summary(election_data: Dict[str, Any], department: str) -> Di
         "total_municipalities": total_municipalities,
         "municipalities_by_party": muni_by_party,
         "municipalities": dept_data.get("municipalities", {}),
-        # Usar directamente los datos pre-procesados del loader
+        # Usar directamente los datos pre-procesados del loader con la nueva clave
         "candidates_by_party": dept_data.get("party_candidates", {}),
-        "detailed_council_lists": dept_data.get("detailed_council_lists", [])
+        "junta_departamental_lists": dept_data.get("junta_departamental_lists", [])
         # Ya no incluimos "Departamentales" ni "party_candidates" como fallback aquí
     }
     
@@ -393,42 +366,6 @@ def asignar_ediles_por_partido(election_data: Dict[str, Any]) -> Dict[str, int]:
                     ediles_totales[partido] += ediles
     
     return ediles_totales
-
-def asignar_alcaldes_por_partido(election_data: Dict[str, Any]) -> Dict[str, int]:
-    """
-    Calcula el número de alcaldes por partido a nivel nacional.
-    
-    La Ley N° 19.272 establece:
-    - El cargo de Alcalde corresponde al candidato de la lista más votada 
-      dentro del partido político más votado en el municipio
-    - El resto de sus miembros serán electos por representación proporcional
-
-    Args:
-        election_data: Datos electorales procesados
-        
-    Returns:
-        Dict[str, int]: Diccionario con la cantidad de alcaldes por partido
-    """
-    result = {}
-    
-    try:
-        for dept_name, dept_data in election_data.items():
-            if not isinstance(dept_data, dict) or "municipalities" not in dept_data:
-                continue
-                
-            for muni_name, muni_data in dept_data["municipalities"].items():
-                if not isinstance(muni_data, dict) or "party" not in muni_data:
-                    continue
-                    
-                party = muni_data.get("party", "No disponible")
-                if party not in result:
-                    result[party] = 0
-                
-                result[party] += 1
-    except Exception as e:
-        st.error(f"Error al calcular alcaldes por partido: {str(e)}")
-    
-    return result
 
 def get_all_candidates_by_party(election_data: Dict[str, Any], department_name: str) -> Dict[str, List[Dict[str, Any]]]:
     """

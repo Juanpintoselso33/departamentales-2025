@@ -65,64 +65,64 @@
             "Sublemas": [
               {
                 "Id": 621,
-                "Nombre": "POR UN VARELA PROGRESISTA",
+                "Nombre": "Por un Varela progresista                         ",
                 "VH": 77,
                 "VAS": 1,
                 "Tot": 78,
-                "Listas": [],
-                "VASLDL": 1,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1784,
-                    "Dsc": "OLIVERA OLIVERA, Angelo Maximiano - MIRABALLES VILLALBA, Elisa del Durán  - VILLAVERDE GIL, William Adolfo",
+                    "Dsc": "OLIVERA OLIVERA ANGELO MAXIMIANO  MIRABALLES VILLALBA ELISA DEL DURAN  VILLAVERDE GIL WILLIAM ADOLFO",
                     "VH": 57,
                     "VAL": 0,
                     "Tot": 57
                   },
                   {
                     "LId": 1861,
-                    "Dsc": "IZURCO HERNÁNDEZ, Pablo Martín - ACOSTA , Jorge Daniel - DE LOS SANTOS DIAZ, Laura Raquel",
+                    "Dsc": "IZURCO HERNANDEZ PABLO MARTIN  ACOSTA  JORGE DANIEL  DE LOS SANTOS DIAZ LAURA RAQUEL",
                     "VH": 20,
                     "VAL": 0,
                     "Tot": 20
                   }
-                ]
+                ],
+                "VASLDL": 1
               },
               {
                 "Id": 744,
-                "Nombre": "ESPACIO FRENTEAMPLISTA DE LAVALLEJA",
+                "Nombre": "ESPACIO FRENTEAMPLISTA DE LAVALLEJA               ",
                 "VH": 187,
                 "VAS": 0,
                 "Tot": 187,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 2347,
-                    "Dsc": "GRANJA MACHADO, Edison Leon - MEDINA SOSA, Manuel Jacinto - ALONSO TEXEIRA NUÑEZ, Mary Felicita",
+                    "Dsc": "GRANJA MACHADO EDISON LEON  MEDINA SOSA MANUEL JACINTO  ALONSO TEXEIRA NUNEZ MARY FELICITA",
                     "VH": 187,
                     "VAL": 0,
                     "Tot": 187
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 915,
-                "Nombre": "SUBLEMA HOJA 90609A",
+                "Nombre": "SUBLEMA HOJA 90609-A",
                 "VH": 98,
                 "VAS": 0,
                 "Tot": 98,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 3270,
-                    "Dsc": "TORRES CALDERON, Alfredo  - ROCHA DÍAZ, Carla Lucía - RODRIGUEZ MACEDO, Jose Roger",
+                    "Dsc": "TORRES CALDERON ALFREDO  ROCHA DIAZ CARLA LUCIA  RODRIGUEZ MACEDO JOSE ROGER",
                     "VH": 98,
                     "VAL": 0,
                     "Tot": 98
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 6,
@@ -157,46 +157,46 @@
             "Sublemas": [
               {
                 "Id": 480,
-                "Nombre": "SUBLEMA HOJA 5859A",
+                "Nombre": "SUBLEMA HOJA 5859-A ",
                 "VH": 868,
                 "VAS": 0,
                 "Tot": 868,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1706,
-                    "Dsc": "ACOSTA , Danielo Alejandro - VIDAL LARROSA, Blanca Esther - PEREIRA RIVOIRA, Carlos Rodolfo",
+                    "Dsc": "ACOSTA  DANIELO ALEJANDRO  VIDAL LARROSA BLANCA ESTHER  PEREIRA RIVOIRA CARLOS RODOLFO",
                     "VH": 868,
                     "VAL": 0,
                     "Tot": 868
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 640,
-                "Nombre": "TODOS POR VARELA",
+                "Nombre": "TODOS POR VARELA                                  ",
                 "VH": 1712,
                 "VAS": 0,
                 "Tot": 1712,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1860,
-                    "Dsc": "REZK BATISTA, Martin  - FERNANDEZ                                          - TOLEDO ANTUNEZ, Bonifacio Daniel",
+                    "Dsc": "REZK BATISTA MARTIN  FERNANDEZ  TOLEDO ANTUNEZ BONIFACIO DANIEL",
                     "VH": 1452,
                     "VAL": 0,
                     "Tot": 1452
                   },
                   {
                     "LId": 1866,
-                    "Dsc": "BARNADA , Julio Andre - URIARTE ETCHEGOIMBERRY, Marcos Damian - CORREA GARCÍA, Florencia Yanina",
+                    "Dsc": "BARNADA  JULIO ANDRE  URIARTE ETCHEGOIMBERRY MARCOS DAMIAN  CORREA GARCIA FLORENCIA YANINA",
                     "VH": 260,
                     "VAL": 0,
                     "Tot": 260
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 7,
@@ -236,46 +236,46 @@
             "Sublemas": [
               {
                 "Id": 673,
-                "Nombre": "AVANZAR BATLLISTA",
+                "Nombre": "AVANZAR BATLLISTA                                 ",
                 "VH": 116,
                 "VAS": 0,
                 "Tot": 116,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1927,
-                    "Dsc": "TRUEBA , Eladio Isac - CIDADE PIREZ, Homero Blas - JUAREZ TRUEBA, Monica Soledad",
+                    "Dsc": "TRUEBA  ELADIO ISAC  CIDADE PIREZ HOMERO BLAS  JUAREZ TRUEBA MONICA SOLEDAD",
                     "VH": 25,
                     "VAL": 0,
                     "Tot": 25
                   },
                   {
                     "LId": 2222,
-                    "Dsc": "LABRAGA TEYLECHEA, Olga Mabel - CAMACHO SALDIAS, Daniela María - GUTIERREZ GOROSITO, Jose Andres",
+                    "Dsc": "LABRAGA TEYLECHEA OLGA MABEL  CAMACHO SALDIAS DANIELA MARIA  GUTIERREZ GOROSITO JOSE ANDRES",
                     "VH": 91,
                     "VAL": 0,
                     "Tot": 91
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 676,
-                "Nombre": "BATLLISTAS",
+                "Nombre": "BATLLISTAS                                        ",
                 "VH": 84,
                 "VAS": 0,
                 "Tot": 84,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 3001,
-                    "Dsc": "RODRIGUEZ                                          - DIAZ PERCOVICH, Heber Abel - RAMIREZ CONTRERAS, Maria Veronica",
+                    "Dsc": "RODRIGUEZ  DIAZ PERCOVICH HEBER ABEL  RAMIREZ CONTRERAS MARIA VERONICA",
                     "VH": 84,
                     "VAL": 0,
                     "Tot": 84
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 950,
@@ -283,17 +283,17 @@
                 "VH": 71,
                 "VAS": 0,
                 "Tot": 71,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 3303,
-                    "Dsc": "GUERRA BARRETO, Oscar Daniel - AGUIRREZABALA OLIVERA, Natalia Caterine - ACOSTA MACHADO, Miguel Angel",
+                    "Dsc": "GUERRA BARRETO OSCAR DANIEL  AGUIRREZABALA OLIVERA NATALIA CATERINE  ACOSTA MACHADO MIGUEL ANGEL",
                     "VH": 71,
                     "VAL": 0,
                     "Tot": 71
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 0,
@@ -318,21 +318,21 @@
             "Sublemas": [
               {
                 "Id": 779,
-                "Nombre": "MOVIMIENTO SOCIAL ARTIGUISTA",
+                "Nombre": "MOVIMIENTO SOCIAL ARTIGUISTA                      ",
                 "VH": 183,
                 "VAS": 0,
                 "Tot": 183,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 2063,
-                    "Dsc": "LARROSA ANZOLABEHERE, Yury Macarena - RAMIREZ PEREIRA, Romel  - SALDIAS BRITOS, Yenny Mabel",
+                    "Dsc": "LARROSA ANZOLABEHERE YURY MACARENA  RAMIREZ PEREIRA ROMEL  SALDIAS BRITOS YENNY MABEL",
                     "VH": 183,
                     "VAL": 0,
                     "Tot": 183
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 0,
@@ -386,46 +386,46 @@
             "Sublemas": [
               {
                 "Id": 744,
-                "Nombre": "ESPACIO FRENTEAMPLISTA DE LAVALLEJA",
+                "Nombre": "ESPACIO FRENTEAMPLISTA DE LAVALLEJA               ",
                 "VH": 320,
                 "VAS": 0,
                 "Tot": 320,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 2336,
-                    "Dsc": "LARROSA HERNANDEZ, Fernando Sebastían - GARCIA JAURENA, Sonia Maria - PEREZ JAURENA, Benito Danilo",
+                    "Dsc": "LARROSA HERNANDEZ FERNANDO SEBASTIAN  GARCIA JAURENA SONIA MARIA  PEREZ JAURENA BENITO DANILO",
                     "VH": 320,
                     "VAL": 0,
                     "Tot": 320
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 858,
-                "Nombre": "UNIDAD Y PLURALISMO FRENTEAMPLISTA",
+                "Nombre": "UNIDAD Y PLURALISMO FRENTEAMPLISTA                ",
                 "VH": 79,
                 "VAS": 0,
                 "Tot": 79,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 2456,
-                    "Dsc": "BORGES , Windi Gisela - RODRIGUEZ SILVEIRA, Juan Manuel - MIRANDA MEDINA, Liana Marcela",
+                    "Dsc": "BORGES  WINDI GISELA  RODRIGUEZ SILVEIRA JUAN MANUEL  MIRANDA MEDINA LIANA MARCELA",
                     "VH": 25,
                     "VAL": 0,
                     "Tot": 25
                   },
                   {
                     "LId": 2715,
-                    "Dsc": "FRACHIA BRAIDA, Roberto Francisco - BORGES VARELA, Monica Estefany - SUÁREZ GONZALEZ, Peter Richard",
+                    "Dsc": "FRACHIA BRAIDA ROBERTO FRANCISCO  BORGES VARELA MONICA ESTEFANY  SUAREZ GONZALEZ PETER RICHARD",
                     "VH": 54,
                     "VAL": 0,
                     "Tot": 54
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 4,
@@ -460,46 +460,46 @@
             "Sublemas": [
               {
                 "Id": 479,
-                "Nombre": "SUBLEMA HOJA 5859B",
+                "Nombre": "SUBLEMA HOJA 5859-B ",
                 "VH": 419,
                 "VAS": 0,
                 "Tot": 419,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1705,
-                    "Dsc": "FERNANDEZ BALBIANI, Jorge Luis - ROMERO GIMENEZ, Carmelo Armando - VARGAS CABRERA, Maria Beatriz",
+                    "Dsc": "FERNANDEZ BALBIANI JORGE LUIS  ROMERO GIMENEZ CARMELO ARMANDO  VARGAS CABRERA MARIA BEATRIZ",
                     "VH": 419,
                     "VAL": 0,
                     "Tot": 419
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 718,
-                "Nombre": "CORRENTADA WILSONISTA DE RENOVACION",
+                "Nombre": "CORRENTADA WILSONISTA DE RENOVACIÓN               ",
                 "VH": 1149,
                 "VAS": 1,
                 "Tot": 1150,
-                "Listas": [],
-                "VASLDL": 1,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1561,
-                    "Dsc": "PEREIRA VIROGA, Hugo Apolinario - LONGUEIRA BERMÚDEZ, Silvestre Norberto - BORGES PEREIRA, Sandi Pamela",
+                    "Dsc": "PEREIRA VIROGA HUGO APOLINARIO  LONGUEIRA BERMUDEZ SILVESTRE NORBERTO  BORGES PEREIRA SANDI PAMELA",
                     "VH": 264,
                     "VAL": 0,
                     "Tot": 264
                   },
                   {
                     "LId": 2367,
-                    "Dsc": "MACHADO PEREIRA, Veronica Virginia - YELOS ALVAREZ, Nestor Alfredo - CORBO MARTÍNEZ, Carlos Andrés",
+                    "Dsc": "MACHADO PEREIRA VERONICA VIRGINIA  YELOS ALVAREZ NESTOR ALFREDO  CORBO MARTINEZ CARLOS ANDRES",
                     "VH": 885,
                     "VAL": 0,
                     "Tot": 885
                   }
-                ]
+                ],
+                "VASLDL": 1
               }
             ],
             "TALDSL": 4,
@@ -528,17 +528,17 @@
                 "VH": 70,
                 "VAS": 0,
                 "Tot": 70,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 3304,
-                    "Dsc": "FERRALI CABANA, Stiven Joaquín - CABANA ARYENTA, Mirta Gladys - NUÑEZ LEITON, Iris Graciela",
+                    "Dsc": "FERRALI CABANA STIVEN JOAQUIN  CABANA ARYENTA MIRTA GLADYS  NUNEZ LEITON IRIS GRACIELA",
                     "VH": 70,
                     "VAL": 0,
                     "Tot": 70
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 0,
@@ -563,21 +563,21 @@
             "Sublemas": [
               {
                 "Id": 779,
-                "Nombre": "MOVIMIENTO SOCIAL ARTIGUISTA",
+                "Nombre": "MOVIMIENTO SOCIAL ARTIGUISTA                      ",
                 "VH": 95,
                 "VAS": 0,
                 "Tot": 95,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 2059,
-                    "Dsc": "HERNANDEZ GONZALEZ, Daniel Alvaro - HERNANDEZ CARABALLO, Claudio Alexis - RODRIGUEZ CABRERA, Diana Marcela",
+                    "Dsc": "HERNANDEZ GONZALEZ DANIEL ALVARO  HERNANDEZ CARABALLO CLAUDIO ALEXIS  RODRIGUEZ CABRERA DIANA MARCELA",
                     "VH": 95,
                     "VAL": 0,
                     "Tot": 95
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 0,
@@ -626,39 +626,39 @@
             "Sublemas": [
               {
                 "Id": 527,
-                "Nombre": "SUBLEMA HOJA 90609C",
+                "Nombre": "SUBLEMA HOJA 90609-C ",
                 "VH": 131,
                 "VAS": 0,
                 "Tot": 131,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1730,
-                    "Dsc": "AMOR CABALLERO, María Ximenna - MERILES                                            - ARIZAGA SOSA, Maria Celmira",
+                    "Dsc": "AMOR CABALLERO MARIA XIMENNA  MERILES  ARIZAGA SOSA MARIA CELMIRA",
                     "VH": 131,
                     "VAL": 0,
                     "Tot": 131
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 744,
-                "Nombre": "ESPACIO FRENTEAMPLISTA DE LAVALLEJA",
+                "Nombre": "ESPACIO FRENTEAMPLISTA DE LAVALLEJA               ",
                 "VH": 46,
                 "VAS": 0,
                 "Tot": 46,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 2351,
-                    "Dsc": "SOSA , Jesus Suibal - FERNÁNDEZ LARROSA, Claudia Estefanía - GOMEZ GAITAN, Jose Luis",
+                    "Dsc": "SOSA  JESUS SUIBAL  FERNANDEZ LARROSA CLAUDIA ESTEFANIA  GOMEZ GAITAN JOSE LUIS",
                     "VH": 46,
                     "VAL": 0,
                     "Tot": 46
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 0,
@@ -693,57 +693,57 @@
             "Sublemas": [
               {
                 "Id": 473,
-                "Nombre": "SUBLEMA HOJA 51C",
+                "Nombre": "SUBLEMA HOJA 51-C ",
                 "VH": 315,
                 "VAS": 0,
                 "Tot": 315,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1562,
-                    "Dsc": "VIGO MARTIRENA, José Alberto - GONZALEZ COITIÑO, Antonio Eulogio - MASTROPIERRO FERNÁNDEZ, María Celeste",
+                    "Dsc": "VIGO MARTIRENA JOSE ALBERTO  GONZALEZ COITINO ANTONIO EULOGIO  MASTROPIERRO FERNANDEZ MARIA CELESTE",
                     "VH": 315,
                     "VAL": 0,
                     "Tot": 315
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 481,
-                "Nombre": "SUBLEMA HOJA 5859C",
+                "Nombre": "SUBLEMA HOJA 5859-C ",
                 "VH": 1169,
                 "VAS": 0,
                 "Tot": 1169,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1703,
-                    "Dsc": "PATIÑO ALVARIZA, Pablo Francisco - BENTANCOR SOSA, Melissa Belén - MIGUEL LACUESTA, Yessi Elisabeth",
+                    "Dsc": "PATINO ALVARIZA PABLO FRANCISCO  BENTANCOR SOSA MELISSA BELEN  MIGUEL LACUESTA YESSI ELISABETH",
                     "VH": 1169,
                     "VAL": 0,
                     "Tot": 1169
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 718,
-                "Nombre": "CORRENTADA WILSONISTA DE RENOVACION",
+                "Nombre": "CORRENTADA WILSONISTA DE RENOVACIÓN               ",
                 "VH": 52,
                 "VAS": 0,
                 "Tot": 52,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 2103,
-                    "Dsc": "MORAN PREGO, Fredy Daniel - FERNANDEZ SENOSIAIN, Julio Sergio - LARROSA CANCELA, Leticia Carol",
+                    "Dsc": "MORAN PREGO FREDY DANIEL  FERNANDEZ SENOSIAIN JULIO SERGIO  LARROSA CANCELA LETICIA CAROL",
                     "VH": 52,
                     "VAL": 0,
                     "Tot": 52
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 4,
@@ -778,39 +778,39 @@
             "Sublemas": [
               {
                 "Id": 338,
-                "Nombre": "SUBLEMA HOJA 1015C",
+                "Nombre": "SUBLEMA HOJA 1015-C ",
                 "VH": 21,
                 "VAS": 0,
                 "Tot": 21,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1637,
-                    "Dsc": "MIGUEL LACUESTA, Jorge Luis - GADEA GALLARDO, Mirta Elizabeth - CARBALLO GADEA, Julio ",
+                    "Dsc": "MIGUEL LACUESTA JORGE LUIS  GADEA GALLARDO MIRTA ELIZABETH  CARBALLO GADEA JULIO",
                     "VH": 21,
                     "VAL": 0,
                     "Tot": 21
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 676,
-                "Nombre": "BATLLISTAS",
+                "Nombre": "BATLLISTAS                                        ",
                 "VH": 32,
                 "VAS": 0,
                 "Tot": 32,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 3119,
-                    "Dsc": "GRAÑA SOUZA, Cecilia  - HERRERA GILES, Yessica Yanet - SIERRA SOUZA, César Martín",
+                    "Dsc": "GRANA SOUZA CECILIA  HERRERA GILES YESSICA YANET  SIERRA SOUZA CESAR MARTIN",
                     "VH": 32,
                     "VAL": 0,
                     "Tot": 32
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 950,
@@ -818,17 +818,17 @@
                 "VH": 64,
                 "VAS": 0,
                 "Tot": 64,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 3305,
-                    "Dsc": "DOMINGUEZ DI PRISCO, Ricardo Ramon - DA CUNHA                                           - SILVERA PELLEJERO, María de Fátima ",
+                    "Dsc": "DOMINGUEZ DI PRISCO RICARDO RAMON  DA CUNHA  SILVERA PELLEJERO MARIA DE FATIMA",
                     "VH": 64,
                     "VAL": 0,
                     "Tot": 64
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 0,
@@ -853,21 +853,21 @@
             "Sublemas": [
               {
                 "Id": 779,
-                "Nombre": "MOVIMIENTO SOCIAL ARTIGUISTA",
+                "Nombre": "MOVIMIENTO SOCIAL ARTIGUISTA                      ",
                 "VH": 24,
                 "VAS": 0,
                 "Tot": 24,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 2061,
-                    "Dsc": "VIERA MACHADO, Sonia Gladys - GONZALEZ DELGADO, Maria Cecilia - SILVERA VIERA, Luis Alberto",
+                    "Dsc": "VIERA MACHADO SONIA GLADYS  GONZALEZ DELGADO MARIA CECILIA  SILVERA VIERA LUIS ALBERTO",
                     "VH": 24,
                     "VAL": 0,
                     "Tot": 24
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 0,
@@ -916,39 +916,39 @@
             "Sublemas": [
               {
                 "Id": 528,
-                "Nombre": "SUBLEMA HOJA 90609CH",
+                "Nombre": "SUBLEMA HOJA 90609-CH",
                 "VH": 21,
                 "VAS": 0,
                 "Tot": 21,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1731,
-                    "Dsc": "SUÁREZ MACHADO, Ruth Karina - RAMIREZ LUZARDO, Reldis Enrique - PALACIO SANCHEZ, Paola Natalia",
+                    "Dsc": "SUAREZ MACHADO RUTH KARINA  RAMIREZ LUZARDO RELDIS ENRIQUE  PALACIO SANCHEZ PAOLA NATALIA",
                     "VH": 21,
                     "VAL": 0,
                     "Tot": 21
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 744,
-                "Nombre": "ESPACIO FRENTEAMPLISTA DE LAVALLEJA",
+                "Nombre": "ESPACIO FRENTEAMPLISTA DE LAVALLEJA               ",
                 "VH": 43,
                 "VAS": 0,
                 "Tot": 43,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 2577,
-                    "Dsc": "FERNANDEZ PEREIRA, Walter Eduardo - SILVERA BERNASQUIN, Milton Alejandro - PALACIO SANCHEZ, Paola Natalia",
+                    "Dsc": "FERNANDEZ PEREIRA WALTER EDUARDO  SILVERA BERNASQUIN MILTON ALEJANDRO  PALACIO SANCHEZ PAOLA NATALIA",
                     "VH": 43,
                     "VAL": 0,
                     "Tot": 43
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 0,
@@ -978,39 +978,39 @@
             "Sublemas": [
               {
                 "Id": 474,
-                "Nombre": "SUBLEMA HOJA 51CH",
+                "Nombre": "SUBLEMA HOJA 51-CH",
                 "VH": 264,
                 "VAS": 0,
                 "Tot": 264,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1563,
-                    "Dsc": "ALZUGARAY                                          - LARROSA FERNANDEZ, Antonio Victoriano - CABALLERO HUELMO, Erika Lucia",
+                    "Dsc": "ALZUGARAY  LARROSA FERNANDEZ ANTONIO VICTORIANO  CABALLERO HUELMO ERIKA LUCIA",
                     "VH": 264,
                     "VAL": 0,
                     "Tot": 264
                   }
-                ]
+                ],
+                "VASLDL": 0
               },
               {
                 "Id": 478,
-                "Nombre": "SUBLEMA HOJA 5859CH",
+                "Nombre": "SUBLEMA HOJA 5859-CH",
                 "VH": 694,
                 "VAS": 0,
                 "Tot": 694,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1704,
-                    "Dsc": "DE LA PEÑA NUÑEZ, Francisco Javier - AGUIRRE MUTIOZABAL, Marcos Ariel - GIORELLO IRISARRI, Gabriela ",
+                    "Dsc": "DE LA PENA NUNEZ FRANCISCO JAVIER  AGUIRRE MUTIOZABAL MARCOS ARIEL  GIORELLO IRISARRI GABRIELA",
                     "VH": 694,
                     "VAL": 0,
                     "Tot": 694
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 3,
@@ -1039,17 +1039,17 @@
                 "VH": 197,
                 "VAS": 0,
                 "Tot": 197,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 1610,
-                    "Dsc": "TORRES OCAMPO, John Fernando - BERNASCHINA RODRÍGUEZ, Fany María - CORBO MARTINEZ, Maria Favela",
+                    "Dsc": "TORRES OCAMPO JOHN FERNANDO  BERNASCHINA RODRIGUEZ FANY MARIA  CORBO MARTINEZ MARIA FAVELA",
                     "VH": 197,
                     "VAL": 0,
                     "Tot": 197
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 0,
@@ -1074,21 +1074,21 @@
             "Sublemas": [
               {
                 "Id": 779,
-                "Nombre": "MOVIMIENTO SOCIAL ARTIGUISTA",
+                "Nombre": "MOVIMIENTO SOCIAL ARTIGUISTA                      ",
                 "VH": 99,
                 "VAS": 0,
                 "Tot": 99,
-                "Listas": [],
-                "VASLDL": 0,
+                "ListasJunta": [],
                 "ListasMunicipio": [
                   {
                     "LId": 2056,
-                    "Dsc": "BEVILACQUA VERA, Ignacio Martín - MENDEZ                                             - LARROSA RODRÍGUEZ, Esteban Raúl",
+                    "Dsc": "BEVILACQUA VERA IGNACIO MARTIN  MENDEZ  LARROSA RODRIGUEZ ESTEBAN RAUL",
                     "VH": 99,
                     "VAL": 0,
                     "Tot": 99
                   }
-                ]
+                ],
+                "VASLDL": 0
               }
             ],
             "TALDSL": 0,
@@ -1285,240 +1285,240 @@
         "Sublemas": [
           {
             "Id": 25,
-            "Nombre": "CONSTRUYENDO EL CAMBIO",
+            "Nombre": "CONSTRUYENDO EL CAMBIO                            ",
             "VH": 2694,
             "VAS": 7,
             "Tot": 2701,
-            "Listas": [],
-            "VASLDL": 7,
             "ListasJunta": [
               {
                 "LId": 200,
-                "Dsc": "ZEBALLOS FERNANDEZ, Yliana  - FALERO FIGUEREDO, Omar Maria - RODRIGUEZ ALONZO, Rosario Alicia",
+                "Dsc": "ZEBALLOS FERNANDEZ YLIANA  FALERO FIGUEREDO OMAR MARIA  RODRIGUEZ ALONZO ROSARIO ALICIA",
                 "VH": 1062,
                 "VAL": 0,
                 "Tot": 1062
               },
               {
                 "LId": 208,
-                "Dsc": "RIVERO PEREZ, Iris Silvana - GALEANO CACERES, Eduardo Daniel - MELGAR BAYARRES, Rosa Lía ",
+                "Dsc": "RIVERO PEREZ IRIS SILVANA  GALEANO CACERES EDUARDO DANIEL  MELGAR BAYARRES ROSA LIA",
                 "VH": 283,
                 "VAL": 0,
                 "Tot": 283
               },
               {
                 "LId": 216,
-                "Dsc": "ANDRADE RECTO, Tamara  - SANZ PESCI, Miguel Angel - URQUIOLA PORTA, Isabel María",
+                "Dsc": "ANDRADE RECTO TAMARA  SANZ PESCI MIGUEL ANGEL  URQUIOLA PORTA ISABEL MARIA",
                 "VH": 1349,
                 "VAL": 0,
                 "Tot": 1349
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 7
           },
           {
             "Id": 112,
-            "Nombre": "COMPROMETIDOS CON EL CAMBIO",
+            "Nombre": "COMPROMETIDOS CON EL CAMBIO                       ",
             "VH": 1564,
             "VAS": 12,
             "Tot": 1576,
-            "Listas": [],
-            "VASLDL": 12,
             "ListasJunta": [
               {
                 "LId": 398,
-                "Dsc": "MALLETTI GONZALEZ, Luis Pedro - LINDIMAN GOMEZ, Liliana Margot - PINTOS ROMERO, Wilson Eliseo",
+                "Dsc": "MALLETTI GONZALEZ LUIS PEDRO  LINDIMAN GOMEZ LILIANA MARGOT  PINTOS ROMERO WILSON ELISEO",
                 "VH": 151,
                 "VAL": 0,
                 "Tot": 151
               },
               {
                 "LId": 626,
-                "Dsc": "BALDUINI BARRETTO, Daniel Ricardo - BRITTES SOSA, Adriana Esther - LLORENTE GARCIA, Alfredo ",
+                "Dsc": "BALDUINI BARRETTO DANIEL RICARDO  BRITTES SOSA ADRIANA ESTHER  LLORENTE GARCIA ALFREDO",
                 "VH": 328,
                 "VAL": 0,
                 "Tot": 328
               },
               {
                 "LId": 762,
-                "Dsc": "PELÚA CHOCHO, Patricia  - MONTORO SEQUEIRA, Mario Jose - GARCÍA DIAZ, Tamara ",
+                "Dsc": "PELUA CHOCHO PATRICIA  MONTORO SEQUEIRA MARIO JOSE  GARCIA DIAZ TAMARA",
                 "VH": 465,
                 "VAL": 0,
                 "Tot": 465
               },
               {
                 "LId": 881,
-                "Dsc": "GALLO VECINO, Andres Idilio - RAMIREZ LARROSA, Andrea Carolina - VERA GOMEZ, Gonzalo Miguel",
+                "Dsc": "GALLO VECINO ANDRES IDILIO  RAMIREZ LARROSA ANDREA CAROLINA  VERA GOMEZ GONZALO MIGUEL",
                 "VH": 337,
                 "VAL": 0,
                 "Tot": 337
               },
               {
                 "LId": 904,
-                "Dsc": "LOPEZ AGRIEL, Maria Rita - ARELLANO DIAZ, Maria Celia - MARTINEZ LUCERO, Edgar Julio",
+                "Dsc": "LOPEZ AGRIEL MARIA RITA  ARELLANO DIAZ MARIA CELIA  MARTINEZ LUCERO EDGAR JULIO",
                 "VH": 97,
                 "VAL": 0,
                 "Tot": 97
               },
               {
                 "LId": 1534,
-                "Dsc": "CALISTRO TREZZI, Marcelo  - LEMOS BENTANCOR, Ekaterine  - MACHADO MONTERO, Carlos Emilio",
+                "Dsc": "CALISTRO TREZZI MARCELO  LEMOS BENTANCOR EKATERINE  MACHADO MONTERO CARLOS EMILIO",
                 "VH": 186,
                 "VAL": 0,
                 "Tot": 186
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 12
           },
           {
             "Id": 118,
-            "Nombre": "CON EL FRENTE CON LA GENTE",
+            "Nombre": "CON EL FRENTE, CON LA GENTE                       ",
             "VH": 988,
             "VAS": 7,
             "Tot": 995,
-            "Listas": [],
-            "VASLDL": 0,
             "ListasJunta": [
               {
                 "LId": 608,
-                "Dsc": "ALVAREZ                                            - MASSA CAMMAROTA, Sonia Elisabeth - ESTEFAN BORGES, Robert Damián",
+                "Dsc": "ALVAREZ  MASSA CAMMAROTA SONIA ELISABETH  ESTEFAN BORGES ROBERT DAMIAN",
                 "VH": 988,
                 "VAL": 7,
                 "Tot": 995
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 0
           },
           {
             "Id": 176,
-            "Nombre": "ESPACIO FRENTEAMPLISTA DE LAVALLEJA",
+            "Nombre": "ESPACIO FRENTEAMPLISTA DE LAVALLEJA               ",
             "VH": 2504,
             "VAS": 2,
             "Tot": 2506,
-            "Listas": [],
-            "VASLDL": 2,
             "ListasJunta": [
               {
                 "LId": 255,
-                "Dsc": "SOTELO PESCI, Marta Iris - BRIANO SANCHEZ, Maria Emilia - CASAL DEMARCHI, Gabriel Ibero",
+                "Dsc": "SOTELO PESCI MARTA IRIS  BRIANO SANCHEZ MARIA EMILIA  CASAL DEMARCHI GABRIEL IBERO",
                 "VH": 216,
                 "VAL": 0,
                 "Tot": 216
               },
               {
                 "LId": 272,
-                "Dsc": "CASAL DEMARCHI, Gabriel Ibero - CABRERA GALDI, Graciela  - SOTELO PESCI, Marta Iris",
+                "Dsc": "CASAL DEMARCHI GABRIEL IBERO  CABRERA GALDI GRACIELA  SOTELO PESCI MARTA IRIS",
                 "VH": 125,
                 "VAL": 0,
                 "Tot": 125
               },
               {
                 "LId": 552,
-                "Dsc": "de los SANTOS MOREIRA, Felipe  - GONZALEZ de PENA, Raúl  - SORIA CIANCIARULLO, Carina Isabel",
+                "Dsc": "DE LOS SANTOS MOREIRA FELIPE  GONZALEZ DE PENA RAUL  SORIA CIANCIARULLO CARINA ISABEL",
                 "VH": 875,
                 "VAL": 0,
                 "Tot": 875
               },
               {
                 "LId": 684,
-                "Dsc": "CESAR ESTRADA, Ernesto Salvador - DIAZ CASTRO, Gaston  - GARAY RAMOS, Maria del Rosario ",
+                "Dsc": "CESAR ESTRADA ERNESTO SALVADOR  DIAZ CASTRO GASTON  GARAY RAMOS MARIA DEL ROSARIO",
                 "VH": 984,
                 "VAL": 0,
                 "Tot": 984
               },
               {
                 "LId": 1351,
-                "Dsc": "SANCHEZ PEREYRA, Carlos Julio - ALMEIDA CASTILLO, María Emilia - SAGASETA MASSIMINO, Maria Cristina",
+                "Dsc": "SANCHEZ PEREYRA CARLOS JULIO  ALMEIDA CASTILLO MARIA EMILIA  SAGASETA MASSIMINO MARIA CRISTINA",
                 "VH": 304,
                 "VAL": 0,
                 "Tot": 304
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 2
           },
           {
             "Id": 276,
-            "Nombre": "SUMEMOS",
+            "Nombre": "SUMEMOS                                           ",
             "VH": 1371,
             "VAS": 18,
             "Tot": 1389,
-            "Listas": [],
-            "VASLDL": 18,
             "ListasJunta": [
               {
                 "LId": 811,
-                "Dsc": "PÉREZ FORNELLI, Dayana Karina - FERREIRA PORRO, Fernando Jorge - PEREZ VERGARA, Camila Leticia",
+                "Dsc": "PEREZ FORNELLI DAYANA KARINA  FERREIRA PORRO FERNANDO JORGE  PEREZ VERGARA CAMILA LETICIA",
                 "VH": 50,
                 "VAL": 0,
                 "Tot": 50
               },
               {
                 "LId": 1021,
-                "Dsc": "RAMOS ZINOLA, German Alfredo - SILVA , Gilberto Carlos - PEREIRA LOPEZ, Adriana Valentina",
+                "Dsc": "RAMOS ZINOLA GERMAN ALFREDO  SILVA  GILBERTO CARLOS  PEREIRA LOPEZ ADRIANA VALENTINA",
                 "VH": 56,
                 "VAL": 0,
                 "Tot": 56
               },
               {
                 "LId": 1302,
-                "Dsc": "DIAZ GUTIERREZ, Mario Esteban - BENITEZ FERNANDEZ, Silvia Raquel - ACOSTA , Jorge Daniel",
+                "Dsc": "DIAZ GUTIERREZ MARIO ESTEBAN  BENITEZ FERNANDEZ SILVIA RAQUEL  ACOSTA  JORGE DANIEL",
                 "VH": 394,
                 "VAL": 0,
                 "Tot": 394
               },
               {
                 "LId": 1304,
-                "Dsc": "GALLONE CHIRIBAO, Wilson Osvaldo - COSTA LÓPEZ, Alicia Janet - FERRIZO DÍAZ, Carlos Ignacio",
+                "Dsc": "GALLONE CHIRIBAO WILSON OSVALDO  COSTA LOPEZ ALICIA JANET  FERRIZO DIAZ CARLOS IGNACIO",
                 "VH": 86,
                 "VAL": 0,
                 "Tot": 86
               },
               {
                 "LId": 1305,
-                "Dsc": "VELAZQUEZ BITANCUR, Federico Daniel - BENITEZ FERNANDEZ, Silvia Raquel - DIAZ GUTIERREZ, Mario Esteban",
+                "Dsc": "VELAZQUEZ BITANCUR FEDERICO DANIEL  BENITEZ FERNANDEZ SILVIA RAQUEL  DIAZ GUTIERREZ MARIO ESTEBAN",
                 "VH": 74,
                 "VAL": 0,
                 "Tot": 74
               },
               {
                 "LId": 1353,
-                "Dsc": "LACUESTA GALLO, Norma Matilde - CASTRO ALEMÁN, Marcos Adrian - BRITES GARCIA, Hortensia Francisca",
+                "Dsc": "LACUESTA GALLO NORMA MATILDE  CASTRO ALEMAN MARCOS ADRIAN  BRITES GARCIA HORTENSIA FRANCISCA",
                 "VH": 22,
                 "VAL": 0,
                 "Tot": 22
               },
               {
                 "LId": 1396,
-                "Dsc": "JORGE TELLECHEA, Maria del Carmen  - UMPIERREZ CALCERRADA, Darwin  - ACUÑA FERREIRA, Alberto Daniel",
+                "Dsc": "JORGE TELLECHEA MARIA DEL CARMEN  UMPIERREZ CALCERRADA DARWIN  ACUNA FERREIRA ALBERTO DANIEL",
                 "VH": 236,
                 "VAL": 0,
                 "Tot": 236
               },
               {
                 "LId": 1479,
-                "Dsc": "ACOSTA , Jorge Daniel - IZURCO HERNÁNDEZ, Pablo Martín - DE LOS SANTOS DIAZ, Laura Raquel",
+                "Dsc": "ACOSTA  JORGE DANIEL  IZURCO HERNANDEZ PABLO MARTIN  DE LOS SANTOS DIAZ LAURA RAQUEL",
                 "VH": 62,
                 "VAL": 0,
                 "Tot": 62
               },
               {
                 "LId": 1527,
-                "Dsc": "FERRIZO DÍAZ, Carlos Ignacio - VELAZQUEZ , Alba Esther - ",
+                "Dsc": "FERRIZO DIAZ CARLOS IGNACIO  VELAZQUEZ  ALBA ESTHER ",
                 "VH": 48,
                 "VAL": 0,
                 "Tot": 48
               },
               {
                 "LId": 3312,
-                "Dsc": "RAMOS, German, SILVA, Gilberto, SANTOS, Julio",
+                "Dsc": "RAMOS GERMAN SILVA GILBERTO SANTOS JULIO",
                 "VH": 264,
                 "VAL": 0,
                 "Tot": 264
               },
               {
                 "LId": 3349,
-                "Dsc": "RAMOS, German - SILVA, Gilberto - RAMOS, Viviana",
+                "Dsc": "RAMOS GERMAN  SILVA GILBERTO  RAMOS VIVIANA",
                 "VH": 79,
                 "VAL": 0,
                 "Tot": 79
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 18
           }
         ],
         "TALDSL": 151,
@@ -1612,106 +1612,106 @@
         "Sublemas": [
           {
             "Id": 72,
-            "Nombre": "AIRE FRESCO LAVALLEJA",
+            "Nombre": "AIRE FRESCO LAVALLEJA                             ",
             "VH": 10251,
             "VAS": 74,
             "Tot": 10325,
-            "Listas": [],
-            "VASLDL": 74,
             "ListasJunta": [
               {
                 "LId": 669,
-                "Dsc": "FERNÁNDEZ CAMPOS, María del Verdún  - FRANCO RIVERO, Serafin  - DETJEN CUBA, Mirta Graciela",
+                "Dsc": "FERNANDEZ CAMPOS MARIA DEL VERDUN  FRANCO RIVERO SERAFIN  DETJEN CUBA MIRTA GRACIELA",
                 "VH": 780,
                 "VAL": 0,
                 "Tot": 780
               },
               {
                 "LId": 1053,
-                "Dsc": "RAMÍREZ AVIAGA, María Camila - GALLO BERACOCHEA, Marcelo  - MALO DORTTA, Alicia Isabel",
+                "Dsc": "RAMIREZ AVIAGA MARIA CAMILA  GALLO BERACOCHEA MARCELO  MALO DORTTA ALICIA ISABEL",
                 "VH": 3790,
                 "VAL": 0,
                 "Tot": 3790
               },
               {
                 "LId": 1256,
-                "Dsc": "PEÑA HERNANDEZ, Maria Adriana - ALZUGARAY GUERRA, Eliana Eloisa - ELOLA IZETA, Francisco Gaston",
+                "Dsc": "PENA HERNANDEZ MARIA ADRIANA  ALZUGARAY GUERRA ELIANA ELOISA  ELOLA IZETA FRANCISCO GASTON",
                 "VH": 5681,
                 "VAL": 0,
                 "Tot": 5681
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 74
           },
           {
             "Id": 77,
-            "Nombre": "AVANCEMOS LAVALLEJA",
+            "Nombre": "AVANCEMOS LAVALLEJA                               ",
             "VH": 13660,
             "VAS": 109,
             "Tot": 13769,
-            "Listas": [],
-            "VASLDL": 109,
             "ListasJunta": [
               {
                 "LId": 334,
-                "Dsc": "IAFIGLIOLA PIMENTEL, Carlos Alberto - CLAVIJO ESPINOSA, Fausta  - BONHOMME RODRÍGUEZ, Marcos ",
+                "Dsc": "IAFIGLIOLA PIMENTEL CARLOS ALBERTO  CLAVIJO ESPINOSA FAUSTA  BONHOMME RODRIGUEZ MARCOS",
                 "VH": 124,
                 "VAL": 0,
                 "Tot": 124
               },
               {
                 "LId": 1024,
-                "Dsc": "GARCIA GONZALEZ, Mario Luis - UGOLINI ZEBALLOS, Ana Maria - FERNANDEZ SENOSIAIN, Julio Sergio",
+                "Dsc": "GARCIA GONZALEZ MARIO LUIS  UGOLINI ZEBALLOS ANA MARIA  FERNANDEZ SENOSIAIN JULIO SERGIO",
                 "VH": 401,
                 "VAL": 0,
                 "Tot": 401
               },
               {
                 "LId": 1032,
-                "Dsc": "GARCIA GONZALEZ, Mario Luis - GIORELLO VARELA, Alejandro  - UMPIÉRREZ PÉREZ, Alejandra Gabriela",
+                "Dsc": "GARCIA GONZALEZ MARIO LUIS  GIORELLO VARELA ALEJANDRO  UMPIERREZ PEREZ ALEJANDRA GABRIELA",
                 "VH": 6501,
                 "VAL": 0,
                 "Tot": 6501
               },
               {
                 "LId": 1086,
-                "Dsc": "AVIAGA MARTINEZ, Andrea Margot - PEREIRA RIVOIRA, Carlos Rodolfo - CORREA MACEDO, José María",
+                "Dsc": "AVIAGA MARTINEZ ANDREA MARGOT  PEREIRA RIVOIRA CARLOS RODOLFO  CORREA MACEDO JOSE MARIA",
                 "VH": 748,
                 "VAL": 0,
                 "Tot": 748
               },
               {
                 "LId": 1357,
-                "Dsc": "GARCIA GONZALEZ, Mario Luis - DE LA PEÑA NUÑEZ, Francisco Javier - IBAÑEZ OLIVERA, Paola Carolina",
+                "Dsc": "GARCIA GONZALEZ MARIO LUIS  DE LA PENA NUNEZ FRANCISCO JAVIER  IBANEZ OLIVERA PAOLA CAROLINA",
                 "VH": 1590,
                 "VAL": 0,
                 "Tot": 1590
               },
               {
                 "LId": 1521,
-                "Dsc": "PEREIRA SARAVIA, Maria Noel - HERRERA PEREZ, Vicente Omar - LARRANDA MONTES, Veronica Leticia",
+                "Dsc": "PEREIRA SARAVIA MARIA NOEL  HERRERA PEREZ VICENTE OMAR  LARRANDA MONTES VERONICA LETICIA",
                 "VH": 4296,
                 "VAL": 0,
                 "Tot": 4296
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 109
           },
           {
             "Id": 131,
-            "Nombre": "DE PALABRA",
+            "Nombre": "DE PALABRA                                        ",
             "VH": 147,
             "VAS": 0,
             "Tot": 147,
-            "Listas": [],
-            "VASLDL": 0,
             "ListasJunta": [
               {
                 "LId": 350,
-                "Dsc": "RICCETTO BLANCO, Moira Fabiana - ACOSTA MIRANDE, Teodoro Alejandro - RISSO MARTINEZ, Maria Fernanda",
+                "Dsc": "RICCETTO BLANCO MOIRA FABIANA  ACOSTA MIRANDE TEODORO ALEJANDRO  RISSO MARTINEZ MARIA FERNANDA",
                 "VH": 147,
                 "VAL": 0,
                 "Tot": 147
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 0
           }
         ],
         "TALDSL": 189,
@@ -1800,110 +1800,110 @@
         "Sublemas": [
           {
             "Id": 22,
-            "Nombre": "COMPROMISO POR LAVALLEJA",
+            "Nombre": "COMPROMISO POR LAVALLEJA                          ",
             "VH": 2510,
             "VAS": 18,
             "Tot": 2528,
-            "Listas": [],
-            "VASLDL": 18,
             "ListasJunta": [
               {
                 "LId": 240,
-                "Dsc": "CARRESSE TOLEDO, Luis Maria - TOLEDO NUÑEZ, Fernando Roberto - LIBRAN MACHADO, Estela ",
+                "Dsc": "CARRESSE TOLEDO LUIS MARIA  TOLEDO NUNEZ FERNANDO ROBERTO  LIBRAN MACHADO ESTELA",
                 "VH": 1216,
                 "VAL": 0,
                 "Tot": 1216
               },
               {
                 "LId": 3313,
-                "Dsc": "CARRESSE, Luis, TOLEDO, Fernando, CORREA, María del Verdun",
+                "Dsc": "CARRESSE LUIS TOLEDO FERNANDO CORREA MARIA DEL VERDUN",
                 "VH": 648,
                 "VAL": 0,
                 "Tot": 648
               },
               {
                 "LId": 3314,
-                "Dsc": "CARRESSE, Luis, TOLEDO, Fernando, NUÑEZ, Laura",
+                "Dsc": "CARRESSE LUIS TOLEDO FERNANDO NUNEZ LAURA",
                 "VH": 646,
                 "VAL": 0,
                 "Tot": 646
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 18
           },
           {
             "Id": 81,
-            "Nombre": "BATLLISTAS",
+            "Nombre": "BATLLISTAS                                        ",
             "VH": 629,
             "VAS": 0,
             "Tot": 629,
-            "Listas": [],
-            "VASLDL": 0,
             "ListasJunta": [
               {
                 "LId": 1325,
-                "Dsc": "SANCHEZ GIMENEZ, Julio Cesar - PEREIRA MAGUNA, Laura Cecilia - DUTRA , Antonio ",
+                "Dsc": "SANCHEZ GIMENEZ JULIO CESAR  PEREIRA MAGUNA LAURA CECILIA  DUTRA  ANTONIO",
                 "VH": 629,
                 "VAL": 0,
                 "Tot": 629
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 0
           },
           {
             "Id": 268,
-            "Nombre": "SOMOS BATLLISTAS",
+            "Nombre": "SOMOS BATLLISTAS                                  ",
             "VH": 1091,
             "VAS": 5,
             "Tot": 1096,
-            "Listas": [],
-            "VASLDL": 5,
             "ListasJunta": [
               {
                 "LId": 358,
-                "Dsc": "PASEK GARCIA, Federico  - APARICIO LARROSA, Luis Alberto - MESA CORBO, Patricia Micaela",
+                "Dsc": "PASEK GARCIA FEDERICO  APARICIO LARROSA LUIS ALBERTO  MESA CORBO PATRICIA MICAELA",
                 "VH": 93,
                 "VAL": 0,
                 "Tot": 93
               },
               {
                 "LId": 360,
-                "Dsc": "LUCAS MENA, Aranel  - de la CRUZ de los SANTOS, Humberto Dario - RENNA PRAIZ, Angela Pamela",
+                "Dsc": "LUCAS MENA ARANEL  DE LA CRUZ DE LOS SANTOS HUMBERTO DARIO  RENNA PRAIZ ANGELA PAMELA",
                 "VH": 95,
                 "VAL": 0,
                 "Tot": 95
               },
               {
                 "LId": 554,
-                "Dsc": "RISSO SINGLAN, Nestor Gustavo - FUNGI GARCIA, Julio Cesar - OLMEDO FERREIRA, Maria Noel",
+                "Dsc": "RISSO SINGLAN NESTOR GUSTAVO  FUNGI GARCIA JULIO CESAR  OLMEDO FERREIRA MARIA NOEL",
                 "VH": 870,
                 "VAL": 0,
                 "Tot": 870
               },
               {
                 "LId": 1525,
-                "Dsc": "DE LOS SANTOS APARICIO, Joaquin  - FERREIRA RODRIGUEZ, Yanet Evelina - ",
+                "Dsc": "DE LOS SANTOS APARICIO JOAQUIN  FERREIRA RODRIGUEZ YANET EVELINA ",
                 "VH": 33,
                 "VAL": 0,
                 "Tot": 33
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 5
           },
           {
             "Id": 287,
-            "Nombre": "TERCERA VIA",
+            "Nombre": "TERCERA VÍA                                       ",
             "VH": 451,
             "VAS": 0,
             "Tot": 451,
-            "Listas": [],
-            "VASLDL": 0,
             "ListasJunta": [
               {
                 "LId": 1347,
-                "Dsc": "BARDESIO ACCIARI, Marta Raquel - MAUTONE MEDREDEO, Juan Francisco - RAMIREZ FUNES, Cesar Willimar",
+                "Dsc": "BARDESIO ACCIARI MARTA RAQUEL  MAUTONE MEDREDEO JUAN FRANCISCO  RAMIREZ FUNES CESAR WILLIMAR",
                 "VH": 451,
                 "VAL": 0,
                 "Tot": 451
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 0
           }
         ],
         "TALDSL": 41,
@@ -1943,21 +1943,21 @@
         "Sublemas": [
           {
             "Id": 221,
-            "Nombre": "MOVIMIENTO SOCIAL ARTIGUISTA",
+            "Nombre": "MOVIMIENTO SOCIAL ARTIGUISTA                      ",
             "VH": 1975,
             "VAS": 0,
             "Tot": 1975,
-            "Listas": [],
-            "VASLDL": 0,
             "ListasJunta": [
               {
                 "LId": 776,
-                "Dsc": "DEL PUERTO FERNANDEZ, Miguel  - VIERA MENDEZ, Walter Omar - SALDIAS BRITOS, Yenny Mabel",
+                "Dsc": "DEL PUERTO FERNANDEZ MIGUEL  VIERA MENDEZ WALTER OMAR  SALDIAS BRITOS YENNY MABEL",
                 "VH": 1975,
                 "VAL": 0,
                 "Tot": 1975
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 0
           }
         ],
         "TALDSL": 0,
@@ -1997,21 +1997,21 @@
         "Sublemas": [
           {
             "Id": 204,
-            "Nombre": "LA GARANTIA DEL CAMBIO",
+            "Nombre": "LA GARANTÍA DEL CAMBIO                            ",
             "VH": 183,
             "VAS": 0,
             "Tot": 183,
-            "Listas": [],
-            "VASLDL": 0,
             "ListasJunta": [
               {
                 "LId": 323,
-                "Dsc": "YARZA CORBO, Maria Elsa - CARABAJAL , Myriam Mabel - ALFONSO RODRIGUEZ, Gustavo Daniel",
+                "Dsc": "YARZA CORBO MARIA ELSA  CARABAJAL  MYRIAM MABEL  ALFONSO RODRIGUEZ GUSTAVO DANIEL",
                 "VH": 183,
                 "VAL": 0,
                 "Tot": 183
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 0
           }
         ],
         "TALDSL": 0,
@@ -2055,17 +2055,17 @@
             "VH": 121,
             "VAS": 0,
             "Tot": 121,
-            "Listas": [],
-            "VASLDL": 0,
             "ListasJunta": [
               {
                 "LId": 413,
-                "Dsc": "GORGOROSO GOMEZ, Jose Maria - DIAZ VARELA, Cristina Elizabeth - VILLAR INZAURRALDE, Pablo Roberto",
+                "Dsc": "GORGOROSO GOMEZ JOSE MARIA  DIAZ VARELA CRISTINA ELIZABETH  VILLAR INZAURRALDE PABLO ROBERTO",
                 "VH": 121,
                 "VAL": 0,
                 "Tot": 121
               }
-            ]
+            ],
+            "ListasMunicipio": [],
+            "VASLDL": 0
           }
         ],
         "TALDSL": 0,

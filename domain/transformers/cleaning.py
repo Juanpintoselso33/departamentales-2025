@@ -27,8 +27,13 @@ def _norm_lista(l: Lista) -> Lista:
     return l.copy(update={"Dsc": simplify(l.Dsc)})
 
 def _norm_sublema(sl: Sublema) -> Sublema:
-    listas = [_norm_lista(li) for li in sl.Listas]
-    return sl.copy(update={"Nombre": simplify(sl.Nombre), "Listas": listas})
+    """Normaliza un objeto Sublema procesando sus listas (Junta y Municipio)."""
+    listas_junta = [_norm_lista(li) for li in sl.ListasJunta]
+    listas_municipio = [_norm_lista(li) for li in sl.ListasMunicipio]
+    return sl.model_copy(update={
+        'ListasJunta': listas_junta,
+        'ListasMunicipio': listas_municipio
+    })
 
 def _norm_partido_muni(p: PartidoMunicipio) -> PartidoMunicipio:
     hojas = [_norm_hoja(h) for h in p.Hojas]

@@ -9,6 +9,7 @@ import logging
 from pathlib import Path
 from typing import Dict, Set, Any, Union, Tuple, Optional
 import geopandas as gpd
+import math
 
 # Configuración de logging
 logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
@@ -171,28 +172,114 @@ def _process_department_data(dept_data: Dict[str, Any]) -> Dict[str, Any]:
         departamentales_data = dept_data["Departamentales"]
         processed["Departamentales"] = departamentales_data # Mantener datos originales
         
-        # Procesar listas de la Junta Departamental
-        detailed_council_lists = []
-        if isinstance(departamentales_data, list):
-            for partido_data in departamentales_data:
-                partido_nombre = partido_data.get("LN", "N/A")
-                if "Junta" in partido_data and "Sublemas" in partido_data["Junta"]:
-                    for sublema in partido_data["Junta"]["Sublemas"]:
-                        sublema_nombre = sublema.get("Nombre", "N/A")
-                        if "ListasJunta" in sublema:
-                            for lista in sublema["ListasJunta"]:
-                                lista_desc = lista.get("Dsc", "N/A")
-                                votos_lista = lista.get("Tot", 0)
-                                # Podríamos añadir más detalles si fuera necesario (LId, VAL, etc.)
-                                detailed_council_lists.append({
-                                    "Partido": partido_nombre,
-                                    "Sublema": sublema_nombre,
-                                    "Lista": lista_desc,
-                                    "Votos": votos_lista
-                                })
+        # Procesar listas para la Junta Departamental
+        for partido in depto.Departamentales:
+            partido_nombre_norm = _get_norm_party_name(partido.LN)
+            for sublema in partido.Junta.Sublemas:
+                for lista_junta in sublema.ListasJunta:
+                    # BUSCAR HN usando la coincidencia VH == Tot
+                    numero_lista = "N/A"  # Valor por defecto
+                    hojas_partido = partido.Hojas # Acceder a las hojas del partido padre
+                    hojas_encontradas = [h for h in hojas_partido if h.Tot == lista_junta.VH]
+
+                    if len(hojas_encontradas) == 1:
+                        numero_lista = hojas_encontradas[0].HN
+                    elif len(hojas_encontradas) > 1:
+                        # Log/Warn: Múltiples hojas coinciden con VH (inesperado)
+                        log.warning(f"Múltiples hojas encontradas para {partido_nombre_norm} - Sublema {sublema.Nombre} - Lista VH {lista_junta.VH} en Depto {depto.DN}")
+                    # else: No se encontró ninguna hoja (VH podría ser 0 o datos inconsistentes)
+
+                    # Extraer y procesar candidatos
+                    candidatos_str = lista_junta.Dsc
+                    primer_candidato = _extract_first_candidate(candidatos_str)
+
+                    junta_departamental_lists.append({
+                        "Partido": partido_nombre_norm,
+                        "Sublema": _simplify(sublema.Nombre),
+                        "NumeroLista": numero_lista, # Usar el HN encontrado
+                        "Candidatos": primer_candidato, # Mostrar solo el primero para la tabla
+                        "VotosLista": lista_junta.Tot,
+                        "VH": lista_junta.VH, # Guardar VH para posible depuración o uso futuro
+                        # Los campos de Ediles/Resto se calcularán después
+                    })
         
-        processed["detailed_council_lists"] = detailed_council_lists
-    
+        # --- CÁLCULO DE EDILES Y RESTOS (SEPARADO) ---
+        listas_con_ediles = []
+        listas_agrupadas = {}
+        votos_por_partido_junta = {}
+
+        # Agrupar listas ya extraídas por partido
+        for lista_info in processed["junta_departamental_lists"]:
+            partido = lista_info["Partido"]
+            if partido not in listas_agrupadas:
+                listas_agrupadas[partido] = []
+                votos_por_partido_junta[partido] = 0
+            listas_agrupadas[partido].append(lista_info.copy()) 
+            votos_por_partido_junta[partido] += lista_info["Votos"]
+
+        # Calcular ediles para cada partido
+        for partido, listas_del_partido in listas_agrupadas.items():
+            total_ediles_partido = dept_data["council_seats"].get(partido, 0)
+            total_votos_partido = votos_por_partido_junta.get(partido, 0)
+            listas_procesadas_partido = [] # Para guardar listas de este partido con ediles/resto
+            
+            if total_ediles_partido > 0 and total_votos_partido > 0:
+                cociente = total_votos_partido / total_ediles_partido
+                ediles_asignados_cociente = 0
+                listas_para_resto = []
+
+                # 1. Asignar por cociente y calcular resto
+                for lista_data in listas_del_partido:
+                    ediles_cociente = int(lista_data["Votos"] / cociente) if cociente > 0 else 0
+                    resto = lista_data["Votos"] - (ediles_cociente * cociente) if cociente > 0 else lista_data["Votos"]
+                    lista_data["Ediles"] = ediles_cociente
+                    lista_data["Resto"] = resto 
+                    ediles_asignados_cociente += ediles_cociente
+                    listas_para_resto.append(lista_data)
+                
+                # 2. Asignar por resto
+                ediles_restantes = total_ediles_partido - ediles_asignados_cociente
+                umbral_resto = -1.0
+                listas_ordenadas_resto = sorted(listas_para_resto, key=lambda x: x["Resto"], reverse=True)
+                
+                if ediles_restantes > 0 and len(listas_ordenadas_resto) >= ediles_restantes:
+                    umbral_resto = listas_ordenadas_resto[ediles_restantes - 1]["Resto"]
+
+                # Asignar ediles por resto y calcular votos faltantes
+                for i, lista_data in enumerate(listas_ordenadas_resto):
+                    obtuvo_edil_resto = False
+                    if ediles_restantes > 0 and i < ediles_restantes:
+                        lista_data["Ediles"] += 1
+                        obtuvo_edil_resto = True
+                    
+                    # Calcular votos faltantes
+                    if obtuvo_edil_resto:
+                        lista_data["VotosParaEdilResto"] = 0
+                    elif umbral_resto >= 0 and lista_data["Resto"] < umbral_resto:
+                        votos_faltantes = math.floor(umbral_resto - lista_data["Resto"]) + 1
+                        lista_data["VotosParaEdilResto"] = int(max(0, votos_faltantes))
+                    else:
+                        lista_data["VotosParaEdilResto"] = None
+                        
+                    # Redondear resto y añadir a la lista procesada del partido
+                    lista_data["Resto"] = round(lista_data["Resto"], 4)
+                    listas_procesadas_partido.append(lista_data)
+                    
+            else: # Partido sin ediles o sin votos
+                for lista_data in listas_del_partido:
+                    lista_data["Ediles"] = 0
+                    lista_data["Resto"] = 0.0
+                    lista_data["VotosParaEdilResto"] = None
+                    listas_procesadas_partido.append(lista_data)
+            
+            # Agregar las listas procesadas de este partido a la lista final
+            listas_con_ediles.extend(listas_procesadas_partido)
+            
+        # Ordenar y reemplazar la lista original en dept_data
+        listas_con_ediles.sort(key=lambda x: (x["Partido"], -x["Votos"]))
+        processed["junta_departamental_lists"] = listas_con_ediles
+        # --- FIN CÁLCULO DE EDILES --- 
+
     # Procesar datos de municipios
     municipios = {}
     if "Municipales" in dept_data:
@@ -203,18 +290,20 @@ def _process_department_data(dept_data: Dict[str, Any]) -> Dict[str, Any]:
                 
             # Procesar votos por partido en el municipio
             votos_muni = {}
+            
             for partido in muni.get("Eleccion", []):
                 nombre_partido = partido.get("LN", "")
-                votos = partido.get("Tot", 0)
+                votos_partido_total = partido.get("Tot", 0) # Votos totales del partido en el municipio
+                
                 if nombre_partido:
-                    votos_muni[nombre_partido] = votos
+                    votos_muni[nombre_partido] = votos_partido_total
             
             # Calcular porcentajes municipales
-            total_votos_muni = sum(votos_muni.values()) if votos_muni else 0
-            porcentajes_muni = {}
-            if total_votos_muni > 0:
-                porcentajes_muni = {
-                    partido: round((votos / total_votos_muni) * 100, 1)
+            votos_muni_total = sum(votos_muni.values())
+            percentages_muni = {}
+            if votos_muni_total > 0:
+                percentages_muni = {
+                    partido: round((votos / votos_muni_total) * 100, 1)
                     for partido, votos in votos_muni.items()
                 }
             
@@ -225,9 +314,9 @@ def _process_department_data(dept_data: Dict[str, Any]) -> Dict[str, Any]:
                 "name": muni_name,
                 "id": muni.get("MI", 0),
                 "party": partido_ganador_muni,
-                "mayor": "No disponible",  # Por ahora no tenemos este dato
+                "mayor": "No disponible",  # Se calculará después en el enricher
                 "votes": votos_muni,
-                "vote_percentages": porcentajes_muni
+                "vote_percentages": percentages_muni,
             }
     
     processed["municipalities"] = municipios
@@ -406,89 +495,199 @@ def _transform_to_frontend_format(
             for party, votes in dept_data["votes"].items():
                 dept_data["vote_percentages"][party] = round((votes / total_votes) * 100, 1)
         
-        # Procesar listas de Junta Departamental (sin guardar la estructura original compleja)
-        detailed_council_lists = []
+        # Procesar listas para la Junta Departamental
+        temp_listas_info = [] # Lista temporal para info base
         if hasattr(depto, 'Departamentales'):
             for partido_data in depto.Departamentales:
                 partido_nombre = partido_data.LN if hasattr(partido_data, 'LN') else "N/A"
+                # Crear lookup VH -> HN para este partido (mejor esfuerzo)
+                vh_to_hn_lookup = {h.Tot: h.HN for h in partido_data.Hojas if hasattr(h, 'Tot') and hasattr(h, 'HN') and h.Tot > 0}
+                
                 if hasattr(partido_data, 'Junta') and hasattr(partido_data.Junta, 'Sublemas'):
                     for sublema in partido_data.Junta.Sublemas:
                         sublema_nombre = sublema.Nombre if hasattr(sublema, 'Nombre') else "N/A"
-                        if hasattr(sublema, 'ListasJunta'):
+                        if hasattr(sublema, 'ListasJunta'): 
                             for lista in sublema.ListasJunta:
-                                lista_desc = lista.Dsc if hasattr(lista, 'Dsc') else "N/A"
-                                votos_lista = lista.Tot if hasattr(lista, 'Tot') else 0
-                                # Podríamos añadir más detalles si fuera necesario (LId, VAL, etc.)
-                                detailed_council_lists.append({
+                                votos_totales_lista = lista.Tot if hasattr(lista, 'Tot') else 0
+                                if votos_totales_lista <= 0: continue # Saltar listas sin votos
+                                
+                                lista_desc_raw = lista.Dsc if hasattr(lista, 'Dsc') else "N/A"
+                                votos_hoja_lista = lista.VH if hasattr(lista, 'VH') else 0
+                                
+                                # Buscar NumeroLista (HN) usando VH como clave en el lookup
+                                numero_hoja = vh_to_hn_lookup.get(votos_hoja_lista, "N/A")
+                                
+                                # Procesar candidatos
+                                candidatos_list = []
+                                if lista_desc_raw != "N/A":
+                                    potential_candidates = lista_desc_raw.split('  ')
+                                    candidatos_list = [name.strip() for name in potential_candidates if name.strip()]
+                                
+                                temp_listas_info.append({
                                     "Partido": partido_nombre,
                                     "Sublema": sublema_nombre,
-                                    "Lista": lista_desc,
-                                    "Votos": votos_lista
+                                    "NumeroLista": numero_hoja, # Puede ser "N/A"
+                                    "Candidatos": candidatos_list,
+                                    "Votos": votos_totales_lista # Votos totales de la lista
                                 })
-        dept_data["detailed_council_lists"] = detailed_council_lists
+        
+        # Asignar la información base extraída
+        dept_data["junta_departamental_lists"] = temp_listas_info
+        
+        # --- CÁLCULO DE EDILES Y RESTOS (SEPARADO) ---
+        listas_con_ediles = []
+        listas_agrupadas = {}
+        votos_por_partido_junta = {}
+
+        # Agrupar listas ya extraídas por partido
+        for lista_info in dept_data["junta_departamental_lists"]:
+            partido = lista_info["Partido"]
+            if partido not in listas_agrupadas:
+                listas_agrupadas[partido] = []
+                votos_por_partido_junta[partido] = 0
+            listas_agrupadas[partido].append(lista_info.copy()) 
+            votos_por_partido_junta[partido] += lista_info["Votos"]
+
+        # Calcular ediles para cada partido
+        for partido, listas_del_partido in listas_agrupadas.items():
+            total_ediles_partido = dept_data["council_seats"].get(partido, 0)
+            total_votos_partido = votos_por_partido_junta.get(partido, 0)
+            listas_procesadas_partido = [] # Para guardar listas de este partido con ediles/resto
+            
+            if total_ediles_partido > 0 and total_votos_partido > 0:
+                cociente = total_votos_partido / total_ediles_partido
+                ediles_asignados_cociente = 0
+                listas_para_resto = []
+
+                # 1. Asignar por cociente y calcular resto
+                for lista_data in listas_del_partido:
+                    ediles_cociente = int(lista_data["Votos"] / cociente) if cociente > 0 else 0
+                    resto = lista_data["Votos"] - (ediles_cociente * cociente) if cociente > 0 else lista_data["Votos"]
+                    lista_data["Ediles"] = ediles_cociente
+                    lista_data["Resto"] = resto 
+                    ediles_asignados_cociente += ediles_cociente
+                    listas_para_resto.append(lista_data)
+                
+                # 2. Asignar por resto
+                ediles_restantes = total_ediles_partido - ediles_asignados_cociente
+                umbral_resto = -1.0
+                listas_ordenadas_resto = sorted(listas_para_resto, key=lambda x: x["Resto"], reverse=True)
+                
+                if ediles_restantes > 0 and len(listas_ordenadas_resto) >= ediles_restantes:
+                    umbral_resto = listas_ordenadas_resto[ediles_restantes - 1]["Resto"]
+
+                # Asignar ediles por resto y calcular votos faltantes
+                for i, lista_data in enumerate(listas_ordenadas_resto):
+                    obtuvo_edil_resto = False
+                    if ediles_restantes > 0 and i < ediles_restantes:
+                        lista_data["Ediles"] += 1
+                        obtuvo_edil_resto = True
+                    
+                    # Calcular votos faltantes
+                    if obtuvo_edil_resto:
+                        lista_data["VotosParaEdilResto"] = 0
+                    elif umbral_resto >= 0 and lista_data["Resto"] < umbral_resto:
+                        votos_faltantes = math.floor(umbral_resto - lista_data["Resto"]) + 1
+                        lista_data["VotosParaEdilResto"] = int(max(0, votos_faltantes))
+                    else:
+                        lista_data["VotosParaEdilResto"] = None
+                        
+                    # Redondear resto y añadir a la lista procesada del partido
+                    lista_data["Resto"] = round(lista_data["Resto"], 4)
+                    listas_procesadas_partido.append(lista_data)
+                    
+            else: # Partido sin ediles o sin votos
+                for lista_data in listas_del_partido:
+                    lista_data["Ediles"] = 0
+                    lista_data["Resto"] = 0.0
+                    lista_data["VotosParaEdilResto"] = None
+                    listas_procesadas_partido.append(lista_data)
+            
+            # Agregar las listas procesadas de este partido a la lista final
+            listas_con_ediles.extend(listas_procesadas_partido)
+            
+        # Ordenar y reemplazar la lista original en dept_data
+        listas_con_ediles.sort(key=lambda x: (x["Partido"], -x["Votos"]))
+        dept_data["junta_departamental_lists"] = listas_con_ediles
+        # --- FIN CÁLCULO DE EDILES --- 
 
         # Procesar cada municipio
-        for muni in depto.Municipales:
-            # Crear datos del municipio
+        for muni in depto.Municipales: # muni es un MunicipioEnriquecido
+            # Crear datos del municipio usando los datos ya enriquecidos
             muni_data = {
                 "name": muni.MD,
                 "id": muni.MI,
-                "party": muni.ganador,
-                "mayor": "No disponible",  # Valor predeterminado
-                "votes": {},
-                "vote_percentages": {},
-                "council_seats": muni.ediles
+                "party": muni.ganador, # Partido ganador calculado por enricher
+                "mayor": muni.mayor,  # Alcalde calculado por enricher
+                "votes": {}, # Se poblará después
+                "vote_percentages": {}, # Se poblará después
+                "council_seats": muni.ediles, # Concejales calculados por enricher
+                "municipal_council_lists": [] # INICIALIZAR LISTA VACÍA
             }
             
-            # Si hay información de alcalde en los datos originales, usarla
-            if hasattr(muni, 'CAlcalde') and muni.CAlcalde:
-                muni_data["mayor"] = muni.CAlcalde
-                
-            if hasattr(muni, 'CAlcaldeIcon') and muni.CAlcaldeIcon:
-                muni_data["mayor_icon"] = muni.CAlcaldeIcon
-            
-            # Agregar votos por partido a nivel municipal
+            # Poblar votos por partido (esto sí viene del modelo base)
+            votos_muni_total = 0
             for partido in muni.Eleccion:
-                muni_data["votes"][partido.LN] = partido.Tot
-            
-            # Intentar obtener el candidato más votado del partido ganador del municipio
-            if muni.ganador:
-                # Buscar el partido ganador en los datos municipales
-                for partido in muni.Eleccion:
-                    if partido.LN == muni.ganador:
-                        # Para el partido más votado, determinar el candidato más votado
-                        if hasattr(partido, 'Municipio') and hasattr(partido.Municipio, 'Sublemas'):
-                            # Buscar la lista más votada dentro del partido
-                            sublema_mas_votado = None
-                            max_votos_sublema = 0
-                            
-                            for sublema in partido.Municipio.Sublemas:
-                                if hasattr(sublema, 'Tot') and sublema.Tot > max_votos_sublema:
-                                    max_votos_sublema = sublema.Tot
-                                    sublema_mas_votado = sublema
-                            
-                            # Si encontramos el sublema más votado, buscar la lista más votada
-                            if sublema_mas_votado and hasattr(sublema_mas_votado, 'ListasMunicipio'):
-                                lista_mas_votada = None
-                                max_votos_lista = 0
+                nombre_partido = partido.LN
+                votos_partido = partido.Tot
+                muni_data["votes"][nombre_partido] = votos_partido
+                votos_muni_total += votos_partido
+                
+                # --- INICIO EXTRACCIÓN LISTAS MUNICIPALES (NUEVO) ---
+                # DEBUG: Imprimir info del partido procesado a nivel municipal
+                # print(f"DEBUG: Procesando Municipio={muni.MD}, Partido={nombre_partido}") 
+                if hasattr(partido, 'Municipio') and hasattr(partido.Municipio, 'Sublemas'):
+                    # print(f"DEBUG:   Encontrados {len(partido.Municipio.Sublemas)} sublemas para {nombre_partido} en {muni.MD}")
+                    for i, sublema in enumerate(partido.Municipio.Sublemas):
+                        sublema_nombre = sublema.Nombre if hasattr(sublema, 'Nombre') else "N/A"
+                        # print(f"DEBUG:     Procesando Sublema {i}: {sublema_nombre}")
+                        # Comprobar si existe ListasMunicipio y si tiene contenido
+                        if hasattr(sublema, 'ListasMunicipio') and sublema.ListasMunicipio:
+                            # print(f"DEBUG:       Encontradas {len(sublema.ListasMunicipio)} ListasMunicipio en sublema {sublema_nombre}")
+                            for j, lista in enumerate(sublema.ListasMunicipio):
+                                # print(f"DEBUG:         Procesando ListaMunicipio {j}")
+                                lista_desc_raw = lista.Dsc if hasattr(lista, 'Dsc') else "N/A"
+                                votos_lista_total = lista.Tot if hasattr(lista, 'Tot') else 0
+                                votos_hoja_lista_muni = lista.VH if hasattr(lista, 'VH') else 0
                                 
-                                for lista in sublema_mas_votado.ListasMunicipio:
-                                    if hasattr(lista, 'Tot') and lista.Tot > max_votos_lista:
-                                        max_votos_lista = lista.Tot
-                                        lista_mas_votada = lista
+                                # Buscar NumeroLista (Hoja HN)
+                                numero_hoja_muni = "N/A"
+                                if hasattr(partido, 'Hojas') and votos_hoja_lista_muni > 0:
+                                    hoja_corr_muni = next((h for h in partido.Hojas if hasattr(h, 'Tot') and h.Tot == votos_hoja_lista_muni), None)
+                                    if hoja_corr_muni and hasattr(hoja_corr_muni, 'HN'):
+                                        numero_hoja_muni = hoja_corr_muni.HN
+                                        
+                                # Procesar descripción para extraer candidatos
+                                candidatos_list_muni = []
+                                if lista_desc_raw != "N/A":
+                                    potential_candidates_muni = lista_desc_raw.split('  ')
+                                    candidatos_list_muni = [name.strip() for name in potential_candidates_muni if name.strip()]
                                 
-                                # Si encontramos la lista más votada, extraer su candidato
-                                if lista_mas_votada:
-                                    if hasattr(lista_mas_votada, 'Dsc') and lista_mas_votada.Dsc:
-                                        muni_data["mayor"] = lista_mas_votada.Dsc
+                                if votos_lista_total > 0:
+                                    # print(f"DEBUG:           Añadiendo lista {numero_hoja_muni} con {votos_lista_total} votos y {len(candidatos_list_muni)} candidatos.")
+                                    muni_data["municipal_council_lists"].append({
+                                        "Partido": nombre_partido,
+                                        "Sublema": sublema_nombre,
+                                        "NumeroLista": numero_hoja_muni, 
+                                        "Candidatos": candidatos_list_muni,
+                                        "Votos": votos_lista_total
+                                    })
+                                else:
+                                    # print(f"DEBUG:           Omitiendo lista {numero_hoja_muni} por tener 0 votos.")
+                                    pass # Añadir pass para bloque else vacío
+                        else:
+                            # print(f"DEBUG:       Sublema {sublema_nombre} NO tiene ListasMunicipio o está vacía.")
+                            pass # Añadir pass para bloque else vacío
+                else:
+                    # print(f"DEBUG:   Partido {nombre_partido} NO tiene Municipio.Sublemas")
+                    pass # Añadir pass para bloque else vacío
+                # --- FIN EXTRACCIÓN LISTAS MUNICIPALES --- 
             
-            # Calcular porcentajes
-            total_muni_votes = sum(muni_data["votes"].values())
-            if total_muni_votes > 0:
-                for party, votes in muni_data["votes"].items():
-                    muni_data["vote_percentages"][party] = round((votes / total_muni_votes) * 100, 1)
+            # Calcular porcentajes para el municipio
+            if votos_muni_total > 0:
+                for partido_nombre, votos_num in muni_data["votes"].items():
+                    muni_data["vote_percentages"][partido_nombre] = round((votos_num / votos_muni_total) * 100, 1)
                     
-            # Agregar municipio al diccionario del departamento
             dept_data["municipalities"][muni.MD] = muni_data
             
         # Agregar departamento al resultado

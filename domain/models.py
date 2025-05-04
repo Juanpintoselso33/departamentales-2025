@@ -55,7 +55,8 @@ class Sublema(BaseModel):
     VH: int = Field(0, description="Votos por hoja (suma de VH de listas)")
     VAS: int = Field(0, description="Votos al sublema")
     Tot: int = Field(0, description="Total de votos del sublema")
-    Listas: List[Lista] = Field(default_factory=list, description="Listas que integran el sublema")
+    ListasJunta: List[Lista] = Field(default_factory=list, description="Listas que integran el sublema para la Junta")
+    ListasMunicipio: List[Lista] = Field(default_factory=list, description="Listas que integran el sublema para el Municipio")
 
     model_config = ConfigDict(extra="allow")
 
