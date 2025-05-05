@@ -81,7 +81,7 @@ def main():
             'type': 'selectbox',
             'key': 'election_year',
             'label': 'Año Electoral',
-            'options': ['2020', '2025'],
+            'options': ['2015', '2020', '2025'],
             'default_index': 0,
             'add_separator': True
         }
@@ -131,9 +131,19 @@ def main():
     
     # Cargar los datos electorales (común para ambas vistas)
     try:
-        # Cargar datos electorales utilizando el módulo de infraestructura
+        # --- Carga de datos dinámica por año ---
+        selected_year = filter_values.get('election_year', '2020') # Usar 2020 como fallback
+        data_key = f"election_data_{selected_year}"
+        if data_key not in settings.PATHS:
+            st.error(f"Error: No se encontró la configuración de ruta para el año {selected_year} en settings.py.")
+            st.stop()
+            
+        file_path_to_load = settings.PATHS[data_key]
+        
+        # Cargar datos electorales utilizando el módulo de infraestructura con la ruta dinámica
         # El objeto devuelto por load_election_data AHORA incluye el enriquecimiento municipal
-        summary_enriched, stats = load_election_data(settings.PATHS["election_data_2020"])
+        summary_enriched, stats = load_election_data(file_path_to_load)
+        # --- Fin carga dinámica ---
         
         # 1. Enriquecer con cálculo de concejales por lista D'Hondt
         # --- ELIMINADO: Este paso ahora ocurre DENTRO de load_election_data (via pipeline/enrich) ---
@@ -266,8 +276,15 @@ def main():
         st.code(traceback.format_exc(), language="python")
         st.warning("Verifique los datos y la configuración para resolver el problema.")
         
-    # Mostrar footer
-    footer("Visualizador de Elecciones Departamentales de Uruguay • 2025")
+    # --- Actualizar Footer ---
+    footer_text = (
+        "Proyecto diseñado en Streamlit usando como fuente datos de la Corte Electoral. "
+        "Hecho por el Lic. Juan Ignacio Pintos Elso.<br>"
+        "<a href='https://github.com/Juanpintoselso33/departamentales-2025/tree/main' target='_blank'>Repositorio en GitHub</a><br><br>"
+        "**Disclaimer:** Los cálculos de asignación de cargos (Ediles, Concejales) son interpretaciones "
+        "realizadas por esta aplicación y pueden diferir de los resultados oficiales de la Corte Electoral."
+    )
+    footer(footer_text)
 
 if __name__ == "__main__":
     main() 

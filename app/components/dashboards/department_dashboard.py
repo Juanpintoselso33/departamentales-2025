@@ -224,131 +224,89 @@ def display_department_dashboard(election_data, department_name=None):
     # TERCERA FILA: Tablas de resultados
     st.header("Resultados Detallados")
     
-    # Crear pestañas para las diferentes tablas (Ahora solo 2)
-    tab1, tab2 = st.tabs(["Resultados por Partido", "Candidatos a Intendente"])
+    # --- INICIO: Tabla de Candidatos (antes en tab2) --- 
+    # Acceder a los datos "crudos" del departamento
+    dept_data_raw = election_data.get(department_name, {})
     
-    # Pestaña 1: Resultados por partido
-    with tab1:
-        # Acceder a los datos "crudos" del departamento
-        dept_data_raw = election_data.get(department_name, {})
-        
-        # Extraer datos necesarios directamente
-        votos_raw = dept_data_raw.get("votes", {})
-        percentages_raw = dept_data_raw.get("vote_percentages", {})
-        ediles_raw = dept_data_raw.get("council_seats", {})
-        party_candidates_raw = dept_data_raw.get("party_candidates", {})
-        
-        if votos_raw:
-            data = []
-            for party in votos_raw.keys():
-                # Obtener el candidato principal (más votado a intendente)
-                candidatos = party_candidates_raw.get(party, [])
-                candidato_principal = "No disponible"
-                if isinstance(candidatos, list) and candidatos:
-                    # Asumiendo que la lista ya está ordenada por votos desc
-                    candidato_principal = candidatos[0].get("nombre", "No disponible")
-                elif isinstance(candidatos, str): # Fallback por si acaso
-                    candidato_principal = candidatos
-                
-                row = {
-                    "Partido": party,
-                    "Votos": votos_raw.get(party, 0),
-                    "Porcentaje": f"{percentages_raw.get(party, 0):.1f}%",
-                    "Ediles": ediles_raw.get(party, 0),
-                    "Candidato Principal": candidato_principal
-                }
-                data.append(row)
-            
-            df = pd.DataFrame(data)
-            df = df.sort_values(by="Votos", ascending=False)
-            
-            st.dataframe(
-                df,
-                column_config={
-                    "Partido": st.column_config.TextColumn("Partido", width="medium"),
-                    "Votos": st.column_config.NumberColumn("Votos", format="%d"),
-                    "Porcentaje": st.column_config.TextColumn("Porcentaje", width="small"),
-                    "Ediles": st.column_config.NumberColumn("Ediles", format="%d"),
-                    "Candidato Principal": st.column_config.TextColumn("Candidato Principal", width="large")
-                },
-                hide_index=True,
-                use_container_width=True
-            )
-        else:
-            st.info("No hay resultados detallados para mostrar.")
+    st.subheader("Candidatos a Intendente")
     
-    # Pestaña 2: Candidatos a Intendente
-    with tab2:
-        # Acceder a los datos "crudos" del departamento
-        dept_data_raw = election_data.get(department_name, {})
+    # Obtener datos directamente
+    candidates_raw = dept_data_raw.get("party_candidates", {})
+    votes_raw = dept_data_raw.get("votes", {})
+    
+    if candidates_raw:
+        data = []
+        total_votos_departamento = sum(votes_raw.values()) if votes_raw else 0
         
-        st.subheader("Candidatos a Intendente")
-        
-        # Obtener datos directamente
-        candidates_raw = dept_data_raw.get("party_candidates", {})
-        votes_raw = dept_data_raw.get("votes", {})
-        
-        if candidates_raw:
-            data = []
-            total_votos_departamento = sum(votes_raw.values()) if votes_raw else 0
+        for partido, candidatos in candidates_raw.items():
+            votos_partido = votes_raw.get(partido, 0) # Obtener votos totales del partido
+            # Calcular porcentaje del partido en el departamento
+            porcentaje_partido_depto = (votos_partido / total_votos_departamento * 100) if total_votos_departamento > 0 else 0
             
-            for partido, candidatos in candidates_raw.items():
-                votos_partido = votes_raw.get(partido, 0)
-                
-                if isinstance(candidatos, list):
-                    for candidato in candidatos:
-                        votos_totales_cand = candidato.get("votos", 0)
-                        votos_hojas_cand = candidato.get("votos_hojas", 0)
-                        votos_lema_cand = votos_totales_cand - votos_hojas_cand # Calcular votos al lema
-                        
-                        porcentaje_partido = (votos_totales_cand / votos_partido * 100) if votos_partido > 0 else 0
-                        porcentaje_total = (votos_totales_cand / total_votos_departamento * 100) if total_votos_departamento > 0 else 0
-                        
-                        data.append({
-                            "Partido": partido,
-                            "Candidato": candidato.get("nombre", "N/A"),
-                            "Votos Hojas": votos_hojas_cand,
-                            "Votos Lema": votos_lema_cand, # Añadir columna
-                            "Votos Totales": votos_totales_cand,
-                            "% en Partido": porcentaje_partido,
-                            "% Total Depto.": porcentaje_total
-                        })
-                # Mantener fallback por si acaso (aunque no debería ocurrir con la estructura actual)
-                elif isinstance(candidatos, str):
-                     porcentaje_total = (votos_partido / total_votos_departamento * 100) if total_votos_departamento > 0 else 0
-                     data.append({
-                        "Partido": partido, 
-                        "Candidato": candidatos, 
-                        "Votos Hojas": votos_partido, 
-                        "Votos Lema": 0, 
-                        "Votos Totales": votos_partido, 
-                        "% en Partido": 100.0, 
-                        "% Total Depto.": porcentaje_total
+            if isinstance(candidatos, list):
+                for candidato in candidatos:
+                    votos_totales_cand = candidato.get("votos", 0)
+                    votos_hojas_cand = candidato.get("votos_hojas", 0)
+                    votos_lema_cand = votos_totales_cand - votos_hojas_cand # Calcular votos al lema
+                    
+                    porcentaje_partido_cand = (votos_totales_cand / votos_partido * 100) if votos_partido > 0 else 0 # Renombrado para claridad
+                    porcentaje_total_cand = (votos_totales_cand / total_votos_departamento * 100) if total_votos_departamento > 0 else 0 # Renombrado para claridad
+                    
+                    data.append({
+                        "Partido": partido,
+                        "Votos Partido": votos_partido,
+                        "% Partido Depto.": porcentaje_partido_depto, # <-- Nueva Columna
+                        "Candidato": candidato.get("nombre", "N/A"),
+                        "Votos Hojas": votos_hojas_cand,
+                        "Votos Lema": votos_lema_cand,
+                        "Votos Totales": votos_totales_cand,
+                        "% en Partido": porcentaje_partido_cand, # Usar variable renombrada
+                        "% Total Depto.": porcentaje_total_cand # Usar variable renombrada
                     })
+            elif isinstance(candidatos, str):
+                 porcentaje_total = (votos_partido / total_votos_departamento * 100) if total_votos_departamento > 0 else 0
+                 data.append({
+                    "Partido": partido, 
+                    "Votos Partido": votos_partido, 
+                    "% Partido Depto.": porcentaje_partido_depto, # <-- Nueva Columna
+                    "Candidato": candidatos, 
+                    "Votos Hojas": votos_partido, 
+                    "Votos Lema": 0, 
+                    "Votos Totales": votos_partido, 
+                    "% en Partido": 100.0, 
+                    "% Total Depto.": porcentaje_total
+                })
 
-            df = pd.DataFrame(data)
-            df = df.sort_values(by="Votos Totales", ascending=False)
-            
-            # Formatear porcentajes
-            df["% en Partido"] = df["% en Partido"].apply(lambda x: f"{x:.1f}%")
-            df["% Total Depto."] = df["% Total Depto."].apply(lambda x: f"{x:.1f}%")
-            
-            st.dataframe(
-                df[["Partido", "Candidato", "Votos Hojas", "Votos Lema", "Votos Totales", "% en Partido", "% Total Depto."]], # Añadir y reordenar columnas
-                column_config={
-                    "Partido": st.column_config.TextColumn("Partido", width="medium"),
-                    "Candidato": st.column_config.TextColumn("Candidato", width="large"),
-                    "Votos Hojas": st.column_config.NumberColumn("Votos Hojas", format="%d"),
-                    "Votos Lema": st.column_config.NumberColumn("Votos al Lema", format="%d"), # Configurar nueva columna
-                    "Votos Totales": st.column_config.NumberColumn("Votos Totales", format="%d"),
-                    "% en Partido": st.column_config.TextColumn("% en Partido", width="small"),
-                    "% Total Depto.": st.column_config.TextColumn("% Total Depto.", width="small")
-                },
-                hide_index=True,
-                use_container_width=True
-            )
-        else:
-            st.info("No hay información detallada de candidatos disponible")
+        df = pd.DataFrame(data)
+        df = df.sort_values(by="Votos Totales", ascending=False)
+        
+        # Formatear porcentajes
+        df["% Partido Depto."] = df["% Partido Depto."].apply(lambda x: f"{x:.1f}%") # <-- Formato Nueva Columna
+        df["% en Partido"] = df["% en Partido"].apply(lambda x: f"{x:.1f}%")
+        df["% Total Depto."] = df["% Total Depto."].apply(lambda x: f"{x:.1f}%")
+        
+        # Actualizar lista de columnas a mostrar
+        column_order = ["Partido", "Votos Partido", "% Partido Depto.", "Candidato", "Votos Hojas", "Votos Lema", "Votos Totales", "% en Partido", "% Total Depto."]
+        
+        st.dataframe(
+            df[column_order],
+            column_config={
+                "Partido": st.column_config.TextColumn("Partido", width="medium"),
+                "Votos Partido": st.column_config.NumberColumn("Votos Partido", format="%d"), 
+                "% Partido Depto.": st.column_config.TextColumn("% Partido Depto.", width="small"), # <-- Configuración Nueva Columna
+                "Candidato": st.column_config.TextColumn("Candidato", width="large"),
+                "Votos Hojas": st.column_config.NumberColumn("Votos Hojas", format="%d"),
+                "Votos Lema": st.column_config.NumberColumn("Votos al Lema", format="%d"),
+                "Votos Totales": st.column_config.NumberColumn("Votos Totales", format="%d"),
+                "% en Partido": st.column_config.TextColumn("% en Partido", width="small"),
+                "% Total Depto.": st.column_config.TextColumn("% Total Depto.", width="small")
+            },
+            hide_index=True,
+            use_container_width=True
+        )
+    else:
+        st.info("No hay información detallada de candidatos disponible")
+    # --- FIN: Tabla de Candidatos ---
     
     # SECCIÓN MOVIDA: Listas y Ediles (ahora fuera de las pestañas)
     st.subheader("Distribución de Ediles por Lista (Junta Departamental)") # Añadir subheader

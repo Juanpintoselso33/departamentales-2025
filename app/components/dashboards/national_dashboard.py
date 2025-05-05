@@ -205,7 +205,6 @@ def display_party_results(summary, election_data):
     all_parties = [p for p in all_parties if p not in ["No disponible", "Error", None]]
     all_parties = sorted(all_parties)
 
-    # Construir filas: una por departamento
     rows = []
     for dept, dept_data in election_data.items():
         row = {"Departamento": dept}
@@ -218,7 +217,7 @@ def display_party_results(summary, election_data):
                 votos = 0
             row[f"{party} Votos"] = int(votos)
             row[f"{party} %"] = f"{percentages.get(party, 0):.1f}%" if party in percentages else "0.0%"
-            rows.append(row)
+        rows.append(row)
 
     if rows:
         df_dept = pd.DataFrame(rows)

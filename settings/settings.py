@@ -19,6 +19,7 @@ PATHS = {
     "departments_geojson": DATA_DIR / "shapefiles/uruguay_deptal/departments.geojson",
     "municipalities_geojson": DATA_DIR / "shapefiles/uruguay_municipios/municipalities.geojson",
     "election_data_2020": DATA_DIR / "election_data/2020/results_2020.json",
+    "election_data_2015": DATA_DIR / "election_data/2015/results_2015.json",
 }
 
 # Mapeo de nombres de departamentos (para normalización)
