@@ -70,37 +70,24 @@ def enriquecer_municipio(municipio: Municipio) -> MunicipioEnriquecido:
     Returns:
         MunicipioEnriquecido con campos ganador, ediles y alcalde
     """
-    # --- DEBUG INICIO: Verificar votos_por_lema --- 
-    import logging # Asegurarse que logging está importado
-    log_enrich = logging.getLogger("domain.enrichers.enrich") # Usar logger específico
-    log_enrich.info(f"--- Enriching Municipio: {getattr(municipio, 'MD', 'N/A')} ---")
-    
     votos_por_lema = {}
     try:
         # Intentar construir votos_por_lema con más detalle en caso de error
         eleccion_data = getattr(municipio, 'Eleccion', [])
-        log_enrich.info(f"Raw Eleccion data type: {type(eleccion_data)}, Items: {len(eleccion_data) if isinstance(eleccion_data, list) else 'N/A'}")
         if eleccion_data:
-             log_enrich.info(f"First item in Eleccion: {eleccion_data[0]}")
              votos_por_lema = {
                 p.LN: p.Tot 
                 for p in eleccion_data 
                 if hasattr(p, 'LN') and hasattr(p, 'Tot') and p.Tot > 0
              }
-             log_enrich.info(f"Calculated votos_por_lema: {votos_por_lema}")
         else:
-            log_enrich.warning("Attribute 'Eleccion' is empty or missing.")
+            pass # No hacer nada si está vacío
             
     except Exception as e:
-        log_enrich.error(f"Error building votos_por_lema: {e}", exc_info=True)
         votos_por_lema = {} # Asegurar que está vacío si hubo error
         
-    log_enrich.info(f"Final votos_por_lema before calculating winner: {votos_por_lema}")
-    # --- DEBUG FIN --- 
-    
     # Usar "No disponible" como default
     ganador = max(votos_por_lema.items(), key=lambda x: x[1])[0] if votos_por_lema else "No disponible"
-    log_enrich.info(f"Determined ganador: {ganador}") # Log del ganador calculado
     
     ediles_por_partido = ediles_por_lema(votos_por_lema, total_ediles=5, mayoria_auto=3)
     

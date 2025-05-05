@@ -50,49 +50,6 @@ def display_municipal_dashboard(election_data: Dict, department_name: str, munic
         import traceback
         st.code(traceback.format_exc())
 
-    # --- INICIO DEBUG --- 
-    with st.expander("🔍 DEBUG: Datos Municipales Recibidos por el Dashboard", expanded=True):
-        st.write(f"Departamento: `{department_name}`, Municipio: `{municipality_name}`")
-        if error_msg:
-            st.error(f"Error al obtener muni_data: {error_msg}")
-        elif muni_data:
-            st.subheader("Diccionario `muni_data` completo:")
-            try:
-                # Usar json.dumps para formatear bien, manejar posible error
-                st.json(json.dumps(muni_data, indent=2, ensure_ascii=False))
-            except Exception as json_e:
-                st.error(f"Error al serializar muni_data a JSON: {json_e}")
-                st.write("Mostrando representación directa:")
-                st.write(muni_data) 
-
-            st.divider()
-            st.subheader("Contenido específico de `muni_data.get('municipal_council_lists')`:")
-            council_lists_data = muni_data.get("municipal_council_lists") # No poner default aquí para ver si existe
-            
-            if council_lists_data is None:
-                st.error("¡ERROR! La clave `municipal_council_lists` NO fue encontrada en `muni_data`.")
-            elif not isinstance(council_lists_data, list):
-                st.error(f"¡ERROR! El valor para `municipal_council_lists` NO es una lista. Es de tipo: {type(council_lists_data)}")
-                st.write("Valor encontrado:")
-                st.write(council_lists_data)
-            elif not council_lists_data:
-                st.warning("La clave `municipal_council_lists` fue encontrada, pero la lista está VACÍA.")
-            else:
-                st.success("La clave `municipal_council_lists` fue encontrada y contiene elementos.")
-                st.write(f"Número de listas encontradas: {len(council_lists_data)}")
-                st.json(json.dumps(council_lists_data, indent=2, ensure_ascii=False))
-                st.divider()
-                st.subheader("Claves del primer elemento en `municipal_council_lists`:")
-                try:
-                    first_item_keys = list(council_lists_data[0].keys()) if isinstance(council_lists_data[0], dict) else "El primer elemento no es un diccionario."
-                    st.write(first_item_keys)
-                    st.write("Claves esperadas para la tabla: `Partido`, `Sublema`, `Nº Lista`, `Primer Candidato`, `Votos`, `Concejales Asignados`, `Resto D'Hondt`")
-                except Exception as key_e:
-                    st.error(f"Error al obtener las claves del primer elemento: {key_e}")
-        else:
-            st.warning("El objeto `muni_data` es None o vacío después del intento de carga.")
-    # --- FIN DEBUG --- 
-
     # Si hubo error fatal al cargar, no continuar con la UI
     if error_msg and not muni_data:
         st.error(error_msg) # Mostrar el error principal
@@ -255,8 +212,7 @@ def display_municipal_dashboard(election_data: Dict, department_name: str, munic
         # Convertir a DataFrame para mostrar en tabla
         try:
             df_listas = pd.DataFrame(listas_data)
-            st.write("--- DEBUG: DataFrame Creado ---") # Debug
-            st.dataframe(df_listas.head()) # Debug: Mostrar head del df raw
+            # st.write("--- DEBUG: DataFrame Creado ---") # Debug ELIMINADO
         except Exception as e:
             st.error(f"Error al crear DataFrame desde listas_data: {e}")
             st.json(listas_data) # Mostrar los datos que causaron error

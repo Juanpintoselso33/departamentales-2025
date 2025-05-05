@@ -1,0 +1,21 @@
+[server]
+# Habilitar auto-reload (similar a nodemon)
+runOnSave = true
+# Reduce el tiempo entre verificaciones de cambios en archivos (en segundos)
+fileWatcherType = "poll"
+# Intervalo de polling corto para detectar cambios rápidamente
+pollIntervalSecs = 1
+
+[browser]
+# Opcionalmente, abrir el navegador automáticamente al iniciar
+serverAddress = "localhost"
+gatherUsageStats = false
+
+[theme]
+# Personalización del tema con esquema oscuro
+base="dark"  # Asegurar que el tema base sea oscuro
+primaryColor = "#3B82F6"
+backgroundColor = "#0E1117"
+secondaryBackgroundColor = "#1E293B"
+textColor = "#FFFFFF"
+font = "sans serif" 

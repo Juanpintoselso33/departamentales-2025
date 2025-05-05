@@ -112,16 +112,6 @@ def main():
         # 3. Obtener resumen nacional para la vista principal (después de enriquecer)
         summary = get_national_summary(election_data)
         
-        # --- INICIO DEBUG ---
-        with st.expander("🔍 DEBUG: Inspeccionar Datos Finales", expanded=False):
-            st.write("Resumen Nacional (`summary`):")
-            st.json(summary, expanded=False)
-            st.divider()
-            st.write("Datos Electorales Detallados (`election_data`):")
-            st.json(election_data, expanded=False)
-        st.divider() # Separador visual después del debug
-        # --- FIN DEBUG ---
-        
         # Crear opciones para el selector principal (movido más abajo)
         # department_options = ["NACIONAL"] + sorted(list(election_data.keys()))
 
