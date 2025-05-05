@@ -8,9 +8,7 @@ from typing import Union, Dict, Any, Tuple
 
 from domain.models import ElectionSummary
 from domain.transformers.cleaning import clean
-from domain.enrichers.enrich import enrich
-from domain.enrichers.aggregate import aggregate
-from domain.enrichers import ElectionSummaryEnriquecido
+from domain.enrichers.enrich import enrich, aggregate, ElectionSummaryEnriquecido
 
 # Importar directamente el detector real en lugar de mantener un stub
 from infrastructure.loaders import detect_load
