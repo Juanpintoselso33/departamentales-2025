@@ -65,6 +65,12 @@ def main():
     # Aplicar estilos desde el módulo centralizado
     apply_base_styles()
     
+    # --- INICIO: Configuración de la Barra Lateral ---
+    st.sidebar.title("Panel de Control")
+    st.sidebar.markdown("Utilice las opciones a continuación para filtrar los datos mostrados.")
+    st.sidebar.markdown("---")
+    # --- FIN: Configuración de la Barra Lateral ---
+    
     # Inicializar estado si no existe
     if 'selected_department' not in st.session_state:
         st.session_state.selected_department = None
@@ -75,19 +81,53 @@ def main():
             'type': 'selectbox',
             'key': 'election_year',
             'label': 'Año Electoral',
-            'options': ['2020'],
+            'options': ['2020', '2025'],
             'default_index': 0,
             'add_separator': True
         }
     ]
+
+    # Aplicar filtros en la barra lateral
+    filter_values = sidebar_filters(filters_config)
+
+    # Mostrar nota informativa para 2025
+    if filter_values.get('election_year') == '2025':
+        st.sidebar.info(
+            """**Nota:** Los datos para 2025 se actualizarán en tiempo real 
+            directamente desde la Corte Electoral una vez que estén disponibles."""
+        )
+
+    # --- INICIO: Guía Rápida en Sidebar ---
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("Guía Rápida")
+    st.sidebar.markdown("""
+    *   **Año Electoral:** Seleccione el año de la elección.
+    *   **Selector Principal:** Use el menú desplegable (bajo el mapa) para elegir:
+        *   **NACIONAL:** Resumen general del país (Votos, Intendencias, Ediles, Alcaldes).
+        *   **[Departamento]:** Detalle del departamento seleccionado.
+    *   **Mapa:** Visualiza el partido ganador por departamento.
     
+    **Tipos de Resultados:**
+    *   **Vista Nacional:** Gráficos y tablas con agregados nacionales.
+    *   **Vista Departamental:** Resultados para Intendencia y Junta Departamental. Incluye un selector al final para ver el detalle de un **Municipio** (Alcaldías y Concejos).
+    """)
+    # --- FIN: Guía Rápida en Sidebar ---
+
     # Decidir qué título mostrar según la vista
     view_type = "department" if st.session_state.selected_department else "national"
+    selected_year = filter_values.get('election_year', 'N/A') # Obtener año seleccionado
     
+    # Construir títulos dinámicos (se usará en la llamada a header más abajo)
+    national_title = f"Elecciones Departamentales Uruguay {selected_year}"
+    national_subtitle = "Visualización de Resultados Electorales Nacionales"
+    department_title = f"{st.session_state.selected_department} - {selected_year}"
+    department_subtitle = "Detalle de Resultados Electorales Departamentales"
+
+    # Actualizar la llamada a header() con títulos dinámicos y centrado
     if view_type == "department":
-        header(f"Detalle: {st.session_state.selected_department}", subtitle="Elecciones Departamentales 2020")
+        header(department_title, subtitle=department_subtitle, centered=True)
     else:
-        header("Resumen Nacional", subtitle="Elecciones Departamentales 2020")
+        header(national_title, subtitle=national_subtitle, centered=True)
     
     # Cargar los datos electorales (común para ambas vistas)
     try:
@@ -179,9 +219,6 @@ def main():
                 key="refresh_interval"
             )
             st_autorefresh(interval=refresh_interval * 1000, key="data_autorefresh")
-        
-        # Aplicar filtros en la barra lateral
-        filter_values = sidebar_filters(filters_config)
         
         # Si hay un departamento seleccionado, encontrar el objeto de departamento correspondiente
         department_to_show = None

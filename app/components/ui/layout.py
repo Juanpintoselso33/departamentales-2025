@@ -5,7 +5,7 @@ Proporciona elementos para estructura y organización de la UI.
 
 import streamlit as st
 
-def header(title, subtitle=None, logo=None, hide_menu=False):
+def header(title, subtitle=None, logo=None, hide_menu=False, centered=False):
     """
     Muestra un encabezado personalizado con título, subtítulo y/o logo
     
@@ -14,7 +14,26 @@ def header(title, subtitle=None, logo=None, hide_menu=False):
         subtitle (str, opcional): Subtítulo o descripción
         logo (str, opcional): Ruta a archivo de imagen para logo
         hide_menu (bool): Si True, oculta el menú de hamburguesa
+        centered (bool): Si True, centra el título y subtítulo y añade margen superior.
     """
+    # Estilos CSS para centrado y margen
+    css_styles = """
+        <style>
+        .header-container {
+            margin-top: 2rem; /* Añadir margen superior */
+            text-align: center; /* Centrar texto */
+        }
+        .header-container hr {
+            margin-top: 1.5rem; /* Ajustar margen de la línea divisora */
+        }
+        </style>
+    """ if centered else ""
+    st.markdown(css_styles, unsafe_allow_html=True)
+
+    # Contenedor principal para aplicar estilos si está centrado
+    container_class = "header-container" if centered else ""
+    st.markdown(f'<div class="{container_class}">', unsafe_allow_html=True)
+
     # Ocultar menú de hamburguesa si se solicita
     if hide_menu:
         st.markdown("""
@@ -39,6 +58,10 @@ def header(title, subtitle=None, logo=None, hide_menu=False):
     
     # Añadir línea divisora
     st.markdown("<hr>", unsafe_allow_html=True)
+
+    # Cerrar el contenedor principal si se usó
+    if centered:
+        st.markdown("</div>", unsafe_allow_html=True)
 
 def footer(text=None, hide_streamlit_footer=True):
     """
