@@ -16,3 +16,4 @@ streamlit-autorefresh
 pydeck
 leafmap 
 streamlit-aggrid
+pydantic
