@@ -223,8 +223,8 @@ def display_department_dashboard(election_data, department_name=None):
     # TERCERA FILA: Tablas de resultados
     st.header("Resultados Detallados")
     
-    # Crear pestañas para las diferentes tablas
-    tab1, tab2, tab3 = st.tabs(["Resultados por Partido", "Candidatos a Intendente", "Listas y Ediles"])
+    # Crear pestañas para las diferentes tablas (Ahora solo 2)
+    tab1, tab2 = st.tabs(["Resultados por Partido", "Candidatos a Intendente"])
     
     # Pestaña 1: Resultados por partido
     with tab1:
@@ -349,82 +349,81 @@ def display_department_dashboard(election_data, department_name=None):
         else:
             st.info("No hay información detallada de candidatos disponible")
     
-    # Pestaña 3: Listas y Ediles
-    with tab3:
-        # Usar los datos detallados directamente de junta_departamental_lists
-        listas_junta_data = dept_summary.get("junta_departamental_lists", []) 
+    # SECCIÓN MOVIDA: Listas y Ediles (ahora fuera de las pestañas)
+    st.subheader("Distribución de Ediles por Lista (Junta Departamental)") # Añadir subheader
+    
+    # Usar los datos detallados directamente de junta_departamental_lists
+    listas_junta_data = dept_summary.get("junta_departamental_lists", []) 
 
-        if listas_junta_data:
-            st.subheader("Distribución de Ediles por Lista (Junta Departamental)")
-            
-            # Crear DataFrame directamente desde la lista
-            df_listas = pd.DataFrame(listas_junta_data)
-            
-            # Formatear columna de candidatos (mostrar solo el primero o los 3 primeros)
-            def format_candidates(cands):
-                if isinstance(cands, list):
-                    if len(cands) > 0:
-                        # Mostrar solo el primer candidato para brevedad en la tabla
-                        return cands[0] 
-                        # O mostrar los 3 primeros: return ", ".join(cands[:3])
-                    else:
-                        return "N/A"
-                return "N/A"
-            
-            df_listas['Primer Candidato'] = df_listas['Candidatos'].apply(format_candidates)
-            
-            # Seleccionar y renombrar columnas
-            df_display = df_listas[[
-                'Partido', 'NumeroLista', 'Sublema', 'Primer Candidato', 'Votos', 'Ediles', 'Resto', 'VotosParaEdilResto'
-            ]].rename(columns={
-                'NumeroLista': 'Nº Lista',
-                'Sublema': 'Sublema',
-                'Primer Candidato': 'Primer Candidato',
-                'Votos': 'Votos Lista',
-                'Ediles': 'Ediles Asignados',
-                'Resto': 'Resto D\'Hondt',
-                'VotosParaEdilResto': 'Votos Prox. Edil'
-            })
-            
-            # Ordenar por Ediles Asignados (desc) y luego por Votos Lista (desc)
-            df_display = df_display.sort_values(by=['Ediles Asignados', 'Votos Lista'], ascending=[False, False])
-            
-            st.dataframe(
-                df_display,
-                hide_index=True,
-                use_container_width=True,
-                # Configurar columnas para formato numérico si es necesario
-                column_config={
-                    "Votos Lista": st.column_config.NumberColumn(format="%d"),
-                    "Ediles Asignados": st.column_config.NumberColumn(format="%d"),
-                    "Resto D'Hondt": st.column_config.NumberColumn(format="%.4f"),
-                    "Votos Prox. Edil": st.column_config.NumberColumn(format="%d", help="Votos que faltaron para obtener el siguiente edil por resto (N/A si no aplica)")
-                }
-            )
-            
-            # Añadir nota explicativa sobre la columna Nº Lista (NUEVO)
-            st.caption(
-                "Nota: La columna 'Nº Lista' intenta mostrar el número de hoja de votación (HN). "
-                "Debido a la estructura de los datos fuente, especialmente cuando existen votos directos al sublema o lema "
-                "que afectan a una lista, la vinculación directa mediante los votos de la hoja ('VH') puede no encontrarse, "
-                "resultando en el indicador 'N/A'."
-            )
+    if listas_junta_data:
+        # Crear DataFrame directamente desde la lista
+        df_listas = pd.DataFrame(listas_junta_data)
+        
+        # Formatear columna de candidatos (mostrar solo el primero o los 3 primeros)
+        def format_candidates(cands):
+            if isinstance(cands, list):
+                if len(cands) > 0:
+                    # Mostrar solo el primer candidato para brevedad en la tabla
+                    return cands[0] 
+                    # O mostrar los 3 primeros: return ", ".join(cands[:3])
+                else:
+                    return "N/A"
+            return "N/A"
+        
+        df_listas['Primer Candidato'] = df_listas['Candidatos'].apply(format_candidates)
+        
+        # Seleccionar y renombrar columnas
+        df_display = df_listas[[
+            'Partido', 'NumeroLista', 'Sublema', 'Primer Candidato', 'Votos', 'Ediles', 'Resto', 'VotosParaEdilResto'
+        ]].rename(columns={
+            'NumeroLista': 'Nº Lista',
+            'Sublema': 'Sublema',
+            'Primer Candidato': 'Primer Candidato',
+            'Votos': 'Votos Lista',
+            'Ediles': 'Ediles Asignados',
+            'Resto': 'Resto D\'Hondt',
+            'VotosParaEdilResto': 'Votos Prox. Edil'
+        })
+        
+        # Ordenar por Ediles Asignados (desc) y luego por Votos Lista (desc)
+        df_display = df_display.sort_values(by=['Ediles Asignados', 'Votos Lista'], ascending=[False, False])
+        
+        st.dataframe(
+            df_display,
+            hide_index=True,
+            use_container_width=True,
+            # Configurar columnas para formato numérico si es necesario
+            column_config={
+                "Votos Lista": st.column_config.NumberColumn(format="%d"),
+                "Ediles Asignados": st.column_config.NumberColumn(format="%d"),
+                "Resto D'Hondt": st.column_config.NumberColumn(format="%.4f"),
+                "Votos Prox. Edil": st.column_config.NumberColumn(format="%d", help="Votos que faltaron para obtener el siguiente edil por resto (N/A si no aplica)")
+            }
+        )
+        
+        # Añadir nota explicativa sobre la columna Nº Lista (NUEVO)
+        st.caption(
+            "Nota: La columna 'Nº Lista' intenta mostrar el número de hoja de votación (HN). "
+            "Debido a la estructura de los datos fuente, especialmente cuando existen votos directos al sublema o lema "
+            "que afectan a una lista, la vinculación directa mediante los votos de la hoja ('VH') puede no encontrarse, "
+            "resultando en el indicador 'N/A'."
+        )
 
-            # --- INICIO ANOTACIONES Y DISCLAIMER ---
-            st.caption("""
-            **Notas sobre la tabla:**
-            *   **Ediles Asignados:** Cantidad de ediles obtenidos por cada lista según el Art. 272 de la Constitución (mayoría automática al lema ganador y método D'Hondt para el resto).
-            *   **Resto D'Hondt:** Valor residual utilizado en la segunda fase de asignación (mayores restos).
-            *   **Votos Prox. Edil:** Estimación de cuántos votos adicionales necesitaba una lista para obtener el siguiente edil por la vía de los restos.
-                *   `0`: Indica que la lista obtuvo un edil por resto.
-                *   `N/A` (o vacío): Indica que el cálculo no aplica (p. ej., no hubo reparto por resto o la lista ya obtuvo todos sus ediles por cociente).
+        # --- INICIO ANOTACIONES Y DISCLAIMER ---
+        st.caption("""
+        **Notas sobre la tabla:**
+        *   **Ediles Asignados:** Cantidad de ediles obtenidos por cada lista según el Art. 272 de la Constitución (mayoría automática al lema ganador y método D'Hondt para el resto).
+        *   **Resto D'Hondt:** Valor residual utilizado en la segunda fase de asignación (mayores restos).
+        *   **Votos Prox. Edil:** Estimación de cuántos votos adicionales necesitaba una lista para obtener el siguiente edil por la vía de los restos.
+            *   `0`: Indica que la lista obtuvo un edil por resto.
+            *   `N/A` (o vacío): Indica que el cálculo no aplica (p. ej., no hubo reparto por resto o la lista ya obtuvo todos sus ediles por cociente).
 
-            **Disclaimer:** El cálculo de la asignación de ediles por lista y los votos para el próximo edil es una interpretación realizada por esta aplicación y **no representa un dato oficial de la Corte Electoral**.
-            """)
-            # --- FIN ANOTACIONES Y DISCLAIMER ---
-            
-        else:
-            st.info("No hay datos detallados de listas a la Junta Departamental disponibles.")
+        **Disclaimer:** El cálculo de la asignación de ediles por lista y los votos para el próximo edil es una interpretación realizada por esta aplicación y **no representa un dato oficial de la Corte Electoral**.
+        """)
+        # --- FIN ANOTACIONES Y DISCLAIMER ---
+        
+    else:
+        st.info("No hay datos detallados de listas a la Junta Departamental disponibles.")
 
 def display_department_header(dept_summary):
     """
