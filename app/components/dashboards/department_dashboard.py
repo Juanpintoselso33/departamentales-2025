@@ -209,17 +209,66 @@ def display_department_dashboard(election_data, department_name=None):
     # SEGUNDA FILA: Junta Departamental
     st.header("Junta Departamental")
     
-    # Gráfico de parlamento a todo el ancho
+    # --- INICIO: Procesamiento de datos para Gráfico y Tabla (antes estaba separado) ---
     # Obtener la lista detallada de la junta departamental
     listas_junta_data = dept_summary.get("junta_departamental_lists", [])
+    
+    df_display = None # Inicializar df_display
+    chart_data_list = [] # Inicializar lista para el gráfico
+
     if listas_junta_data:
-        # Pasar la lista detallada al componente del gráfico
-        render_parliament_chart(listas_junta_data, height=400)
-        # Calcular total ediles desde la lista detallada para el caption
-        total_ediles = sum(lista.get("Ediles", 0) for lista in listas_junta_data)
+        # Crear DataFrame directamente desde la lista original
+        df_listas = pd.DataFrame(listas_junta_data)
+
+        # --- Preparación de datos para el GRÁFICO ---
+        # El gráfico necesita 'Partido', 'Ediles', 'NumeroLista', 'Candidatos'
+        # Asegurarnos de que esas claves existen (o mapear si es necesario)
+        # En este caso, los nombres originales de listas_junta_data ya coinciden
+        # Convertimos el DataFrame (o la lista original) a formato lista de diccionarios
+        chart_data_list = df_listas.to_dict('records') # Usamos df_listas aquí
+        
+        # --- Preparación de datos para la TABLA ---
+        # Formatear columna de candidatos (mostrar solo el primero o los 3 primeros)
+        def format_candidates(cands):
+            if isinstance(cands, list):
+                if len(cands) > 0:
+                    return cands[0] 
+                else:
+                    return "N/A"
+            return "N/A"
+        
+        # Aplicar formato AHORA para tener la columna 'Primer Candidato' en df_listas
+        df_listas['Primer Candidato'] = df_listas['Candidatos'].apply(format_candidates)
+
+        # Seleccionar y renombrar columnas para la tabla df_display
+        df_display = df_listas[[
+            'Partido', 'NumeroLista', 'Sublema', 'Primer Candidato', 'Votos', 'Ediles', 'Resto', 'VotosParaEdilResto'
+        ]].rename(columns={
+            'NumeroLista': 'Nº Lista',
+            'Sublema': 'Sublema',
+            'Primer Candidato': 'Primer Candidato', # Usar la columna ya formateada
+            'Votos': 'Votos Lista',
+            'Ediles': 'Ediles Asignados',
+            'Resto': 'Resto D\'Hondt',
+            'VotosParaEdilResto': 'Votos Prox. Edil'
+        })
+
+        # Ordenar la tabla
+        df_display = df_display.sort_values(by=['Ediles Asignados', 'Votos Lista'], ascending=[False, False])
+
+    # --- FIN: Procesamiento de datos ---
+
+    # Gráfico de parlamento (ahora usa chart_data_list)
+    if chart_data_list:
+        render_parliament_chart(chart_data_list, height=400) # Pasar la lista de diccionarios
+        # Calcular total ediles desde la lista para el caption (podría hacerse desde df_display también)
+        total_ediles = sum(lista.get("Ediles", 0) for lista in chart_data_list) 
         st.caption(f"Total de Ediles: {total_ediles}")
     else:
-        st.info("No hay datos de ediles para este departamento.")
+        # Mantener mensaje si no hay datos en origen
+        if not listas_junta_data:
+             st.info("No hay datos de ediles para este departamento.")
+        # Si hubo listas pero 0 ediles, el gráfico no se muestra, pero la tabla sí podría
     
     # TERCERA FILA: Tablas de resultados
     st.header("Resultados Detallados")
@@ -308,50 +357,15 @@ def display_department_dashboard(election_data, department_name=None):
         st.info("No hay información detallada de candidatos disponible")
     # --- FIN: Tabla de Candidatos ---
     
-    # SECCIÓN MOVIDA: Listas y Ediles (ahora fuera de las pestañas)
-    st.subheader("Distribución de Ediles por Lista (Junta Departamental)") # Añadir subheader
+    # SECCIÓN MOVIDA: Listas y Ediles (ahora solo muestra la tabla df_display)
+    st.subheader("Distribución de Ediles por Lista (Junta Departamental)") 
     
-    # Usar los datos detallados directamente de junta_departamental_lists
-    listas_junta_data = dept_summary.get("junta_departamental_lists", []) 
-
-    if listas_junta_data:
-        # Crear DataFrame directamente desde la lista
-        df_listas = pd.DataFrame(listas_junta_data)
-        
-        # Formatear columna de candidatos (mostrar solo el primero o los 3 primeros)
-        def format_candidates(cands):
-            if isinstance(cands, list):
-                if len(cands) > 0:
-                    # Mostrar solo el primer candidato para brevedad en la tabla
-                    return cands[0] 
-                    # O mostrar los 3 primeros: return ", ".join(cands[:3])
-                else:
-                    return "N/A"
-            return "N/A"
-        
-        df_listas['Primer Candidato'] = df_listas['Candidatos'].apply(format_candidates)
-        
-        # Seleccionar y renombrar columnas
-        df_display = df_listas[[
-            'Partido', 'NumeroLista', 'Sublema', 'Primer Candidato', 'Votos', 'Ediles', 'Resto', 'VotosParaEdilResto'
-        ]].rename(columns={
-            'NumeroLista': 'Nº Lista',
-            'Sublema': 'Sublema',
-            'Primer Candidato': 'Primer Candidato',
-            'Votos': 'Votos Lista',
-            'Ediles': 'Ediles Asignados',
-            'Resto': 'Resto D\'Hondt',
-            'VotosParaEdilResto': 'Votos Prox. Edil'
-        })
-        
-        # Ordenar por Ediles Asignados (desc) y luego por Votos Lista (desc)
-        df_display = df_display.sort_values(by=['Ediles Asignados', 'Votos Lista'], ascending=[False, False])
-        
+    # Mostrar la tabla df_display (ya creada y ordenada arriba)
+    if df_display is not None and not df_display.empty:
         st.dataframe(
             df_display,
             hide_index=True,
             use_container_width=True,
-            # Configurar columnas para formato numérico si es necesario
             column_config={
                 "Votos Lista": st.column_config.NumberColumn(format="%d"),
                 "Ediles Asignados": st.column_config.NumberColumn(format="%d"),
@@ -359,7 +373,6 @@ def display_department_dashboard(election_data, department_name=None):
                 "Votos Prox. Edil": st.column_config.NumberColumn(format="%d", help="Votos que faltaron para obtener el siguiente edil por resto (N/A si no aplica)")
             }
         )
-        
         # Añadir nota explicativa sobre la columna Nº Lista (NUEVO)
         st.caption(
             "Nota: La columna 'Nº Lista' intenta mostrar el número de hoja de votación (HN). "
@@ -382,7 +395,9 @@ def display_department_dashboard(election_data, department_name=None):
         # --- FIN ANOTACIONES Y DISCLAIMER ---
         
     else:
-        st.info("No hay datos detallados de listas a la Junta Departamental disponibles.")
+        # Mostrar info solo si originalmente no había datos
+        if not listas_junta_data: 
+            st.info("No hay datos detallados de listas a la Junta Departamental disponibles.")
 
     # --- INICIO: SECCIÓN MUNICIPAL ---
     st.markdown("<hr>", unsafe_allow_html=True)
