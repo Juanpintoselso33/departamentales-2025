@@ -81,8 +81,8 @@ def main():
             'type': 'selectbox',
             'key': 'election_year',
             'label': 'Año Electoral',
-            'options': ['2015', '2020', '2025'],
-            'default_index': 0,
+            'options': ['2015', '2020'],
+            'default_index': 1,
             'add_separator': True
         }
     ]
