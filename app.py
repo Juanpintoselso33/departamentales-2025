@@ -92,9 +92,14 @@ def main():
     # Cargar los datos electorales (común para ambas vistas)
     try:
         # Cargar datos electorales utilizando el módulo de infraestructura
+        # El objeto devuelto por load_election_data AHORA incluye el enriquecimiento municipal
         summary_enriched, stats = load_election_data(settings.PATHS["election_data_2020"])
         
-        # Transformar al formato esperado por la UI
+        # 1. Enriquecer con cálculo de concejales por lista D'Hondt
+        # --- ELIMINADO: Este paso ahora ocurre DENTRO de load_election_data (via pipeline/enrich) ---
+        # summary_enriched = enrich_municipal_concejales(summary_enriched_base)
+
+        # 2. Transformar al formato esperado por la UI
         from infrastructure.loaders import _transform_to_frontend_format
         election_data = _transform_to_frontend_format(summary_enriched, stats)
         
@@ -104,7 +109,7 @@ def main():
             st.info("Verifique que el archivo JSON contiene la estructura correcta con lista de departamentos o una clave 'Departamentos' con la lista.")
             return
         
-        # Obtener resumen nacional para la vista principal
+        # 3. Obtener resumen nacional para la vista principal (después de enriquecer)
         summary = get_national_summary(election_data)
         
         # --- INICIO DEBUG ---

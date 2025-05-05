@@ -19,6 +19,7 @@ log = logging.getLogger("infrastructure.loaders")
 from domain.models import ElectionSummary
 from domain.enrichers import ElectionSummaryEnriquecido
 from domain.enrichers.enrich import enrich_department_data
+from domain.enrichers.municipal_concejales import _calculate_pure_dhondt
 
 # Importar los diferentes adaptadores
 from . import v2020, v2025
@@ -400,7 +401,6 @@ def _transform_to_frontend_format(
     """
     result = {}
     
-    # Procesar cada departamento
     for depto in summary.departamentos:
         # Crear entrada para este departamento
         dept_data = {
@@ -413,7 +413,8 @@ def _transform_to_frontend_format(
             "council_seats": depto.ediles,
             "municipalities": {},
             "party_candidates": {},  # Lista completa de candidatos por partido
-            "all_candidates": True  # Flag para indicar que tenemos todos los candidatos
+            "all_candidates": True,  # Flag para indicar que tenemos todos los candidatos
+            "junta_departamental_lists": []  # Se calcula después
         }
         
         # Procesar candidatos por partido
@@ -586,72 +587,121 @@ def _transform_to_frontend_format(
             }
             
             # Poblar votos por partido (esto sí viene del modelo base)
-            votos_muni_total = 0
-            for partido in muni.Eleccion:
-                nombre_partido = partido.LN
-                votos_partido = partido.Tot
-                muni_data["votes"][nombre_partido] = votos_partido
-                votos_muni_total += votos_partido
+            votos_muni = {}
+            if hasattr(muni, 'Eleccion'):
+                for partido_muni in muni.Eleccion:
+                    if hasattr(partido_muni, 'LN') and hasattr(partido_muni, 'Tot'):
+                        votos_muni[partido_muni.LN] = partido_muni.Tot
+                muni_data["votes"] = votos_muni
+                total_votes_muni = sum(votos_muni.values())
+                if total_votes_muni > 0:
+                    for party, votes in votos_muni.items():
+                        muni_data["vote_percentages"][party] = round((votes / total_votes_muni) * 100, 1)
+
+            # --- INICIO: Extracción y Cálculo D'Hondt para Listas Municipales --- 
+            temp_listas_muni = []
+            # Iterar para extraer info base de las listas municipales
+            if hasattr(muni, 'Eleccion'):
+                for partido_data in muni.Eleccion:
+                    partido_ln = partido_data.LN
+                    # Crear lookup VH -> HN para este partido a nivel municipal (si aplica)
+                    vh_to_hn_lookup_muni = {h.Tot: h.HN for h in partido_data.Hojas if hasattr(h, 'Tot') and hasattr(h, 'HN') and h.Tot > 0} if hasattr(partido_data, 'Hojas') else {}
+
+                    if hasattr(partido_data, 'Municipio') and hasattr(partido_data.Municipio, 'Sublemas'):
+                        for sublema in partido_data.Municipio.Sublemas:
+                             # Intentar obtener nombre del sublema de forma más robusta
+                             sublema_nombre = getattr(sublema, 'Sublema', getattr(sublema, 'Nombre', '-')) 
+                             if hasattr(sublema, 'ListasMunicipio'):
+                                for lista_obj in sublema.ListasMunicipio:
+                                    # Extraer datos crudos
+                                    votos_totales = getattr(lista_obj, 'Tot', 0)
+                                    desc_raw = getattr(lista_obj, 'Dsc', None) # Default a None si no existe
+                                    
+                                    # Intentar obtener número de lista robustamente (HI -> NumeroLista -> numeroLista -> numerolista -> LId)
+                                    numero_lista_raw = getattr(lista_obj, 'HI', None)
+                                    if numero_lista_raw is None:
+                                        numero_lista_raw = getattr(lista_obj, 'NumeroLista', None)
+                                    if numero_lista_raw is None:
+                                        numero_lista_raw = getattr(lista_obj, 'numeroLista', None) # Probar camelCase
+                                    if numero_lista_raw is None:
+                                        numero_lista_raw = getattr(lista_obj, 'numerolista', None) # Probar lowercase
+                                    if numero_lista_raw is None:
+                                        numero_lista_raw = getattr(lista_obj, 'LId', 'N/A') # Fallback final a LId o N/A
+                                    
+                                    # Procesar descripción para obtener primer candidato (con fallback)
+                                    primer_candidato = "N/A"
+                                    if desc_raw and isinstance(desc_raw, str) and desc_raw != "N/A":
+                                        potential_candidates = desc_raw.split('  ')
+                                        cleaned_candidates = [name.strip() for name in potential_candidates if name.strip()]
+                                        if cleaned_candidates:
+                                            primer_candidato = cleaned_candidates[0]
+                                        else:
+                                            # Fallback si split falla: usar Dsc truncado
+                                            primer_candidato = desc_raw[:50] + '...' if len(desc_raw) > 50 else desc_raw 
+                                    
+                                    # Crear el diccionario con las claves esperadas por el frontend
+                                    lista_dict = {
+                                        'Partido': partido_ln,
+                                        'Sublema': sublema_nombre, # Usar el valor extraído
+                                        'Nº Lista': numero_lista_raw, 
+                                        'Primer Candidato': primer_candidato, 
+                                        'Votos': votos_totales, 
+                                        '_Dsc': desc_raw 
+                                    }
+                                    
+                                    # Añadir a la lista temporal
+                                    if votos_totales >= 0:
+                                       temp_listas_muni.append(lista_dict)
+            
+            # --- Ahora aplicar D'Hondt a temp_listas_muni --- 
+            # (El resto de la lógica D'Hondt que ya añadimos permanece igual,
+            # operando sobre temp_listas_muni y guardando en 
+            # muni_data["municipal_council_lists"])
+            listas_final_muni = []
+            concejales_por_partido = muni_data.get("council_seats", {})
+            
+            if concejales_por_partido and temp_listas_muni:
+                # Agrupar por partido
+                lists_grouped_by_party: Dict[str, List[Dict]] = {}
+                for lista_d in temp_listas_muni:
+                    party = lista_d.get("Partido")
+                    if party:
+                        if party not in lists_grouped_by_party:
+                            lists_grouped_by_party[party] = []
+                        lists_grouped_by_party[party].append(lista_d)
                 
-                # --- INICIO EXTRACCIÓN LISTAS MUNICIPALES (NUEVO) ---
-                # DEBUG: Imprimir info del partido procesado a nivel municipal
-                # print(f"DEBUG: Procesando Municipio={muni.MD}, Partido={nombre_partido}") 
-                if hasattr(partido, 'Municipio') and hasattr(partido.Municipio, 'Sublemas'):
-                    # print(f"DEBUG:   Encontrados {len(partido.Municipio.Sublemas)} sublemas para {nombre_partido} en {muni.MD}")
-                    for i, sublema in enumerate(partido.Municipio.Sublemas):
-                        sublema_nombre = sublema.Nombre if hasattr(sublema, 'Nombre') else "N/A"
-                        # print(f"DEBUG:     Procesando Sublema {i}: {sublema_nombre}")
-                        # Comprobar si existe ListasMunicipio y si tiene contenido
-                        if hasattr(sublema, 'ListasMunicipio') and sublema.ListasMunicipio:
-                            # print(f"DEBUG:       Encontradas {len(sublema.ListasMunicipio)} ListasMunicipio en sublema {sublema_nombre}")
-                            for j, lista in enumerate(sublema.ListasMunicipio):
-                                # print(f"DEBUG:         Procesando ListaMunicipio {j}")
-                                lista_desc_raw = lista.Dsc if hasattr(lista, 'Dsc') else "N/A"
-                                votos_lista_total = lista.Tot if hasattr(lista, 'Tot') else 0
-                                votos_hoja_lista_muni = lista.VH if hasattr(lista, 'VH') else 0
-                                
-                                # Buscar NumeroLista (Hoja HN)
-                                numero_hoja_muni = "N/A"
-                                if hasattr(partido, 'Hojas') and votos_hoja_lista_muni > 0:
-                                    hoja_corr_muni = next((h for h in partido.Hojas if hasattr(h, 'Tot') and h.Tot == votos_hoja_lista_muni), None)
-                                    if hoja_corr_muni and hasattr(hoja_corr_muni, 'HN'):
-                                        numero_hoja_muni = hoja_corr_muni.HN
-                                        
-                                # Procesar descripción para extraer candidatos
-                                candidatos_list_muni = []
-                                if lista_desc_raw != "N/A":
-                                    potential_candidates_muni = lista_desc_raw.split('  ')
-                                    candidatos_list_muni = [name.strip() for name in potential_candidates_muni if name.strip()]
-                                
-                                if votos_lista_total > 0:
-                                    # print(f"DEBUG:           Añadiendo lista {numero_hoja_muni} con {votos_lista_total} votos y {len(candidatos_list_muni)} candidatos.")
-                                    muni_data["municipal_council_lists"].append({
-                                        "Partido": nombre_partido,
-                                        "Sublema": sublema_nombre,
-                                        "NumeroLista": numero_hoja_muni, 
-                                        "Candidatos": candidatos_list_muni,
-                                        "Votos": votos_lista_total
-                                    })
-                                else:
-                                    # print(f"DEBUG:           Omitiendo lista {numero_hoja_muni} por tener 0 votos.")
-                                    pass # Añadir pass para bloque else vacío
-                        else:
-                            # print(f"DEBUG:       Sublema {sublema_nombre} NO tiene ListasMunicipio o está vacía.")
-                            pass # Añadir pass para bloque else vacío
-                else:
-                    # print(f"DEBUG:   Partido {nombre_partido} NO tiene Municipio.Sublemas")
-                    pass # Añadir pass para bloque else vacío
-                # --- FIN EXTRACCIÓN LISTAS MUNICIPALES --- 
+                parties_with_seats = list(concejales_por_partido.keys())
+                
+                # Calcular D'Hondt para partidos con escaños
+                for party in parties_with_seats:
+                    seats_for_party = concejales_por_partido.get(party, 0)
+                    if seats_for_party > 0 and party in lists_grouped_by_party:
+                        party_lists = lists_grouped_by_party[party]
+                        lists_with_seats = _calculate_pure_dhondt(party_lists, seats_for_party)
+                        listas_final_muni.extend(lists_with_seats)
+                
+                # Añadir listas de partidos sin escaños
+                parties_in_lists = set(lists_grouped_by_party.keys())
+                parties_without_seats = parties_in_lists - set(parties_with_seats)
+                for party in parties_without_seats:
+                     party_lists = lists_grouped_by_party[party]
+                     for l in party_lists:
+                         l['Concejales_Asignados'] = 0
+                         l['Resto_Dhondt'] = 0.0
+                     listas_final_muni.extend(party_lists)
             
-            # Calcular porcentajes para el municipio
-            if votos_muni_total > 0:
-                for partido_nombre, votos_num in muni_data["votes"].items():
-                    muni_data["vote_percentages"][partido_nombre] = round((votos_num / votos_muni_total) * 100, 1)
-                    
-            dept_data["municipalities"][muni.MD] = muni_data
+            else: 
+                # ... (asignar 0 concejales si no aplica D'Hondt)
+                listas_final_muni = temp_listas_muni # Asegurarse que se asignan los datos base
+
+            # Guardar resultado en la clave correcta para el frontend
+            muni_data["municipal_council_lists"] = listas_final_muni
+            # --- FIN: Extracción y Cálculo D'Hondt para Listas Municipales ---
+
+            # Añadir el municipio procesado al departamento
+            dept_data["municipalities"][muni_data["name"]] = muni_data
             
-        # Agregar departamento al resultado
-        result[depto.DN] = dept_data
+        result[dept_data["name"]] = dept_data
         
     return result
 

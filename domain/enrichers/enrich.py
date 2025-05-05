@@ -70,46 +70,75 @@ def enriquecer_municipio(municipio: Municipio) -> MunicipioEnriquecido:
     Returns:
         MunicipioEnriquecido con campos ganador, ediles y alcalde
     """
-    votos_por_lema = {p.LN: p.Tot for p in municipio.Eleccion if p.Tot > 0}
+    # --- DEBUG INICIO: Verificar votos_por_lema --- 
+    import logging # Asegurarse que logging está importado
+    log_enrich = logging.getLogger("domain.enrichers.enrich") # Usar logger específico
+    log_enrich.info(f"--- Enriching Municipio: {getattr(municipio, 'MD', 'N/A')} ---")
     
-    # Determinar el ganador (lema con más votos)
-    ganador = max(votos_por_lema.items(), key=lambda x: x[1])[0] if votos_por_lema else ""
+    votos_por_lema = {}
+    try:
+        # Intentar construir votos_por_lema con más detalle en caso de error
+        eleccion_data = getattr(municipio, 'Eleccion', [])
+        log_enrich.info(f"Raw Eleccion data type: {type(eleccion_data)}, Items: {len(eleccion_data) if isinstance(eleccion_data, list) else 'N/A'}")
+        if eleccion_data:
+             log_enrich.info(f"First item in Eleccion: {eleccion_data[0]}")
+             votos_por_lema = {
+                p.LN: p.Tot 
+                for p in eleccion_data 
+                if hasattr(p, 'LN') and hasattr(p, 'Tot') and p.Tot > 0
+             }
+             log_enrich.info(f"Calculated votos_por_lema: {votos_por_lema}")
+        else:
+            log_enrich.warning("Attribute 'Eleccion' is empty or missing.")
+            
+    except Exception as e:
+        log_enrich.error(f"Error building votos_por_lema: {e}", exc_info=True)
+        votos_por_lema = {} # Asegurar que está vacío si hubo error
+        
+    log_enrich.info(f"Final votos_por_lema before calculating winner: {votos_por_lema}")
+    # --- DEBUG FIN --- 
     
-    # Calcular distribución de ediles (5 concejales: 3 para ganador + 2 por D'Hondt)
-    ediles = ediles_por_lema(votos_por_lema, total_ediles=5, mayoria_auto=3)
+    # Usar "No disponible" como default
+    ganador = max(votos_por_lema.items(), key=lambda x: x[1])[0] if votos_por_lema else "No disponible"
+    log_enrich.info(f"Determined ganador: {ganador}") # Log del ganador calculado
     
-    # --- CÁLCULO ALCALDE (CORREGIDO) ---
-    alcalde_nombre = "No determinado" # Valor por defecto
+    ediles_por_partido = ediles_por_lema(votos_por_lema, total_ediles=5, mayoria_auto=3)
+    
+    # Usar "No disponible" como default
+    alcalde_nombre = "No disponible" 
     lista_ganadora_votos = -1
 
-    if ganador:
-        # Encontrar el objeto PartidoMunicipio del partido ganador
-        partido_ganador_data = next((p for p in municipio.Eleccion if p.LN == ganador), None)
+    if ganador and ganador != "No disponible": # Solo buscar si hay un ganador válido
+        partido_ganador_data = next((p for p in municipio.Eleccion if hasattr(p, 'LN') and p.LN == ganador), None)
         
         if partido_ganador_data and hasattr(partido_ganador_data, 'Municipio') and \
            hasattr(partido_ganador_data.Municipio, 'Sublemas'):
             
-            # Iterar sobre sublemas y listas del partido ganador para encontrar la más votada
             for sublema in partido_ganador_data.Municipio.Sublemas:
                 if hasattr(sublema, 'ListasMunicipio'):
                     for lista in sublema.ListasMunicipio:
-                        votos_lista = lista.Tot if hasattr(lista, 'Tot') else 0
+                        votos_lista = getattr(lista, 'Tot', 0)
                         if votos_lista > lista_ganadora_votos:
                             lista_ganadora_votos = votos_lista
-                            # La descripción (Dsc) suele contener el nombre del candidato
-                            alcalde_nombre = lista.Dsc if hasattr(lista, 'Dsc') else "No determinado" 
-                            
-    # Si no se pudo determinar o no hubo votos, mantener "No determinado"
+                            # Extraer nombre de Dsc si existe
+                            alcalde_nombre_temp = getattr(lista, 'Dsc', None)
+                            if alcalde_nombre_temp and isinstance(alcalde_nombre_temp, str):
+                                alcalde_nombre = alcalde_nombre_temp # Actualizar solo si se encontró
+                            else: # Si Dsc no existe o no es string, mantener el último válido o "No disponible"
+                                if lista_ganadora_votos <= 0: # Si es la primera vez que falla, poner No disponible
+                                     alcalde_nombre = "No disponible"
+                                # else: mantener el valor anterior si ya había uno
+                                
+    # Asegurarse de que si no se encontró un candidato válido, quede "No disponible"
     if lista_ganadora_votos <= 0:
-        alcalde_nombre = "No determinado"
-    # --- FIN CÁLCULO ALCALDE ---
+        alcalde_nombre = "No disponible"
 
     # Crear el objeto enriquecido
     municipio_enriquecido = MunicipioEnriquecido(
         **municipio.model_dump(), 
         ganador=ganador, 
-        ediles=ediles,
-        mayor=alcalde_nombre # Usar el nombre calculado
+        ediles=ediles_por_partido, 
+        mayor=alcalde_nombre # Ahora usa "No disponible" como default claro
     )
     return municipio_enriquecido
 

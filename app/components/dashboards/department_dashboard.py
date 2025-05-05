@@ -20,6 +20,8 @@ from domain.summary import get_department_summary, get_all_candidates_by_party
 from settings.settings import PATHS
 from settings.theme import PARTY_COLORS, get_party_color
 from app.components.functional.map_generator import create_municipality_map
+# Importar el nuevo dashboard municipal
+from app.components.dashboards.municipal_dashboard import display_municipal_dashboard
 
 def display_department_dashboard(election_data, department_name=None):
     """
@@ -423,6 +425,47 @@ def display_department_dashboard(election_data, department_name=None):
         
     else:
         st.info("No hay datos detallados de listas a la Junta Departamental disponibles.")
+
+    # --- INICIO: SECCIÓN MUNICIPAL ---
+    st.markdown("<hr>", unsafe_allow_html=True)
+    st.header(f"Detalle Municipal en {department_name}")
+
+    # Obtener la lista de municipios del departamento actual
+    dept_data = election_data.get(department_name, {})
+    municipalities = dept_data.get("municipalities", {})
+    municipality_names = sorted(list(municipalities.keys()))
+
+    if not municipality_names:
+        st.info(f"No hay datos municipales disponibles para {department_name}.")
+    else:
+        # Crear selector de municipios
+        options = ["Seleccione un Municipio..."] + municipality_names
+        
+        # Usar una clave única para el selector basada en el departamento
+        selector_key = f"municipality_selector_{department_name.replace(' ', '_')}"
+
+        # Leer el estado actual ANTES de crear el selectbox
+        current_selection = st.session_state.get(selector_key, options[0])
+
+        selected_municipality = st.selectbox(
+            "Ver detalle del Municipio:",
+            options=options,
+            index=options.index(current_selection) if current_selection in options else 0, # Usar estado guardado si existe
+            key=selector_key # Clave única por departamento
+        )
+
+        # Limpiar la selección si se vuelve a "Seleccione..."
+        if selected_municipality == options[0]:
+            # No es necesario hacer nada explícito aquí si solo mostramos debajo
+            pass 
+        
+        # Si se selecciona un municipio válido, mostrar su dashboard
+        if selected_municipality != options[0]:
+            st.markdown("<hr style='border-top: 2px solid #444;'>", unsafe_allow_html=True) # Separador más grueso
+            # Llamar al dashboard municipal
+            display_municipal_dashboard(election_data, department_name, selected_municipality)
+
+    # --- FIN: SECCIÓN MUNICIPAL ---
 
 def display_department_header(dept_summary):
     """
