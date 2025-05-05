@@ -17,3 +17,4 @@ pydeck
 leafmap 
 streamlit-aggrid
 pydantic
+streamlit_echarts
