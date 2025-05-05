@@ -8,7 +8,7 @@ import folium
 import streamlit as st
 
 from settings.settings import PATHS, DEPARTMENT_NAME_MAPPING
-from infrastructure.loaders import load_election_data, load_geo_data
+from infrastructure.loaders import load_election_data
 import shapely.geometry as geometry
 
 # Start clean with only the infrastructure imports needed

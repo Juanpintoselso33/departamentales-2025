@@ -16,7 +16,6 @@ from app.components.ui.tables import display_results_table
 from app.components.ui.containers import section_container, tabs_container, stylable_container
 from app.components.ui.parliament_chart import render_parliament_chart
 
-from infrastructure.loaders import load_geo_data
 from domain.summary import get_department_summary, get_all_candidates_by_party
 from settings.settings import PATHS
 from settings.theme import PARTY_COLORS, get_party_color

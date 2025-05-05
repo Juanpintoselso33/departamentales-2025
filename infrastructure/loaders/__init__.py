@@ -384,46 +384,6 @@ def _process_municipality_data(municipio: Any) -> Dict[str, Any]:
         ]
     }
 
-def load_geo_data(path: Union[str, Path]) -> Optional[gpd.GeoDataFrame]:
-    """
-    Carga datos geográficos desde un shapefile.
-    
-    Args:
-        path: Ruta al shapefile
-        
-    Returns:
-        GeoDataFrame con los datos geográficos o None si hay error
-    """
-    try:
-        if not Path(path).exists():
-            log.error(f"No se encontró el archivo: {path}")
-            return None
-            
-        log.info(f"Cargando datos geográficos desde: {path}")
-        
-        # Añadir caché si estamos en Streamlit
-        if IN_STREAMLIT:
-            try:
-                import streamlit as st
-                @st.cache_data(ttl=3600)
-                def cached_geo_load(p):
-                    return gpd.read_file(p)
-                gdf = cached_geo_load(path)
-            except ImportError:
-                gdf = gpd.read_file(path)
-        else:
-            gdf = gpd.read_file(path)
-            
-        log.info(f"Datos geográficos cargados correctamente: {len(gdf)} registros")
-        return gdf
-        
-    except Exception as e:
-        log.error(f"Error al cargar datos geográficos: {str(e)}")
-        if os.getenv("DEBUG") == "1":
-            import traceback
-            log.debug(traceback.format_exc())
-        return None
-
 def _transform_to_frontend_format(
     summary: ElectionSummaryEnriquecido, 
     stats: Dict[str, Any]
@@ -696,4 +656,4 @@ def _transform_to_frontend_format(
     return result
 
 # Re-exportar las funciones públicas
-__all__ = ['detect_load', 'load_election_data', 'load_geo_data'] 
+__all__ = ['detect_load', 'load_election_data'] 

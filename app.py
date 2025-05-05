@@ -42,14 +42,14 @@ div[data-testid="stHorizontalBlock"] {
 """, unsafe_allow_html=True)
 
 # Importar configuración y servicios
-from settings.settings import PATHS
+from settings import settings, theme
 from utils.styles import apply_base_styles
 
 # Importar servicios de dominio
 from domain.summary import get_national_summary
 
 # Importar infraestructura
-from infrastructure.loaders import load_geo_data
+# from infrastructure.loaders import load_geo_data # Importación eliminada
 from infrastructure.loaders.cache import get_summary as load_election_data
 
 # Importar componentes UI
@@ -92,7 +92,7 @@ def main():
     # Cargar los datos electorales (común para ambas vistas)
     try:
         # Cargar datos electorales utilizando el módulo de infraestructura
-        summary_enriched, stats = load_election_data(PATHS["election_data_2020"])
+        summary_enriched, stats = load_election_data(settings.PATHS["election_data_2020"])
         
         # Transformar al formato esperado por la UI
         from infrastructure.loaders import _transform_to_frontend_format

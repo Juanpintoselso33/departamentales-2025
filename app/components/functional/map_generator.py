@@ -87,6 +87,7 @@ def normalize_department_names(gdf: gpd.GeoDataFrame, name_column: str) -> gpd.G
     
     return normalized_gdf
 
+@st.cache_data(ttl=3600)
 def load_geojson(path: str) -> dict:
     """
     Carga un archivo GeoJSON y lo devuelve como diccionario.
