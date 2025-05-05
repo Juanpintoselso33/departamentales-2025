@@ -64,6 +64,11 @@ Thumbs.db
 *.swp
 *.swo
 
+.repomix/
+repomix-output.txt
+.repomix-output.txt
+.gitignore
+
 # Archivos de caché de Streamlit
 .streamlit/
 

@@ -11,9 +11,8 @@ streamlit-extras
 streamlit-card
 streamlit-toggle-switch
 streamlit-folium
-st-pages
-st-aggrid
 plotly
 streamlit-autorefresh
 pydeck
 leafmap 
+streamlit-aggrid

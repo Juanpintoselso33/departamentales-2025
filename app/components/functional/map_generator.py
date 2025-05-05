@@ -1,6 +1,6 @@
 """
 Componente generador de mapas electorales.
-Crea mapas interactivos con datos electorales usando Leafmap.
+Crea mapas interactivos o estáticos con datos electorales.
 """
 
 import streamlit as st
@@ -12,6 +12,7 @@ import pandas as pd
 import numpy as np
 import json
 import matplotlib as mpl
+import matplotlib.pyplot as plt
 
 from settings.theme import PARTY_COLORS, get_party_color, get_percentage_color
 from settings.settings import DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM, PERCENTAGE_COLORMAP, DEPARTMENT_NAME_MAPPING, MAP_BOUNDS
@@ -111,36 +112,16 @@ def load_geojson(path: str) -> dict:
         return data
 
 def get_winning_party_style(feature: dict, election_data: Dict[str, Any]) -> dict:
-    """Función de estilo para partido ganador."""
-    # Obtener el nombre del departamento desde las propiedades
-    name = feature['properties']['name']
-    original_name = name
-    
-    # Normalizar el nombre para consistencia
-    name = normalize_department_name(name)
-    
-    # Intentar obtener datos con el nombre normalizado
+    """Función de estilo para partido ganador (para Folium)."""
+    name = feature['properties'].get('name', 'Desconocido') # Usar .get()
     party_data = election_data.get(name, {})
-    
-    # Si no se encontraron datos, buscar con el nombre normalizado entre las claves
     if not party_data:
         matching_name = find_matching_name(name, list(election_data.keys()))
         if matching_name:
             party_data = election_data.get(matching_name, {})
-            name = matching_name
-    
-    # Obtener el partido ganador y asegurar que tenga un color válido
     party = party_data.get('winning_party', 'No disponible')
     color = get_party_color(party)
-    
-    return {
-        'fillColor': color,
-        'weight': 2,
-        'opacity': 1,
-        'color': 'white',
-        'dashArray': '3',
-        'fillOpacity': 0.7
-    }
+    return {'fillColor': color, 'weight': 0.5, 'opacity': 1, 'color': 'white', 'fillOpacity': 0.7}
 
 def get_percentage_style(feature: dict, election_data: Dict[str, Any]) -> dict:
     """Función de estilo para porcentaje de votos."""
@@ -157,144 +138,81 @@ def get_percentage_style(feature: dict, election_data: Dict[str, Any]) -> dict:
 def create_department_choropleth(
     geojson_path: str,
     election_data: Dict[str, Any],
-    field: str = "winning_party",
-    show_labels: bool = True,
-    show_legend: bool = True,
+    field: str = "winning_party", # No usado realmente, pero mantenido
     highlight_department: str = None,
     width='100%',
-    height='800px',
-    zoom_start=6.5,
-    min_zoom=7
+    height='100%',
+    zoom_start=6.5, # Se usará si fit_bounds falla
+    min_zoom=7, # Mantenido por si acaso
+    **kwargs
 ) -> folium.Map:
     """
-    Crea un mapa de coropletas a nivel departamental usando Folium.
-    
-    Args:
-        geojson_path (str): Ruta al archivo GeoJSON de departamentos
-        election_data (dict): Datos electorales por departamento
-        field (str): Campo a mostrar (siempre será 'winning_party')
-        show_labels (bool): Si True, muestra etiquetas de departamentos
-        show_legend (bool): Si True, muestra leyenda
-        highlight_department (str): Nombre del departamento a resaltar
-        width (str): Ancho del mapa
-        height (str): Alto del mapa
-        zoom_start (float): Zoom inicial del mapa
-        min_zoom (float): Zoom mínimo del mapa
-        
-    Returns:
-        folium.Map: Mapa de Folium con coropletas
+    Crea un mapa ESTÁTICO de coropletas (sin fondo ni zoom/pan) usando Folium.
+    Intenta ajustar la vista con fit_bounds.
+    Crea un mapa de coropletas departamental usando Folium, permitiendo zoom y desplazamiento.
+    Intenta ajustar la vista inicial con fit_bounds.
     """
-    # Cargar GeoJSON
-    geojson_data = load_geojson(str(geojson_path))
-    
-    # Crear mapa base con opciones restringidas
-    m = folium.Map(
-        location=[-32.8, -56.0],
-        zoom_start=zoom_start,
-        width=width,
-        height=height,
-        control_scale=True,
-        max_zoom=9,
-        min_zoom=min_zoom,
-        zoom_control=True,
-        zoom_delta=0.5,  # Zoom menos sensible
-    )
-    
-    # Agregar fondo de mapa tipo CartoDB Positron
-    folium.TileLayer("CartoDB positron", name="CartoDB.Positron", control=False).add_to(m)
-    
-    # Establecer límites de navegación para no salirse de Uruguay
-    m.fit_bounds([[-34.9, -58.5], [-30.1, -53.2]])
-    
-    # Añadir restricciones de límites al mapa usando Folium
-    bounds_script = folium.Element("""
-    <script>
-        function setMapLimits() {
-            var leafletMaps = Object.values(window).filter(function(item) {
-                return item && item._leaflet_id;
-            });
-            leafletMaps.forEach(function(map) {
-                map.setMinZoom(7);
-                map.setMaxZoom(9);
-                map.setZoom(Math.max(map.getZoom(), 7)); // Forzar zoom mínimo al cargar
-                map.setMaxBounds([
-                    [-30.0, -60.0],
-                    [-35.5, -52.0]
-                ]);
-                map.on('zoomend', function() {
-                    if (map.getZoom() < 7) map.setZoom(7);
-                });
-                map.on('drag', function() {
-                    map.panInsideBounds([
-                        [-30.0, -60.0],
-                        [-35.5, -52.0]
-                    ], { animate: false });
-                });
-            });
-        }
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(setMapLimits, 1000); // Esperar a que el mapa esté listo
-        });
-    </script>
-    """)
-    m.get_root().html.add_child(bounds_script)
-    
-    # Función de estilo modificada para resaltar el departamento seleccionado
-    def style_function(feature):
-        base_style = get_winning_party_style(feature, election_data)
-        if highlight_department:
-            name = feature['properties']['name']
-            normalized_name = normalize_department_name(name)
-            if normalized_name == highlight_department or name == highlight_department:
-                base_style['fillOpacity'] = 0.9
-                base_style['weight'] = 4
-                base_style['color'] = '#000000'
-                base_style['dashArray'] = 'none'
-            else:
-                base_style['fillOpacity'] = 0.5
-        return base_style
-    
-    # Añadir leyenda si se solicita
-    if show_legend:
-        unique_parties = set()
-        for data in election_data.values():
-            party = data.get('winning_party', 'No disponible')
-            if party:
-                unique_parties.add(party)
-        sorted_parties = sorted(list(unique_parties))
-        legend_dict = {}
-        for party in sorted_parties:
-            color = get_party_color(party)
-            legend_dict[party] = color
-        # Agregar leyenda custom (puedes implementar una leyenda HTML si lo deseas)
-        # Aquí solo se deja el diccionario preparado
-    
-    tooltip = folium.GeoJsonTooltip(
-        fields=["display_name"],
-        aliases=[""],
-        style=("background-color: rgba(50,50,50,0.8); color: white; font-family: Arial, sans-serif; "
-               "font-size: 12px; padding: 5px; border-radius: 3px; box-shadow: 0 0 5px rgba(0,0,0,0.5);")
-    )
-    
-    folium_layer = folium.GeoJson(
-        data=geojson_data,
-        style_function=style_function,
-        highlight_function=lambda x: {"fillOpacity": 0.9, "weight": 4},
-        tooltip=tooltip
-    )
-    m.add_child(folium_layer)
-    
-    # Añadir etiquetas si se solicita
-    if show_labels:
-        gdf = gpd.read_file(str(geojson_path))
-        for idx, row in gdf.iterrows():
-            centroid = row.geometry.centroid
-            folium.Marker(
-                location=[centroid.y, centroid.x],
-                icon=folium.DivIcon(html=f'<div style="font-size:12px;font-weight:bold;color:#222;text-shadow:1px 1px 2px #fff;">{row["name"]}</div>')
-            ).add_to(m)
-    
-    return m
+    print("[MAPGEN DEBUG] Usando versión Folium de create_department_choropleth.")
+    try:
+        geojson_data = load_geojson(str(geojson_path))
+
+        m = folium.Map(
+            location=[-32.8, -56.0], # Ubicación inicial por si fit_bounds falla
+            zoom_start=zoom_start,
+            # tiles=None, # Quitado para usar capa base
+            # bgcolor='white', # Quitado para usar capa base
+            width=width,
+            height=height,
+            control_scale=True, # Habilitado para contexto
+            min_zoom=min_zoom,
+            zoom_control=True, # Habilitado
+            scrollWheelZoom=True, # Habilitado
+            dragging=True, # Habilitado
+            doubleClickZoom=True, # Habilitado
+            attribution_control=True # Habilitado
+        )
+
+        # Añadir capa base de mosaicos
+        folium.TileLayer("CartoDB positron", name="Mapa Base", control=False).add_to(m)
+
+        def style_function(feature):
+            base_style = get_winning_party_style(feature, election_data)
+            # Asegurarse que feature['properties'] existe
+            props = feature.get('properties', {})
+            name = props.get('name', '') # Acceso seguro
+            if highlight_department and name == highlight_department:
+                 base_style['fillOpacity'] = 0.9
+                 base_style['weight'] = 2
+                 base_style['color'] = '#000000' # Borde negro para resaltar
+            return base_style
+
+        geojson_layer = folium.GeoJson(
+            geojson_data,
+            style_function=style_function,
+            name='Departamentos'
+        ).add_to(m)
+
+        # Ajustar la vista a los límites de la capa GeoJSON añadida
+        try:
+             print("[MAPGEN DEBUG] Intentando fit_bounds...")
+             m.fit_bounds(geojson_layer.get_bounds())
+             print("[MAPGEN DEBUG] fit_bounds completado.")
+        except Exception as e_bounds:
+             print(f"[MAPGEN WARNING] fit_bounds falló: {e_bounds}. Usando location/zoom inicial.")
+             # Si fit_bounds falla, confiaremos en location/zoom_start
+
+        return m
+
+    except Exception as e:
+        print(f"[MAPGEN ERROR] Error FATAL generando mapa Folium: {e}")
+        st.error(f"Error al generar mapa Folium: {e}")
+        # Devolver un mapa vacío o de error si falla críticamente
+        m = folium.Map(location=[-32.8, -56.0], zoom_start=6, tiles=None, bgcolor='lightgrey')
+        folium.Marker(
+            location=[-32.8, -56.0],
+            popup=f"Error al generar mapa: {e}"
+        ).add_to(m)
+        return m
 
 def get_municipality_style(feature: dict, muni_data: Dict[str, Any]) -> dict:
     """Función de estilo para municipios."""
@@ -365,39 +283,6 @@ def create_municipality_map(
     
     # Establecer límites de navegación para no salirse de Uruguay
     m.fit_bounds(MAP_BOUNDS)
-    
-    # Añadir restricciones de límites al mapa usando Folium
-    bounds_script = folium.Element("""
-    <script>
-        function setMapLimits() {
-            var leafletMaps = Object.values(window).filter(function(item) {
-                return item && item._leaflet_id;
-            });
-            leafletMaps.forEach(function(map) {
-                map.setMinZoom(7);
-                map.setMaxZoom(9);
-                map.setZoom(Math.max(map.getZoom(), 7)); // Forzar zoom mínimo al cargar
-                map.setMaxBounds([
-                    [-30.0, -60.0],
-                    [-35.5, -52.0]
-                ]);
-                map.on('zoomend', function() {
-                    if (map.getZoom() < 7) map.setZoom(7);
-                });
-                map.on('drag', function() {
-                    map.panInsideBounds([
-                        [-30.0, -60.0],
-                        [-35.5, -52.0]
-                    ], { animate: false });
-                });
-            });
-        }
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(setMapLimits, 1000); // Esperar a que el mapa esté listo
-        });
-    </script>
-    """)
-    m.get_root().html.add_child(bounds_script)
     
     # Leer datos del departamento
     dept_data = election_data.get(department_name, {})

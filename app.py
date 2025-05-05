@@ -77,11 +77,6 @@ def main():
     if 'selected_department' not in st.session_state:
         st.session_state.selected_department = None
     
-    # Función para volver a la vista nacional
-    def back_to_national():
-        st.session_state.selected_department = None
-        st.rerun()
-    
     # Configurar filtros laterales comunes
     filters_config = [
         {
@@ -98,7 +93,7 @@ def main():
     view_type = "department" if st.session_state.selected_department else "national"
     
     if view_type == "department":
-        header("Detalle Departamental", subtitle="Elecciones Departamentales 2020")
+        header(f"Detalle: {st.session_state.selected_department}", subtitle="Elecciones Departamentales 2020")
     else:
         header("Resumen Nacional", subtitle="Elecciones Departamentales 2020")
     
@@ -130,6 +125,62 @@ def main():
         st.divider() # Separador visual después del debug
         # --- FIN DEBUG ---
         
+        # Crear opciones para el selector principal (movido más abajo)
+        # department_options = ["NACIONAL"] + sorted(list(election_data.keys()))
+
+        # 1. SECCIÓN DEL MAPA (siempre visible)
+        display_map_dashboard(election_data)
+        
+        # Separador visual
+        st.markdown('<hr>', unsafe_allow_html=True)
+
+        # --- INICIO: Selector de vista NACIONAL/Departamento ---
+        st.markdown("<br>", unsafe_allow_html=True) # Espacio adicional arriba
+        st.markdown("""
+        <div style='text-align: center;'>
+            <strong>Seleccione 'NACIONAL' para ver el resumen del país o elija un departamento para ver el detalle:</strong>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True) # Espacio adicional abajo del texto
+
+        # Crear opciones para el selector principal (necesario para el debug y el selector)
+        department_options = ["NACIONAL"] + sorted(list(election_data.keys()))
+        
+        # Determinar el índice inicial basado en el estado de sesión
+        current_selection_index = 0 # Default a NACIONAL
+        if st.session_state.selected_department:
+            try:
+                current_selection_index = department_options.index(st.session_state.selected_department)
+            except ValueError:
+                st.session_state.selected_department = None
+                current_selection_index = 0
+
+        # Crear columnas para centrar el selector
+        col1, col_selector, col3 = st.columns([1, 2, 1])
+
+        with col_selector:
+            # Selector centralizado para Nacional/Departamento
+            selected_view = st.selectbox(
+                "Seleccione Vista:", # Label usada como placeholder interno
+                options=department_options,
+                index=current_selection_index,
+                key="main_view_selector",
+                label_visibility="collapsed" # Ocultar label formal
+            )
+
+            # Actualizar el estado de sesión según la selección
+            if selected_view == "NACIONAL":
+                if st.session_state.selected_department is not None:
+                    st.session_state.selected_department = None
+                    st.rerun()
+            else:
+                if st.session_state.selected_department != selected_view:
+                    st.session_state.selected_department = selected_view
+                    st.rerun()
+
+        st.markdown("<br>", unsafe_allow_html=True) # Añadir espacio después del selector
+        # --- FIN: Selector de vista ---
+
         # Configurar auto-refresh (activado solo en modo elecciones)
         if st.sidebar.checkbox("Habilitar refresco automático", value=False, key="enable_autorefresh"):
             refresh_interval = st.sidebar.slider(
@@ -164,22 +215,12 @@ def main():
                 st.session_state.selected_department = None
                 st.rerun()
         
-        # 1. SECCIÓN DEL MAPA (siempre visible)
-        display_map_dashboard(election_data)
-        
-        # Separador visual
-        st.markdown('<hr>', unsafe_allow_html=True)
-        
         # 2. CONTENIDO CONDICIONAL: Nacional o Departamental
         dashboard_container = st.container()
         
         with dashboard_container:
-            # Mostrar el dashboard correspondiente según la vista
+            # Mostrar el dashboard correspondiente según la vista (ahora controlado por el selectbox)
             if view_type == "department" and department_to_show:
-                # Mostrar botón para volver a la vista nacional
-                if st.button("← Volver a Resumen Nacional", on_click=back_to_national):
-                    pass
-                
                 # Mostrar dashboard departamental
                 display_department_dashboard(election_data, department_to_show)
             elif view_type == "national":

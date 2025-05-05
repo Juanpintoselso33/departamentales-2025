@@ -23,14 +23,6 @@ def display_national_dashboard(election_data, summary):
         st.error("No hay datos disponibles para mostrar")
         return
     
-    # Switch para alternar entre nacional y departamental (provisorio)
-    mostrar_departamental = st.checkbox("Mostrar dashboard departamental", value=False)
-    if mostrar_departamental:
-        from app.components.dashboards.department_dashboard import display_department_dashboard
-        display_department_dashboard(election_data)
-        return
-    # Mostrar el dashboard nacional como siempre
-    
     # Mostrar el contenido directamente (sin pestañas)
     display_party_results(summary, election_data)
     
