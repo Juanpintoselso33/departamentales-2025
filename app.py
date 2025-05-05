@@ -41,13 +41,6 @@ div[data-testid="stHorizontalBlock"] {
 </style>
 """, unsafe_allow_html=True)
 
-# Configurar las páginas de la aplicación
-pages = [
-    Page("app.py", "🏠 Resumen Nacional", icon="🏠"),
-    # Nota: La página de departamentos ahora está integrada en la página principal
-    Page("app/pages/comparison.py", "📊 Comparación", icon="📊"),
-]
-
 # Importar configuración y servicios
 from settings.settings import PATHS
 from utils.styles import apply_base_styles
