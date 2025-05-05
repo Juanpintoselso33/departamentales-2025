@@ -1,5 +1,4 @@
 import streamlit as st
-from st_pages import Page, Section, add_page_title
 from streamlit_autorefresh import st_autorefresh
 
 # Configuración de la página - debe ser lo primero que se ejecuta
