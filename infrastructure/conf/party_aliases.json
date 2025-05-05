@@ -19,9 +19,19 @@
     "ASAMBLEA POPULAR": "Asamblea Popular",
     "PARTIDO ASAMBLEA POPULAR": "Asamblea Popular",
     "AP": "Asamblea Popular",
+    "PARTIDO UNIDAD POPULAR": "Unidad Popular",
+    "UP": "Unidad Popular",
     "PARTIDO DIGITAL": "Partido Digital",
     "PARTIDO DE LA GENTE": "Partido de la Gente",
     "PDG": "Partido de la Gente",
     "PARTIDO VERDE": "Partido Verde",
-    "PV": "Partido Verde"
+    "PV": "Partido Verde",
+    "PARTIDO COALICION REPUBLICA": "Coalicion Republica",
+    "PARTIDO DE LA CONCERTACION": "Concertacion",
+    "PARTIDO IDENTIDAD SOBERANA": "Identidad Soberana",
+    "IS": "Identidad Soberana",
+    "PARTIDO CONSTITUCIONAL AMBIENTALISTA": "Partido Constitucional Ambientalista",
+    "PCA": "Partido Constitucional Ambientalista",
+    "PARTIDO AVANZAR REPUBLICANO": "Avanzar Republicano",
+    "PAR": "Avanzar Republicano"
 }
