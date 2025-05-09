@@ -81,7 +81,7 @@ def main():
             'type': 'selectbox',
             'key': 'election_year',
             'label': 'Año Electoral',
-            'options': ['2015', '2020'],
+            'options': ['2015', '2020', '2025'],
             'default_index': 1,
             'add_separator': True
         }
@@ -132,17 +132,45 @@ def main():
     # Cargar los datos electorales (común para ambas vistas)
     try:
         # --- Carga de datos dinámica por año ---
-        selected_year = filter_values.get('election_year', '2020') # Usar 2020 como fallback
-        data_key = f"election_data_{selected_year}"
-        if data_key not in settings.PATHS:
-            st.error(f"Error: No se encontró la configuración de ruta para el año {selected_year} en settings.py.")
-            st.stop()
-            
-        file_path_to_load = settings.PATHS[data_key]
+        selected_year = filter_values.get('election_year', '2025') # Default a 2025
         
-        # Cargar datos electorales utilizando el módulo de infraestructura con la ruta dinámica
-        # El objeto devuelto por load_election_data AHORA incluye el enriquecimiento municipal
-        summary_enriched, stats = load_election_data(file_path_to_load)
+        summary_enriched = None
+        stats = None
+        
+        # Decidir cómo cargar según el año
+        if selected_year == '2025':
+            source_key = 'API_URL_2025'
+            source_type = 'api'
+            if source_key not in settings.PATHS:
+                st.error(f"Error: No se encontró la configuración '{source_key}' para el año {selected_year} en settings.py.")
+                st.stop()
+            source_location = settings.PATHS[source_key]
+            print(f"Cargando datos para {selected_year} desde API: {source_location}")
+            # Llamar con tipo 'api' y la URL
+            result = load_election_data(source_type=source_type, source_location=source_location)
+
+        elif selected_year in ['2020', '2015']:
+            source_key = f"election_data_{selected_year}"
+            source_type = 'json'
+            if source_key not in settings.PATHS:
+                st.error(f"Error: No se encontró la configuración '{source_key}' para el año {selected_year} en settings.py.")
+                st.stop()
+            source_location = settings.PATHS[source_key]
+            print(f"Cargando datos para {selected_year} desde JSON: {source_location}")
+            # Llamar con tipo 'json' y la ruta
+            result = load_election_data(source_type=source_type, source_location=source_location)
+            
+        else:
+            st.error(f"Año electoral no soportado: {selected_year}")
+            st.stop()
+        
+        # Desempaquetar resultado si no es None
+        if result:
+            summary_enriched, stats = result
+        else:
+             # El error ya se mostró en las funciones de carga o pipeline
+             st.error(f"Fallo al cargar o procesar los datos para {selected_year}.")
+             st.stop()
         # --- Fin carga dinámica ---
         
         # 1. Enriquecer con cálculo de concejales por lista D'Hondt
@@ -153,10 +181,11 @@ def main():
         from infrastructure.loaders import _transform_to_frontend_format
         election_data = _transform_to_frontend_format(summary_enriched, stats)
         
-        # Verificar que los datos se cargaron correctamente
+        # Verificar que los datos se cargaron y transformaron correctamente
         if not election_data:
-            st.error("No se pudieron cargar los datos electorales. El archivo existe pero no contiene datos en el formato esperado.")
-            st.info("Verifique que el archivo JSON contiene la estructura correcta con lista de departamentos o una clave 'Departamentos' con la lista.")
+            # Mejorar mensaje de error post-transformación
+            st.error("No se pudieron transformar los datos electorales al formato esperado por la UI.")
+            st.info("Verifique la salida del pipeline de procesamiento y la función _transform_to_frontend_format.")
             return
         
         # 3. Obtener resumen nacional para la vista principal (después de enriquecer)

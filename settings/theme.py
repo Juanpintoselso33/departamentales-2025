@@ -22,7 +22,7 @@ PARTY_COLORS = {
     "Partido Ecologista Radical Intransigente": "#0C5C02", # Verde oscuro
     "Partido Verde Animalista": "#6B946BFF", # Verde
     "Concertacion": "#FFC0CB", # Rosado
-    "Coalicion Republica": "#FFC0CB", # Rosado
+    "Coalicion Republicana": "#FFC0CB", # Rosado
     "Unidad Popular": "#5E100CFF", # Rojo oscuro
     "Partido Digital": "#FFA500", # Naranja
     "Partido Constitucional Ambientalista": "#EEFFC0FF", # Verde claro
