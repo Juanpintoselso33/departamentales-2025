@@ -14,14 +14,17 @@ ELECTION_YEAR = os.environ.get("ELECTION_YEAR", "2020")
 # Directorio de datos (configurable por variable de entorno)
 DATA_DIR = Path(os.environ.get("DATA_DIR", BASE_DIR / "data"))
 
+# URL del proxy para la API 2025 (puede ser local o en la nube)
+API_PROXY_2025 = os.environ.get("API_PROXY_2025")
+
 # Rutas de archivos
 PATHS = {
     "departments_geojson": DATA_DIR / "shapefiles/uruguay_deptal/departments.geojson",
     "municipalities_geojson": DATA_DIR / "shapefiles/uruguay_municipios/municipalities.geojson",
     "election_data_2020": DATA_DIR / "election_data/2020/results_2020.json",
     "election_data_2015": DATA_DIR / "election_data/2015/results_2015.json",
-    # URL API 2025 (usando la de 2020 como ejemplo funcional por ahora)
-    "API_URL_2025": "https://eleccionesdepartamentales2025.corteelectoral.gub.uy/JSON/ResumenGeneral_P_DPTOS.json?1746811418963", 
+    # URL API 2025 (usa proxy si está definido, si no la original)
+    "API_URL_2025": API_PROXY_2025 or "https://eleccionesdepartamentales2025.corteelectoral.gub.uy/JSON/ResumenGeneral_P_DPTOS.json?1746811418963", 
 }
 
 # Mapeo de nombres de departamentos (para normalización)

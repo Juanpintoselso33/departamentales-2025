@@ -1,6 +1,9 @@
 import streamlit as st
 from streamlit_autorefresh import st_autorefresh
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Configuración de la página - debe ser lo primero que se ejecuta
 st.set_page_config(
     page_title="Elecciones Departamentales Uruguay 2020",

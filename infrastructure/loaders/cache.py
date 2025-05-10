@@ -39,9 +39,34 @@ def get_summary(source_type: str, source_location: Union[str, Path]) -> Optional
         print(f"Cache miss o TTL expirado para API: {source_location}. Llamando a api_loader.")
         # Carga desde API (usará su propia caché st.cache_data con TTL)
         raw_data = load_election_data_from_api(str(source_location))
-        if not raw_data:
+        if raw_data:
+            # --- GUARDAR BACKUP LOCAL SI ES 2025 ---
+            import json
+            import os
+            from datetime import datetime
+            # Detectar si es 2025 por la URL o por la variable
+            if '2025' in str(source_location):
+                backup_path = Path(__file__).parent.parent.parent / 'data' / 'election_data' / '2025' / 'results_2025.json'
+                backup_path.parent.mkdir(parents=True, exist_ok=True)
+                try:
+                    with open(backup_path, 'w', encoding='utf-8') as f:
+                        json.dump(raw_data, f, ensure_ascii=False, indent=2)
+                    print(f"Backup de datos 2025 guardado en {backup_path}")
+                except Exception as e:
+                    print(f"Error al guardar backup local de datos 2025: {e}")
+        else:
             print(f"Fallo al cargar datos desde API: {source_location}")
-            return None # Error ya mostrado por api_loader
+            # --- FALLBACK: Intentar cargar desde backup local si es 2025 ---
+            if '2025' in str(source_location):
+                backup_path = Path(__file__).parent.parent.parent / 'data' / 'election_data' / '2025' / 'results_2025.json'
+                if backup_path.exists():
+                    print(f"Cargando datos de backup local: {backup_path}")
+                    import json
+                    with open(backup_path, 'r', encoding='utf-8') as f:
+                        raw_data = json.load(f)
+                else:
+                    print(f"No se encontró backup local de datos 2025 en {backup_path}")
+                    return None
             
     elif source_type == 'json':
         print(f"Cache miss para JSON: {source_location}. Procediendo a cargar y procesar.")
