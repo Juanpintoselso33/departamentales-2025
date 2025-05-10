@@ -20,6 +20,7 @@ PARTY_COLORS = {
     "Partido de la Gente": "#58E75F", # Verde claro
     "Asamblea Popular": "#5e100cff", # Rojo oscuro
     "Partido Ecologista Radical Intransigente": "#0C5C02", # Verde oscuro
+    "PERI": "#0C5C02", # Verde oscuro
     "Partido Verde Animalista": "#6B946BFF", # Verde
     "Concertacion": "#FFC0CB", # Rosado
     "Coalicion Republicana": "#FFC0CB", # Rosado
