@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_autorefresh import st_autorefresh
 import datetime
+from pathlib import Path
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -143,34 +144,44 @@ def main():
         
         # Decidir cómo cargar según el año
         if selected_year == '2025':
-            source_key = 'API_URL_2025'
-            source_type = 'api'
-            if source_key not in settings.PATHS:
-                st.error(f"Error: No se encontró la configuración '{source_key}' para el año {selected_year} en settings.py.")
-                st.stop()
-            source_location = settings.PATHS[source_key]
-            print(f"Cargando datos en tiempo real para {selected_year} desde API: {source_location}")
+            # Definir la ruta del archivo JSON local de 2025
+            local_json_path = Path("data/election_data/2025/results_2025.json")
             
-            # MODIFICACIÓN: Forzar refresco de caché para datos 2025
-            # Invalidar cualquier caché de Streamlit relacionada con la carga de datos de 2025
-            if 'last_data_refresh' not in st.session_state:
-                st.session_state['last_data_refresh'] = 0
-            
-            # Generar un timestamp único para evitar caché
-            current_timestamp = int(datetime.datetime.now().timestamp())
-            if current_timestamp - st.session_state['last_data_refresh'] > 5:  # Mínimo 5 segundos entre recargas
-                st.session_state['last_data_refresh'] = current_timestamp
+            # Verificar si tenemos datos locales recientes
+            if local_json_path.exists():
+                print(f"Usando datos locales desde: {local_json_path}")
+                # Cargar desde JSON local
+                result = load_election_data(source_type='json', source_location=str(local_json_path))
                 
-                # Agregamos un parámetro random para evitar que Streamlit use caché
-                api_url_with_nocache = f"{source_location}?nocache={current_timestamp}"
-                print(f"URL con parámetro anti-caché: {api_url_with_nocache}")
-                
-                # Llamar con tipo 'api' y la URL con parámetro nocache
-                result = load_election_data(source_type=source_type, source_location=api_url_with_nocache)
+                if not result:
+                    st.error("Error al cargar los datos del escrutinio.")
+                    st.stop()
             else:
-                # Si han pasado menos de 5 segundos desde la última recarga
-                print(f"Throttling recarga de datos, espere unos segundos...")
-                result = load_election_data(source_type=source_type, source_location=source_location)
+                # Si no hay datos locales, intentar API como último recurso
+                source_key = 'API_URL_2025'
+                source_type = 'api'
+                if source_key not in settings.PATHS:
+                    st.error(f"Error: No se encontró la configuración '{source_key}' para el año {selected_year} en settings.py.")
+                    st.stop()
+                
+                try:
+                    source_location = settings.PATHS[source_key]
+                    print(f"No hay datos locales. Intentando API 2025: {source_location}")
+                    
+                    # Generar un timestamp único para evitar caché
+                    current_timestamp = int(datetime.datetime.now().timestamp())
+                    api_url_with_nocache = f"{source_location}?nocache={current_timestamp}"
+                    
+                    # Intentar cargar desde la API
+                    result = load_election_data(source_type=source_type, source_location=api_url_with_nocache)
+                    
+                    if not result:
+                        st.error("No se pudieron obtener datos del escrutinio.")
+                        st.stop()
+                        
+                except Exception as e:
+                    st.error("No hay datos disponibles del escrutinio.")
+                    st.stop()
 
         elif selected_year in ['2020', '2015']:
             source_key = f"election_data_{selected_year}"

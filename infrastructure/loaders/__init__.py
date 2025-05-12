@@ -71,7 +71,9 @@ def detect_load(path: Union[str, Path]) -> ElectionSummary:
 def load_election_data(source_type: str, source_location: Union[str, Path]) -> Optional[Tuple[ElectionSummaryEnriquecido, Dict[str, Any]]]:
     """
     Carga los datos electorales desde una fuente especificada (API o JSON).
-    Para datos de 2025 desde API, siempre obtiene datos frescos sin usar caché.
+    Para datos de 2025:
+    1. Si source_type es 'json', carga directamente desde archivo local
+    2. Si source_type es 'api', intenta cargar desde la API y guarda backup si es exitoso
     
     Args:
         source_type (str): Tipo de fuente ('json' o 'api')
@@ -80,43 +82,49 @@ def load_election_data(source_type: str, source_location: Union[str, Path]) -> O
     Returns:
         Tuple opcional con ElectionSummaryEnriquecido y estadísticas, o None si hay error
     """
-    # FORZAR RECARGA PARA API 2025
-    # Si es la API de 2025, obligamos que siempre obtenga datos frescos
-    if source_type == 'api' and (isinstance(source_location, str) and '2025' in source_location):
-        from domain.pipeline import build_dataset
-        print("IMPORTANTE: Obteniendo datos sin caché para API 2025")
-        # Cargar datos crudos sin caché
-        raw_data = load_election_data_from_api(str(source_location))
-        if raw_data:
-            try:
-                # Procesar los datos con el pipeline
-                result = build_dataset(raw_data=raw_data)
-                return result
-            except Exception as e:
-                print(f"Error al procesar datos sin caché de API 2025: {e}")
-                return None
-        else:
-            # Intentar con backup local como último recurso
-            try:
-                backup_path = Path(__file__).parent.parent.parent / 'data' / 'election_data' / '2025' / 'results_2025.json'
-                if backup_path.exists():
-                    print(f"Fallback: Cargando datos de backup local: {backup_path}")
-                    with open(backup_path, 'r', encoding='utf-8') as f:
-                        import json
-                        raw_data = json.load(f)
+    from domain.pipeline import build_dataset
+    
+    # Si es JSON local, cargar directamente sin mensajes de error
+    if source_type == 'json':
+        try:
+            result = build_dataset(path=source_location)
+            return result
+        except Exception as e:
+            print(f"Error al cargar datos JSON desde {source_location}: {e}")
+            return None
+            
+    # Si es API 2025, intentar cargar silenciosamente
+    elif source_type == 'api' and '2025' in str(source_location):
+        try:
+            raw_data = load_election_data_from_api(str(source_location))
+            
+            if raw_data:
+                try:
                     result = build_dataset(raw_data=raw_data)
-                    return result
-            except Exception as e:
-                print(f"Error en fallback a backup local: {e}")
+                    if result:
+                        # Guardar backup silenciosamente
+                        try:
+                            backup_path = Path("data/election_data/2025/results_2025.json")
+                            backup_path.parent.mkdir(parents=True, exist_ok=True)
+                            import json
+                            with open(backup_path, 'w', encoding='utf-8') as f:
+                                json.dump(raw_data, f, ensure_ascii=False, indent=2)
+                        except Exception:
+                            pass  # Ignorar errores al guardar backup
+                        return result
+                except Exception:
+                    return None
+            return None
+                
+        except Exception:
             return None
     
-    # Para el resto de fuentes, usar la caché normal
-    if IN_STREAMLIT:
-        result = get_streamlit_cached_summary(source_type, source_location)
+    # Para otros casos (años anteriores)
     else:
-        result = get_summary(source_type, source_location)
-    
-    return result
+        if IN_STREAMLIT:
+            return get_streamlit_cached_summary(source_type, source_location)
+        else:
+            return get_summary(source_type, source_location)
 
 def _process_department_data(dept_data: Dict[str, Any]) -> Dict[str, Any]:
     """
