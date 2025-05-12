@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_autorefresh import st_autorefresh
+import datetime
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -148,9 +149,28 @@ def main():
                 st.error(f"Error: No se encontró la configuración '{source_key}' para el año {selected_year} en settings.py.")
                 st.stop()
             source_location = settings.PATHS[source_key]
-            print(f"Cargando datos para {selected_year} desde API: {source_location}")
-            # Llamar con tipo 'api' y la URL
-            result = load_election_data(source_type=source_type, source_location=source_location)
+            print(f"Cargando datos en tiempo real para {selected_year} desde API: {source_location}")
+            
+            # MODIFICACIÓN: Forzar refresco de caché para datos 2025
+            # Invalidar cualquier caché de Streamlit relacionada con la carga de datos de 2025
+            if 'last_data_refresh' not in st.session_state:
+                st.session_state['last_data_refresh'] = 0
+            
+            # Generar un timestamp único para evitar caché
+            current_timestamp = int(datetime.datetime.now().timestamp())
+            if current_timestamp - st.session_state['last_data_refresh'] > 5:  # Mínimo 5 segundos entre recargas
+                st.session_state['last_data_refresh'] = current_timestamp
+                
+                # Agregamos un parámetro random para evitar que Streamlit use caché
+                api_url_with_nocache = f"{source_location}?nocache={current_timestamp}"
+                print(f"URL con parámetro anti-caché: {api_url_with_nocache}")
+                
+                # Llamar con tipo 'api' y la URL con parámetro nocache
+                result = load_election_data(source_type=source_type, source_location=api_url_with_nocache)
+            else:
+                # Si han pasado menos de 5 segundos desde la última recarga
+                print(f"Throttling recarga de datos, espere unos segundos...")
+                result = load_election_data(source_type=source_type, source_location=source_location)
 
         elif selected_year in ['2020', '2015']:
             source_key = f"election_data_{selected_year}"

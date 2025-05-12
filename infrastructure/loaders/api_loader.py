@@ -3,11 +3,12 @@ import requests
 import datetime
 from typing import Dict, Any, Optional, List
 
-# Cache de 10 minutos para la API
-@st.cache_data(ttl=600)
+# Eliminar el decorador de caché para que siempre se haga la solicitud a la API
+# @st.cache_data(ttl=600)
 def load_election_data_from_api(api_url: str) -> Optional[List[Dict[str, Any]]]:
     """
-    Carga los datos electorales crudos desde la API especificada, con caché de 10 minutos.
+    Carga los datos electorales crudos desde la API especificada, SIN UTILIZAR CACHÉ.
+    Esta función siempre hará una nueva solicitud para obtener datos actualizados.
 
     Args:
         api_url (str): La URL completa de la API REST que devuelve el JSON.
@@ -16,7 +17,7 @@ def load_election_data_from_api(api_url: str) -> Optional[List[Dict[str, Any]]]:
         Lista de diccionarios con los datos crudos o None si hay error.
     """
     try:
-        print(f"Intentando cargar datos desde API: {api_url}")
+        print(f"Cargando datos en tiempo real desde API: {api_url}")
         response = requests.get(api_url, timeout=30) # Timeout de 30 segundos
         response.raise_for_status() # Lanza HTTPError para respuestas 4xx/5xx
         # --- DEBUG: Loguear la respuesta cruda ---

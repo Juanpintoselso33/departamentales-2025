@@ -19,7 +19,7 @@ _CACHE_SIZE = 8 # Aumentar caché para soportar múltiples fuentes
 def get_summary(source_type: str, source_location: Union[str, Path]) -> Optional[Tuple[ElectionSummaryEnriquecido, Dict[str, Any]]]:
     """
     Carga (desde archivo o API), mapea, normaliza y enriquece datos electorales,
-    cacheando el resultado usando LRU cache.
+    cacheando el resultado usando LRU cache EXCEPTO para datos de API 2025.
     
     Args:
         source_type (str): Tipo de fuente ('json' o 'api').
@@ -33,11 +33,18 @@ def get_summary(source_type: str, source_location: Union[str, Path]) -> Optional
     """
     from domain.pipeline import build_dataset # Asumiendo que build_dataset puede manejar datos crudos o path
     
+    # MODIFICACIÓN: Forzar una nueva ejecución del lru_cache para API 2025
+    # Esto hará que siempre se obtengan datos frescos
+    if source_type == 'api' and '2025' in str(source_location):
+        # Invalidar el lru_cache para siempre obtener datos frescos de 2025
+        get_summary.cache_clear()
+        print(f"Cache invalidado para API 2025: {source_location}")
+    
     raw_data: Optional[List[Dict[str, Any]]] = None
     
     if source_type == 'api':
-        print(f"Cache miss o TTL expirado para API: {source_location}. Llamando a api_loader.")
-        # Carga desde API (usará su propia caché st.cache_data con TTL)
+        print(f"Cargando datos en tiempo real para API: {source_location}")
+        # Carga desde API (ya no usa su propia caché st.cache_data)
         raw_data = load_election_data_from_api(str(source_location))
         if raw_data:
             # --- GUARDAR BACKUP LOCAL SI ES 2025 ---
@@ -114,66 +121,54 @@ def get_summary(source_type: str, source_location: Union[str, Path]) -> Optional
 # --- La versión de Streamlit se mantiene igual por ahora --- 
 # (Podría adaptarse de forma similar si se usa en otro lugar)
 # Versión específica para Streamlit
-def get_streamlit_cached_summary(path: Union[str, Path]) -> Tuple[ElectionSummaryEnriquecido, Dict[str, Any]]:
+def get_streamlit_cached_summary(source_type: str, source_location: Union[str, Path]) -> Optional[Tuple[ElectionSummaryEnriquecido, Dict[str, Any]]]:
     """
-    Versión específica para Streamlit que utiliza st.cache_data.
-    Requiere que Streamlit esté instalado.
+    Versión específica para Streamlit que utiliza st.cache_data, excepto para datos de API 2025
+    que siempre se cargan frescos sin usar caché.
     
     Args:
-        path: Ruta al archivo JSON
+        source_type (str): Tipo de fuente ('json' o 'api')
+        source_location (Union[str, Path]): Ruta al archivo JSON o URL de la API
         
     Returns:
-        Tuple con summary enriquecido y estadísticas
+        Tuple con summary enriquecido y estadísticas, o None si hay error
     """
     try:
         import streamlit as st
         
-        # NOTA: Esta caché no distingue fuente API/JSON y usa TTL fijo
-        @st.cache_data(ttl=5*60)  # 5 minutos de TTL
-        def _cached_load(p):
+        # CORREGIR: Modificando para evitar caché en datos 2025
+        # Si es la API 2025, no usar caché
+        if source_type == 'api' and (isinstance(source_location, str) and '2025' in str(source_location)):
+            # Cargar directamente sin caché
+            print("Cargando datos 2025 sin caché de Streamlit")
             from domain.pipeline import build_dataset
-            # Esta versión sigue asumiendo que build_dataset toma solo path
-            # Necesitaría adaptación similar a get_summary si se usa con API
-            return build_dataset(p) 
+            # Llamar a la función sin caché del api_loader
+            from .api_loader import load_election_data_from_api
+            raw_data = load_election_data_from_api(str(source_location))
+            if raw_data:
+                return build_dataset(raw_data=raw_data)
+            else:
+                return None
+                
+        # Para el resto, usar caché normal
+        @st.cache_data(ttl=5*60)  # 5 minutos de TTL
+        def _cached_load(source_t, source_loc):
+            from domain.pipeline import build_dataset
+            if source_t == 'json':
+                return build_dataset(path=source_loc)
+            elif source_t == 'api':
+                from .api_loader import load_election_data_from_api
+                raw_data = load_election_data_from_api(str(source_loc))
+                if raw_data:
+                    return build_dataset(raw_data=raw_data)
+                return None
             
-        return _cached_load(path)
+        return _cached_load(source_type, source_location)
         
     except ImportError:
         # Si Streamlit no está disponible, usar la versión con lru_cache
-        # ¡OJO! get_summary ahora necesita source_type y source_location
-        # Esta llamada fallará. Se debería decidir qué hacer aquí.
-        # Opción 1: Asumir JSON si Streamlit no está
-        # return get_summary(source_type='json', source_location=path)
-        # Opción 2: Lanzar error
-        raise RuntimeError("Streamlit no está instalado y get_streamlit_cached_summary fue llamado.")
+        return get_summary(source_type, source_location)
     except Exception as e:
         # Capturar otros errores
         print(f"Error en get_streamlit_cached_summary: {e}")
-        # Podría devolver None o relanzar
-        return None # Ser consistente con get_summary
-
-# Versión específica para Streamlit
-def get_streamlit_cached_summary(path: Union[str, Path]) -> Tuple[ElectionSummaryEnriquecido, Dict[str, Any]]:
-    """
-    Versión específica para Streamlit que utiliza st.cache_data.
-    Requiere que Streamlit esté instalado.
-    
-    Args:
-        path: Ruta al archivo JSON
-        
-    Returns:
-        Tuple con summary enriquecido y estadísticas
-    """
-    try:
-        import streamlit as st
-        
-        @st.cache_data(ttl=5*60)  # 5 minutos de TTL
-        def _cached_load(p):
-            from domain.pipeline import build_dataset
-            return build_dataset(p)
-            
-        return _cached_load(path)
-        
-    except ImportError:
-        # Si Streamlit no está disponible, usar la versión con lru_cache
-        return get_summary(path) 
+        return None 

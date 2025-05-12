@@ -68,32 +68,55 @@ def detect_load(path: Union[str, Path]) -> ElectionSummary:
         # Si no se encontró una firma coincidente
         raise RuntimeError(f"Formato de archivo no reconocido. Claves encontradas: {keys}")
 
-def load_election_data(year: int, data_dir: str = "data") -> Dict[str, Any]:
+def load_election_data(source_type: str, source_location: Union[str, Path]) -> Optional[Tuple[ElectionSummaryEnriquecido, Dict[str, Any]]]:
     """
-    Carga los datos electorales de un año específico.
+    Carga los datos electorales desde una fuente especificada (API o JSON).
+    Para datos de 2025 desde API, siempre obtiene datos frescos sin usar caché.
     
     Args:
-        year (int): Año de la elección
-        data_dir (str): Directorio base de datos
+        source_type (str): Tipo de fuente ('json' o 'api')
+        source_location (Union[str, Path]): Ruta al archivo JSON o URL de la API
         
     Returns:
-        Dict[str, Any]: Datos electorales procesados y enriquecidos
+        Tuple opcional con ElectionSummaryEnriquecido y estadísticas, o None si hay error
     """
-    # Cargar datos crudos
-    raw_data = _load_raw_data(year, data_dir)
+    # FORZAR RECARGA PARA API 2025
+    # Si es la API de 2025, obligamos que siempre obtenga datos frescos
+    if source_type == 'api' and (isinstance(source_location, str) and '2025' in source_location):
+        from domain.pipeline import build_dataset
+        print("IMPORTANTE: Obteniendo datos sin caché para API 2025")
+        # Cargar datos crudos sin caché
+        raw_data = load_election_data_from_api(str(source_location))
+        if raw_data:
+            try:
+                # Procesar los datos con el pipeline
+                result = build_dataset(raw_data=raw_data)
+                return result
+            except Exception as e:
+                print(f"Error al procesar datos sin caché de API 2025: {e}")
+                return None
+        else:
+            # Intentar con backup local como último recurso
+            try:
+                backup_path = Path(__file__).parent.parent.parent / 'data' / 'election_data' / '2025' / 'results_2025.json'
+                if backup_path.exists():
+                    print(f"Fallback: Cargando datos de backup local: {backup_path}")
+                    with open(backup_path, 'r', encoding='utf-8') as f:
+                        import json
+                        raw_data = json.load(f)
+                    result = build_dataset(raw_data=raw_data)
+                    return result
+            except Exception as e:
+                print(f"Error en fallback a backup local: {e}")
+            return None
     
-    # Procesar datos por departamento
-    processed_data = {}
-    for dept_name, dept_data in raw_data.items():
-        # Procesar datos básicos
-        dept_processed = _process_department_data(dept_data)
-        
-        # Enriquecer datos con información adicional
-        dept_enriched = enrich_department_data(dept_processed)
-        
-        processed_data[dept_name] = dept_enriched
+    # Para el resto de fuentes, usar la caché normal
+    if IN_STREAMLIT:
+        result = get_streamlit_cached_summary(source_type, source_location)
+    else:
+        result = get_summary(source_type, source_location)
     
-    return processed_data
+    return result
 
 def _process_department_data(dept_data: Dict[str, Any]) -> Dict[str, Any]:
     """
