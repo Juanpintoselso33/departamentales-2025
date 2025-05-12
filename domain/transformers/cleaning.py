@@ -48,9 +48,14 @@ def _norm_partido_muni(p: PartidoMunicipio) -> PartidoMunicipio:
 
 def _norm_municipio(m: Municipio) -> Municipio:
     partidos = [_norm_partido_muni(pm) for pm in m.Eleccion]
+    
+    # CORRECCIÓN: Mejorar interpretación de valores numéricos
+    # Extraer y normalizar el porcentaje de participación
+    cp_normalizado = _normalize_numeric_value(m.CP)
+    
     return m.copy(update={
         "MD": simplify(m.MD),
-        "CP": str(Decimal(m.CP.replace(",", "."))),   # porcentaje → string normalizada
+        "CP": cp_normalizado,
         "Eleccion": partidos
     })
 
@@ -72,12 +77,62 @@ def _norm_partido_depto(p: PartidoDepartamento) -> PartidoDepartamento:
 def _norm_departamento(d: Departamento) -> Departamento:
     munis  = [_norm_municipio(m) for m in d.Municipales]
     dpart  = [_norm_partido_depto(p) for p in d.Departamentales]
+    
+    # CORRECCIÓN: Mejorar interpretación de valores numéricos
+    # Extraer y normalizar el porcentaje de participación
+    cp_normalizado = d.CP
+    if isinstance(cp_normalizado, str):
+        # Eliminar espacios antes de convertir
+        cp_normalizado = cp_normalizado.strip().replace(",", ".")
+        # Solo convertir si el valor no está vacío
+        if cp_normalizado:
+            try:
+                # Convertir a Decimal para evitar errores de punto flotante
+                cp_normalizado = str(Decimal(cp_normalizado))
+            except:
+                # Si falla, mantener el valor original
+                pass
+    
     return d.copy(update={
         "DN": simplify(d.DN),
         "Municipales": munis,
         "Departamentales": dpart,
-        "CP": str(Decimal(d.CP.replace(",", ".")))
+        "CP": cp_normalizado
     })
+
+# Función auxiliar para normalizar valores numéricos
+def _normalize_numeric_value(value):
+    """
+    Normaliza valores numéricos con manejo de errores.
+    Elimina espacios y normaliza punto decimal.
+    
+    Args:
+        value: Valor a normalizar (string o número)
+    
+    Returns:
+        String normalizado representando el número
+    """
+    from decimal import Decimal, InvalidOperation
+    
+    if value is None:
+        return "0"
+    
+    # Convertir a string si no lo es
+    if not isinstance(value, str):
+        value = str(value)
+    
+    # Eliminar espacios y normalizar puntos decimales
+    value = value.strip().replace(",", ".")
+    
+    if not value:  # Si es cadena vacía
+        return "0"
+    
+    try:
+        # Usar Decimal para mayor precisión
+        return str(Decimal(value))
+    except (InvalidOperation, ValueError):
+        # En caso de error, devolver 0
+        return "0"
 
 # ---------- API externa del paso 2 ---------- #
 

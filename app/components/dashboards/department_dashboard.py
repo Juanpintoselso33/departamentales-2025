@@ -296,7 +296,6 @@ def display_department_dashboard(election_data, department_name=None):
                 for candidato in candidatos:
                     votos_totales_cand = candidato.get("votos", 0)
                     votos_hojas_cand = candidato.get("votos_hojas", 0)
-                    votos_lema_cand = votos_totales_cand - votos_hojas_cand # Calcular votos al lema
                     
                     porcentaje_partido_cand = (votos_totales_cand / votos_partido * 100) if votos_partido > 0 else 0 # Renombrado para claridad
                     porcentaje_total_cand = (votos_totales_cand / total_votos_departamento * 100) if total_votos_departamento > 0 else 0 # Renombrado para claridad
@@ -307,7 +306,6 @@ def display_department_dashboard(election_data, department_name=None):
                         "% Partido Depto.": porcentaje_partido_depto, # <-- Nueva Columna
                         "Candidato": candidato.get("nombre", "N/A"),
                         "Votos Hojas": votos_hojas_cand,
-                        "Votos Lema": votos_lema_cand,
                         "Votos Totales": votos_totales_cand,
                         "% en Partido": porcentaje_partido_cand, # Usar variable renombrada
                         "% Total Depto.": porcentaje_total_cand # Usar variable renombrada
@@ -320,7 +318,6 @@ def display_department_dashboard(election_data, department_name=None):
                     "% Partido Depto.": porcentaje_partido_depto, # <-- Nueva Columna
                     "Candidato": candidatos, 
                     "Votos Hojas": votos_partido, 
-                    "Votos Lema": 0, 
                     "Votos Totales": votos_partido, 
                     "% en Partido": 100.0, 
                     "% Total Depto.": porcentaje_total
@@ -334,8 +331,8 @@ def display_department_dashboard(election_data, department_name=None):
         df["% en Partido"] = df["% en Partido"].apply(lambda x: f"{x:.1f}%")
         df["% Total Depto."] = df["% Total Depto."].apply(lambda x: f"{x:.1f}%")
         
-        # Actualizar lista de columnas a mostrar
-        column_order = ["Partido", "Votos Partido", "% Partido Depto.", "Candidato", "Votos Hojas", "Votos Lema", "Votos Totales", "% en Partido", "% Total Depto."]
+        # Actualizar lista de columnas a mostrar (eliminamos "Votos Lema")
+        column_order = ["Partido", "Votos Partido", "% Partido Depto.", "Candidato", "Votos Hojas", "Votos Totales", "% en Partido", "% Total Depto."]
         
         st.dataframe(
             df[column_order],
@@ -345,7 +342,6 @@ def display_department_dashboard(election_data, department_name=None):
                 "% Partido Depto.": st.column_config.TextColumn("% Partido Depto.", width="small"), # <-- Configuración Nueva Columna
                 "Candidato": st.column_config.TextColumn("Candidato", width="large"),
                 "Votos Hojas": st.column_config.NumberColumn("Votos Hojas", format="%d"),
-                "Votos Lema": st.column_config.NumberColumn("Votos al Lema", format="%d"),
                 "Votos Totales": st.column_config.NumberColumn("Votos Totales", format="%d"),
                 "% en Partido": st.column_config.TextColumn("% en Partido", width="small"),
                 "% Total Depto.": st.column_config.TextColumn("% Total Depto.", width="small")

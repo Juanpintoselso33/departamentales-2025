@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-API_URL = "https://eleccionesdepartamentales2025.corteelectoral.gub.uy/JSON/ResumenGeneral_P_DPTOS.json"
+API_URL = "https://eleccionesdepartamentales2025.corteelectoral.gub.uy/JSON/ResumenGeneral_P_DPTOS.json?1747004126554"
 
 @app.route('/api/elecciones')
 def proxy():

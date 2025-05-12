@@ -201,13 +201,17 @@ def aggregate(summary: ElectionSummaryEnriquecido) -> Dict[str, Any]:
     departamentos_por_lema = {}
     municipios_por_lema = {}
     ediles_por_lema = {}
-    total_votos = 0
+    
+    # CORRECCIÓN: Los votos válidos son únicamente la suma de votos ya asignados a partidos
+    # Antes se usaba total_votos = 0 y se sumaba incrementalmente
+    total_votos_validos = 0
     
     # Recorrer todos los departamentos y municipios
     for depto in summary.departamentos:
         # Sumar votos por lema a nivel departamental
         for partido in depto.Departamentales:
             lema = partido.LN
+            # CORRECCIÓN: Usamos Tot que son los votos válidos asignados al partido
             votos = partido.Tot
             
             if lema in votos_por_lema:
@@ -215,7 +219,8 @@ def aggregate(summary: ElectionSummaryEnriquecido) -> Dict[str, Any]:
             else:
                 votos_por_lema[lema] = votos
                 
-            total_votos += votos
+            # CORRECCIÓN: Sumamos únicamente votos válidos (Tot de cada partido)
+            total_votos_validos += votos
         
         # Contar departamentos ganados por lema
         ganador_depto = depto.ganador
@@ -237,113 +242,127 @@ def aggregate(summary: ElectionSummaryEnriquecido) -> Dict[str, Any]:
                 # Esto ya está reflejado en el campo "ganador" del municipio
                 municipios_por_lema[ganador_muni] = municipios_por_lema.get(ganador_muni, 0) + 1
     
-    # Calcular porcentajes nacionales
+    # CORRECCIÓN: Calcular porcentajes nacionales usando solo votos válidos
+    # Excluimos completamente los votos anulados (TO) y observados (TNO) del cálculo
     porcentajes_nacionales = {}
-    if total_votos > 0:
+    if total_votos_validos > 0:
         for lema, votos in votos_por_lema.items():
-            porcentajes_nacionales[lema] = round((votos / total_votos) * 100, 2)
+            porcentajes_nacionales[lema] = round((votos / total_votos_validos) * 100, 2)
     
-    # Construir diccionario de resultados con ambos conjuntos de claves para compatibilidad
+    # Determinar lema más votado a nivel nacional
+    lema_mas_votado = None
+    if votos_por_lema:
+        lema_mas_votado = max(votos_por_lema.items(), key=lambda x: x[1])[0]
+    
+    # Devolver estadísticas completas
     return {
-        # Nombres de claves originales (mantener para compatibilidad)
+        # Votos y porcentajes
         "votos_por_lema": votos_por_lema,
         "porcentajes_nacionales": porcentajes_nacionales,
+        "total_votos": total_votos_validos,  # CORRECCIÓN: Usar la suma de votos válidos
+        
+        # Distribución territorial
         "departamentos_por_lema": departamentos_por_lema,
         "municipios_por_lema": municipios_por_lema,
         "ediles_por_lema": ediles_por_lema,
-        "total_votos": total_votos,
-        "lema_mas_votado": max(votos_por_lema.items(), key=lambda x: x[1])[0] if votos_por_lema else "",
         
-        # Nombres de claves esperados por el test
-        "votos_totales": total_votos,
+        # Partido más votado
+        "lema_mas_votado": lema_mas_votado,
+        
+        # Alias para compatibilidad con código existente
+        "votos_totales": total_votos_validos,
         "porcentajes": porcentajes_nacionales,
         "departamentos_ganados": departamentos_por_lema,
         "municipios_ganados": municipios_por_lema
-    } 
+    }
 
 
 def enrich_candidates_data(depto_data: Dict[str, Any]) -> Dict[str, List[Dict[str, Any]]]:
     """
-    Enriquece los datos de candidatos con información detallada.
+    Enriquece los datos de candidatos por partido, mejorando sus nombres y calculando porcentajes.
     
     Args:
         depto_data: Datos del departamento
         
     Returns:
-        Dict[str, List[Dict[str, Any]]]: Diccionario con candidatos por partido
+        Diccionario con candidatos enriquecidos por partido
     """
     candidates_by_party = {}
     
-    # Si tenemos datos en formato Departamentales, procesarlos
-    if "Departamentales" in depto_data:
-        total_votos = sum(partido.get("Tot", 0) for partido in depto_data["Departamentales"])
-        
-        for partido in depto_data["Departamentales"]:
-            partido_nombre = partido.get("LN", "")
-            votos_partido = partido.get("Tot", 0)
-            
-            if not partido_nombre:
-                continue
-                
-            candidates_by_party[partido_nombre] = []
-            
-            # Procesar candidatos desde Intendente.Listas
-            if "Intendente" in partido and "Listas" in partido["Intendente"]:
-                for candidato in partido["Intendente"]["Listas"]:
-                    nombre = candidato.get("Dsc", "")
-                    votos = candidato.get("Tot", 0)
-                    votos_hojas = candidato.get("VH", 0)
-                    votos_al_lema = candidato.get("VAL", 0)
-                    
-                    if nombre:
-                        # Calcular el total de votos del candidato
-                        votos_totales = votos_hojas + votos_al_lema
-                        
-                        # Calcular porcentajes
-                        porcentaje_partido = (votos_totales / votos_partido * 100) if votos_partido > 0 else 0
-                        porcentaje_total = (votos_totales / total_votos * 100) if total_votos > 0 else 0
-                        
-                        candidates_by_party[partido_nombre].append({
-                            "nombre": nombre,
-                            "votos": votos_totales,
-                            "votos_hojas": votos_hojas,
-                            "votos_al_lema": votos_al_lema,
-                            "porcentaje_partido": porcentaje_partido,
-                            "porcentaje_total": porcentaje_total
-                        })
-                
-                # Ordenar candidatos por votos pero mantener todos
-                candidates_by_party[partido_nombre].sort(key=lambda x: x["votos"], reverse=True)
+    # Si no hay estructura de datos Departamentales, devolver vacío
+    if "Departamentales" not in depto_data:
+        return {}
     
-    # Si no hay datos de Intendente.Listas pero hay party_candidates y votes, usar esos datos como fallback
-    elif "party_candidates" in depto_data and isinstance(depto_data["party_candidates"], dict):
-        # Si party_candidates ya tiene la estructura completa, usarla directamente
-        if any(isinstance(v, list) for v in depto_data["party_candidates"].values()):
-            return depto_data["party_candidates"]
-            
-        # Si no, convertir el formato antiguo al nuevo
-        votes = depto_data.get("votes", {})
-        total_votos = sum(votes.values()) if votes else 0
+    # Calcular total de votos para porcentajes globales
+    total_votos = 0
+    for partido in depto_data["Departamentales"]:
+        # Sumar votos totales de Intendente si existen
+        if "Intendente" in partido and "Tot" in partido["Intendente"]:
+            # CORRECCIÓN: Usamos strip() para eliminar espacios antes de la conversión
+            try:
+                # Conversión segura con manejo de errores
+                votos_str = str(partido["Intendente"]["Tot"]).strip()
+                total_votos += float(votos_str)
+            except (ValueError, TypeError):
+                # Si hay error de conversión, intentamos continuar
+                pass
+    
+    # Procesar cada partido
+    for partido in depto_data["Departamentales"]:
+        partido_nombre = partido.get("LN", "")
         
-        for partido, candidatos in depto_data["party_candidates"].items():
-            # Si es una lista, ya está en el formato nuevo
-            if isinstance(candidatos, list):
-                candidates_by_party[partido] = candidatos
-                continue
+        # Inicializar lista de candidatos para este partido
+        candidates_by_party[partido_nombre] = []
+        
+        # Calcular votos totales del partido para porcentajes internos
+        votos_partido = 0
+        if "Intendente" in partido and "Tot" in partido["Intendente"]:
+            try:
+                # CORRECCIÓN: Conversión segura con strip() para eliminar espacios
+                votos_str = str(partido["Intendente"]["Tot"]).strip()
+                votos_partido = float(votos_str)
+            except (ValueError, TypeError):
+                pass
+            
+        # Procesar candidatos desde Intendente.Listas
+        if "Intendente" in partido and "Listas" in partido["Intendente"]:
+            for candidato in partido["Intendente"]["Listas"]:
+                # CORRECCIÓN: Usar la nueva función para formatear nombres
+                from domain.transformers.text_normalizer import format_candidate_name
+                nombre_crudo = candidato.get("Dsc", "")
+                nombre = format_candidate_name(nombre_crudo)
                 
-            # Si es un string, convertir al nuevo formato
-            if partido in votes:
-                votos_partido = votes.get(partido, 0)
-                porcentaje_total = (votos_partido / total_votos * 100) if total_votos > 0 else 0
+                # Si no se pudo obtener un nombre, usar partido como fallback
+                if not nombre or nombre == "No disponible":
+                    nombre = f"Candidato de {partido_nombre}"
                 
-                candidates_by_party[partido] = [{
-                    "nombre": candidatos,  # candidatos aquí es un string (nombre del candidato)
-                    "votos": votos_partido,
-                    "votos_hojas": votos_partido,  # Como fallback, asumimos todos los votos como votos directos
-                    "votos_al_lema": 0,
-                    "porcentaje_partido": 100.0,  # Es el único candidato del partido
-                    "porcentaje_total": porcentaje_total
-                }]
+                # Convertir valores a números con manejo de errores
+                try:
+                    votos = float(str(candidato.get("Tot", 0)).strip())
+                    votos_hojas = float(str(candidato.get("VH", 0)).strip())
+                    votos_al_lema = float(str(candidato.get("VAL", 0)).strip())
+                except (ValueError, TypeError):
+                    votos = 0
+                    votos_hojas = 0
+                    votos_al_lema = 0
+                    
+                # Calcular porcentajes
+                porcentaje_partido = (votos / votos_partido * 100) if votos_partido > 0 else 0
+                porcentaje_total = (votos / total_votos * 100) if total_votos > 0 else 0
+                
+                candidates_by_party[partido_nombre].append({
+                    "nombre": nombre,
+                    "votos": votos,
+                    "votos_hojas": votos_hojas,
+                    "votos_al_lema": votos_al_lema,
+                    "porcentaje_partido": porcentaje_partido,
+                    "porcentaje_total": porcentaje_total,
+                    # NUEVO: Agregar advertencia para datos preliminares
+                    "advertencia": "ADVERTENCIA: Datos preliminares" if votos_partido > 0 and porcentaje_total < 10 else ""
+                })
+            
+            # Ordenar candidatos por votos pero mantener todos
+            candidates_by_party[partido_nombre].sort(key=lambda x: x["votos"], reverse=True)
     
     return candidates_by_party
 
@@ -582,26 +601,70 @@ def get_intendente_candidates_details(depto_data: Dict[str, Any]) -> List[Dict[s
     
     # Si tenemos datos en formato Departamentales, procesarlos
     if "Departamentales" in depto_data:
+        # CORRECCIÓN: Cálculo de votos válidos usando la metodología oficial
         # Primero calculamos el total de votos para los porcentajes
         for partido in depto_data["Departamentales"]:
             if "Intendente" in partido and "Tot" in partido["Intendente"]:
-                total_votos += partido["Intendente"]["Tot"]
+                try:
+                    # Conversión segura con strip() para eliminar espacios
+                    votos_str = str(partido["Intendente"]["Tot"]).strip()
+                    total_votos += float(votos_str)
+                except (ValueError, TypeError):
+                    # Si hay error de conversión, continuamos
+                    pass
         
         # Luego procesamos cada candidato
         for partido in depto_data["Departamentales"]:
             if "Intendente" in partido and "Listas" in partido["Intendente"]:
                 partido_nombre = partido.get("LN", "")
+                votos_partido = 0
+                
+                # Obtener los votos totales del partido para calcular porcentajes internos
+                try:
+                    if "Tot" in partido["Intendente"]:
+                        votos_str = str(partido["Intendente"]["Tot"]).strip()
+                        votos_partido = float(votos_str)
+                except (ValueError, TypeError):
+                    pass
+                
                 for candidato in partido["Intendente"]["Listas"]:
-                    votos = candidato.get("Tot", 0)
-                    porcentaje = (votos / total_votos * 100) if total_votos > 0 else 0
+                    # CORRECCIÓN: Mejor formato de nombres
+                    from domain.transformers.text_normalizer import format_candidate_name
+                    nombre_crudo = candidato.get("Dsc", "")
+                    nombre_formateado = format_candidate_name(nombre_crudo)
+                    
+                    # Si no se encontró un nombre, usar el partido como fallback
+                    if not nombre_formateado or nombre_formateado == "No disponible":
+                        nombre_formateado = f"Candidato de {partido_nombre}"
+                    
+                    # Conversión segura de valores numéricos
+                    try:
+                        votos = float(str(candidato.get("Tot", 0)).strip())
+                        votos_hojas = float(str(candidato.get("VH", 0)).strip())
+                        votos_al_lema = float(str(candidato.get("VAL", 0)).strip())
+                    except (ValueError, TypeError):
+                        votos = 0
+                        votos_hojas = 0
+                        votos_al_lema = 0
+                    
+                    # Calcular porcentajes
+                    porcentaje_total = (votos / total_votos * 100) if total_votos > 0 else 0
+                    porcentaje_partido = (votos / votos_partido * 100) if votos_partido > 0 else 0
+                    
+                    # CORRECCIÓN: Determinar si los datos son muy preliminares
+                    es_preliminar = votos_partido > 0 and porcentaje_total < 10
                     
                     candidates.append({
-                        "nombre": candidato.get("Dsc", ""),
+                        "nombre": nombre_formateado,
                         "partido": partido_nombre,
                         "votos": votos,
-                        "votos_hojas": candidato.get("VH", 0),
-                        "votos_al_lema": candidato.get("VAL", 0),
-                        "porcentaje": round(porcentaje, 2)
+                        "votos_hojas": votos_hojas,
+                        "votos_al_lema": votos_al_lema,
+                        "porcentaje": round(porcentaje_total, 2),
+                        "porcentaje_partido": round(porcentaje_partido, 2),
+                        # NUEVO: Agregar información sobre escrutinio
+                        "advertencia": "ADVERTENCIA: Datos preliminares" if es_preliminar else "",
+                        "es_preliminar": es_preliminar
                     })
     
     # Ordenar por votos de mayor a menor

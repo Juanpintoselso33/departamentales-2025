@@ -1,6 +1,28 @@
 """
 Pipeline principal para procesamiento de datos electorales.
 Coordina la carga, limpieza y enriquecimiento de los datos.
+
+METODOLOGÍA OFICIAL DE CÁLCULO DE VOTOS VÁLIDOS:
+-------------------------------------------------------------------------------
+Según la metodología de la Corte Electoral de Uruguay:
+
+1. Votos válidos: Son exclusivamente la suma de votos asignados a partidos.
+   - Se calculan como la suma de los valores 'Tot' de cada partido en 'Departamentales'.
+   - NO se incluyen votos en blanco, anulados u observados en el cálculo.
+
+2. Porcentajes: Se calculan dividiendo los votos de cada partido por el total de votos válidos.
+   - Esto asegura que la suma de porcentajes siempre dé 100%.
+
+3. Advertencias sobre datos preliminares:
+   - Se muestra una advertencia explícita cuando el porcentaje escrutado es menor al 10%.
+   - Esto evita confusiones con resultados muy preliminares.
+
+4. Campos involucrados en los datos crudos:
+   - TO: Votos anulados
+   - TNO: Votos no observados
+   - TE: Sobres en urna
+   - TH: Votos válidos totales del departamento
+-------------------------------------------------------------------------------
 """
 
 from pathlib import Path

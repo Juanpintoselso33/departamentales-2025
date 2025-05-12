@@ -120,6 +120,32 @@ Este proyecto está bajo la Licencia MIT.
 
 Los cálculos de asignación de cargos (Ediles, Concejales) son interpretaciones realizadas por esta aplicación y pueden diferir de los resultados oficiales de la Corte Electoral.
 
+## Mejoras Recientes
+
+Se han implementado las siguientes mejoras para garantizar mayor precisión y claridad en los resultados:
+
+### 1. Corrección del cálculo de votos válidos
+- Implementamos la metodología exacta de la Corte Electoral: los votos válidos son exclusivamente la suma de votos ya asignados a partidos.
+- Usamos directamente la suma de los valores `Tot` de cada partido en `Departamentales`.
+- Excluimos completamente los votos observados (TO) del cálculo de porcentajes.
+
+### 2. Mejora en el formato de nombres de candidatos
+- Implementamos una función mejorada que capitaliza correctamente cada palabra.
+- Agregamos reconocimiento de acentos específicos en nombres comunes (María, José, etc.).
+- Implementamos patrones para detectar y extraer solo el primer candidato de una lista.
+- Mejoramos el manejo de nombres compuestos y conectores (de, del, etc.).
+
+### 3. Implementación de candidatos indefinidos
+- Si no se encuentra un nombre de candidato específico, se muestra "Candidato de [partido]" como valor por defecto.
+
+### 4. Mejora de avisos sobre datos preliminares
+- Implementamos advertencias claras cuando el porcentaje escrutado es menor al 10%.
+- Agregamos una columna de "Advertencia" que indica explícitamente "ADVERTENCIA: Datos preliminares".
+
+### 5. Corrección en la interpretación de campos numéricos
+- Implementamos conversión segura de strings a números con manejo de errores.
+- Usamos `strip()` para eliminar espacios antes de la conversión.
+
 ---
 
 Desarrollado por Lic. Juan Ignacio Pintos Elso. 

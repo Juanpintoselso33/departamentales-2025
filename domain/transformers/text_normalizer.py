@@ -110,4 +110,88 @@ def find_matching_name(target: str, candidates: list) -> str | None:
     for candidate in candidates:
         if simplify(candidate) == target_simple:
             return candidate
-    return None 
+    return None
+
+# Palabras comunes con acentos en nombres propios
+COMMON_ACCENTED_WORDS = {
+    "MARIA": "María",
+    "JOSE": "José",
+    "JOSE LUIS": "José Luis",
+    "JOSE MARIA": "José María",
+    "JESUS": "Jesús",
+    "MARTIN": "Martín",
+    "ANGEL": "Ángel",
+    "SEBASTIAN": "Sebastián",
+    "ANDRES": "Andrés",
+    "RAMON": "Ramón",
+    "CESAR": "César",
+    "ALVARO": "Álvaro",
+    "GERMAN": "Germán",
+    "RAUL": "Raúl",
+    "OSCAR": "Óscar",
+    "JOAQUIN": "Joaquín",
+}
+
+# Palabras que no deben capitalizarse en nombres
+LOWERCASE_WORDS = ['de', 'del', 'la', 'las', 'los', 'y', 'e', 'a', 'en', 'el']
+
+def format_candidate_name(raw_name: str) -> str:
+    """
+    Formatea correctamente un nombre de candidato.
+    1. Capitaliza cada palabra.
+    2. Aplica acentos en palabras comunes donde corresponde.
+    3. Mantiene conectores en minúscula ("de", "del", etc.)
+    4. Extrae solo el primer candidato si hay varios separados por "y" o similar.
+    
+    Args:
+        raw_name: Nombre en formato crudo (mayúsculas, sin acentos, etc.)
+        
+    Returns:
+        Nombre formateado correctamente
+    """
+    if not raw_name or raw_name == "No disponible":
+        return "No disponible"
+    
+    # Convertir a string si no lo es
+    raw_name = str(raw_name).strip()
+    
+    # Patrones para extraer primer candidato
+    patterns = [
+        r'^([^/]+)/',          # Formato "Nombre1/Nombre2"
+        r'^([^y]+) y ',        # Formato "Nombre1 y Nombre2"
+        r'^([^-]+)-',          # Formato "Nombre1-Nombre2"
+        r'^([^,]+),',          # Formato "Nombre1, Nombre2"
+        r'^([^\(]+)\(',        # Formato "Nombre1 (Nombre2"
+    ]
+    
+    # Intentar extraer el primer candidato según los patrones
+    for pattern in patterns:
+        import re
+        match = re.search(pattern, raw_name)
+        if match:
+            raw_name = match.group(1).strip()
+            break
+    
+    # Dividir en palabras y capitalizar cada una
+    words = raw_name.lower().split()
+    capitalized = []
+    
+    for i, word in enumerate(words):
+        # Verificar si existe una versión con acento
+        upper_word = word.upper()
+        if upper_word in COMMON_ACCENTED_WORDS:
+            capitalized.append(COMMON_ACCENTED_WORDS[upper_word])
+        # Verificar si es una palabra que debe ir en minúscula (excepto al inicio)
+        elif word.lower() in LOWERCASE_WORDS and i > 0:
+            capitalized.append(word.lower())
+        # Caso normal: capitalizar
+        else:
+            # Manejar palabras con apóstrofes o caracteres especiales
+            if "'" in word:
+                parts = word.split("'")
+                capitalized.append("'".join(p.capitalize() for p in parts))
+            else:
+                capitalized.append(word.capitalize())
+    
+    # Unir todo y devolver
+    return " ".join(capitalized) 
