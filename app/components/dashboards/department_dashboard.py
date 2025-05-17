@@ -302,49 +302,46 @@ def display_department_dashboard(election_data, department_name=None):
                     
                     data.append({
                         "Partido": partido,
-                        "Votos Partido": votos_partido,
-                        "% Partido Depto.": porcentaje_partido_depto, # <-- Nueva Columna
                         "Candidato": candidato.get("nombre", "N/A"),
-                        "Votos Hojas": votos_hojas_cand,
-                        "Votos Totales": votos_totales_cand,
-                        "% en Partido": porcentaje_partido_cand, # Usar variable renombrada
-                        "% Total Depto.": porcentaje_total_cand # Usar variable renombrada
+                        "Votos Partido": votos_partido,
+                        "% Partido/Depto": porcentaje_partido_depto, 
+                        "Votos Candidato": votos_totales_cand,
+                        "% Cand/Partido": porcentaje_partido_cand,
+                        "% Cand/Depto": porcentaje_total_cand
                     })
             elif isinstance(candidatos, str):
                  porcentaje_total = (votos_partido / total_votos_departamento * 100) if total_votos_departamento > 0 else 0
                  data.append({
                     "Partido": partido, 
+                    "Candidato": candidatos,
                     "Votos Partido": votos_partido, 
-                    "% Partido Depto.": porcentaje_partido_depto, # <-- Nueva Columna
-                    "Candidato": candidatos, 
-                    "Votos Hojas": votos_partido, 
-                    "Votos Totales": votos_partido, 
-                    "% en Partido": 100.0, 
-                    "% Total Depto.": porcentaje_total
+                    "% Partido/Depto": porcentaje_partido_depto,
+                    "Votos Candidato": votos_partido,
+                    "% Cand/Partido": 100.0, 
+                    "% Cand/Depto": porcentaje_total
                 })
 
         df = pd.DataFrame(data)
-        df = df.sort_values(by="Votos Totales", ascending=False)
+        df = df.sort_values(by="Votos Candidato", ascending=False)
         
         # Formatear porcentajes
-        df["% Partido Depto."] = df["% Partido Depto."].apply(lambda x: f"{x:.1f}%") # <-- Formato Nueva Columna
-        df["% en Partido"] = df["% en Partido"].apply(lambda x: f"{x:.1f}%")
-        df["% Total Depto."] = df["% Total Depto."].apply(lambda x: f"{x:.1f}%")
+        df["% Partido/Depto"] = df["% Partido/Depto"].apply(lambda x: f"{x:.1f}%")
+        df["% Cand/Partido"] = df["% Cand/Partido"].apply(lambda x: f"{x:.1f}%")
+        df["% Cand/Depto"] = df["% Cand/Depto"].apply(lambda x: f"{x:.1f}%")
         
-        # Actualizar lista de columnas a mostrar (eliminamos "Votos Lema")
-        column_order = ["Partido", "Votos Partido", "% Partido Depto.", "Candidato", "Votos Hojas", "Votos Totales", "% en Partido", "% Total Depto."]
+        # Actualizar lista de columnas a mostrar con nuevo orden lógico
+        column_order = ["Partido", "Candidato", "Votos Partido", "% Partido/Depto", "Votos Candidato", "% Cand/Partido", "% Cand/Depto"]
         
         st.dataframe(
             df[column_order],
             column_config={
                 "Partido": st.column_config.TextColumn("Partido", width="medium"),
-                "Votos Partido": st.column_config.NumberColumn("Votos Partido", format="%d"), 
-                "% Partido Depto.": st.column_config.TextColumn("% Partido Depto.", width="small"), # <-- Configuración Nueva Columna
                 "Candidato": st.column_config.TextColumn("Candidato", width="large"),
-                "Votos Hojas": st.column_config.NumberColumn("Votos Hojas", format="%d"),
-                "Votos Totales": st.column_config.NumberColumn("Votos Totales", format="%d"),
-                "% en Partido": st.column_config.TextColumn("% en Partido", width="small"),
-                "% Total Depto.": st.column_config.TextColumn("% Total Depto.", width="small")
+                "Votos Partido": st.column_config.NumberColumn("Votos Partido", format="%d", help="Total de votos obtenidos por el partido"), 
+                "% Partido/Depto": st.column_config.TextColumn("% Partido en Depto", width="small", help="Porcentaje del partido sobre el total del departamento"), 
+                "Votos Candidato": st.column_config.NumberColumn("Votos Candidato", format="%d", help="Total de votos obtenidos por el candidato"),
+                "% Cand/Partido": st.column_config.TextColumn("% en Partido", width="small", help="Porcentaje del candidato dentro de su propio partido"),
+                "% Cand/Depto": st.column_config.TextColumn("% en Depto", width="small", help="Porcentaje del candidato sobre el total del departamento")
             },
             hide_index=True,
             use_container_width=True
